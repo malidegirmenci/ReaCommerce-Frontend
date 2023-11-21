@@ -1,10 +1,11 @@
-import Hero from '../components/Hero';
-import RecomendedProducts from '../components/RecomendedProducts';
+import Slider from '../components/Slider';
+import { data } from '../data/data';
+import RecomendedProducts from '../components/home/RecomendedProducts';
 
 export default function Home() {
     return (
         <>
-            <Hero />
+            <Slider data={data.home.hero}/>
             <RecomendedProducts />
         </>
     )
