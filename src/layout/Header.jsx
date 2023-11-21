@@ -1,22 +1,24 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone, faEnvelope, faUser, faSearch, faCartShopping, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faFacebook, faInstagram, faTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons";
+import { data } from "../data/data";
 export default function Header() {
+    const {phone,mail,offerMsg, companyName} = data.header;
     return (
         <div>
             <div className="bg-[#252B42] text-center items-center justify-between gap-5 flex-wrap flex px-6">
                 <div className="flex flex-wrap">
                     <div className="text-white items-center  p-2.5 gap-[5px] flex">
                         <FontAwesomeIcon icon={faPhone} size="sm" />
-                        <h6 className="text-sm font-bold leading-normal tracking-tight">(225) 555-0118</h6>
+                        <h6 className="text-sm font-bold leading-normal tracking-tight">{phone}</h6>
                     </div>
                     <div className="text-white items-center  p-2.5 gap-[5px] flex">
                         <FontAwesomeIcon icon={faEnvelope} size="sm" />
-                        <h6 className="text-sm font-bold leading-normal tracking-tight">michelle.rivera@example.com</h6>
+                        <h6 className="text-sm font-bold leading-normal tracking-tight">{mail}</h6>
                     </div>
                 </div>
                 <div className="p-2.5">
-                    <h6 className="text-white text-sm font-bold leading-normal tracking-tight">Follow Us and get a chance to win 80% off</h6>
+                    <h6 className="text-white text-sm font-bold leading-normal tracking-tight">{offerMsg}</h6>
                 </div>
                 <div className="text-white items-center justify-start p-2.5 gap-2.5 flex">
                     <h6 className="text-sm font-bold leading-normal tracking-tight">Follow Us :</h6>
@@ -30,7 +32,7 @@ export default function Header() {
             </div>
             <div className="flex justify-between items-center flex-wrap px-10">
                 <header>
-                    <h3 className="text-2xl text-slate-800 font-bold leading-loose tracking-tight">Bandage</h3>
+                    <h3 className="text-2xl text-slate-800 font-bold leading-loose tracking-tight">{companyName}</h3>
                 </header>
                 <nav className="justify-start items-start gap-4 flex ">
                     {[
