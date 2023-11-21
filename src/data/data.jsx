@@ -12,7 +12,8 @@ export const data = {
     home:
     {
         hero:{
-            slides : [
+            slides : 
+            [
                 {
                     h5: "SUMMER 2020",
                     h1: "NEW COLLECTION",
@@ -32,7 +33,25 @@ export const data = {
                     key: 2,
                 },
             ]
-        }
+        },
+        categories:
+        {
+            men:{name:"men",img:Images.categories.men},
+            women:{name:"women",img:Images.categories.women},
+            accessories:{name:"accessories", img:Images.categories.accessories},
+            kids:{name:"kids", img:Images.categories.kids},
+        },
+        bestSellerProducts:
+        [
+            {name:"Graphic Design", category:"English Department", price:16.48, discountedPrice:6.48,colors:["blue","green","orange","purple"], img:Images.bestSellerProducts.product1},
+            {name:"Graphic Design", category:"English Department", price:16.48, discountedPrice:6.48,colors:["blue","green","orange","purple"], img:Images.bestSellerProducts.product2},
+            {name:"Graphic Design", category:"English Department", price:16.48, discountedPrice:6.48,colors:["blue","green","orange","purple"], img:Images.bestSellerProducts.product3},
+            {name:"Graphic Design", category:"English Department", price:16.48, discountedPrice:6.48,colors:["blue","green","orange","purple"], img:Images.bestSellerProducts.product4},
+            {name:"Graphic Design", category:"English Department", price:16.48, discountedPrice:6.48,colors:["blue","green","orange","purple"], img:Images.bestSellerProducts.product5},
+            {name:"Graphic Design", category:"English Department", price:16.48, discountedPrice:6.48,colors:["blue","green","orange","purple"], img:Images.bestSellerProducts.product6},
+            {name:"Graphic Design", category:"English Department", price:16.48, discountedPrice:6.48,colors:["blue","green","orange","purple"], img:Images.bestSellerProducts.product7},
+            {name:"Graphic Design", category:"English Department", price:16.48, discountedPrice:6.48,colors:["blue","green","orange","purple"], img:Images.bestSellerProducts.product8},
+        ]
         
     },
     
