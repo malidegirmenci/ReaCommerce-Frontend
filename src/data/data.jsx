@@ -69,7 +69,7 @@ export const data = {
                     {
                         h5:"WINTER 2020",
                         h1:"Vita Classic Product",
-                        h4:"We know how large objects will act, We known \nhow are objects will act, We know",
+                        h4:"We know how large objects will act, We known how are objects will act, We know",
                         price:18.48,
                         altText: 'SUMMER 2020 Products',
                         caption: 'SUMMER 2020',
