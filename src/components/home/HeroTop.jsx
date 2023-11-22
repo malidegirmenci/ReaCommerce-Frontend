@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import {
     Carousel,
@@ -7,7 +6,7 @@ import {
     CarouselIndicators,
 } from 'reactstrap';
 
-export default function Slider(props) {
+export default function HeroTop(props) {
     const {slides} = props.data;
     const [activeIndex, setActiveIndex] = useState(0);
     const [animating, setAnimating] = useState(false);
@@ -37,7 +36,7 @@ export default function Slider(props) {
                 key={item.key}
             >
                 <div className={`flex items-center justify-left relative`}>
-                    <div className='w-[100%]'>
+                    <div className='w-full'>
                         <img src={item.src} alt={item.altText} className='w-full h-screen object-cover' />
                     </div>
                     <div className=' flex flex-col gap-9 my-9 ml-[15%] absolute'>
