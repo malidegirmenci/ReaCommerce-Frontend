@@ -41,7 +41,7 @@ export default function HeroBot(props) {
                     </div>
                     <div className=' flex flex-col gap-9 my-9 ml-[15%] absolute'>
                         <h5 className="text-white text-base font-bold leading-normal tracking-tight">{item.h5}</h5>
-                        <h1 className='text-white text-6xl font-bold leading-normal tracking-tight'>{item.h1}</h1>
+                        <h1 className='text-white text-6xl font-bold leading-normal tracking-tight w-[60%]'>{item.h1}</h1>
                         <h4 className='text-neutral-50 text-xl font-normal leading-8 tracking-tight w-[60%]'>{item.h4}</h4>
                         <div className='flex items-center gap-8'>
                             <h5 className='text-white text-2xl font-bold leading-loose tracking-tight'>${item.price}</h5>
