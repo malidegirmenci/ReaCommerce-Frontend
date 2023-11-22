@@ -24,10 +24,17 @@ import winterHeroBot from "./heroBot/heroBot-winter.png";
 
 /*Popular Product*/
 import popularProduct from "./popularProduct/popular-product.png";
+
+/*Featured Posts*/
+import post1 from "./featuredPosts/post-1.jpeg";
+import post2 from "./featuredPosts/post-2.jpeg";
+import post3 from "./featuredPosts/post-3.jpeg";
+
 export const Images = {
     heroTop: { summerHeroTop, winterHeroTop },
     categories: { men, women, accessories, kids },
     bestSellerProducts: {product1,product2,product3,product4,product5,product6,product7,product8,},
     heroBot: {summerHeroBot, winterHeroBot},
     popularProduct,
+    featuredPosts:{post1,post2,post3},
 }

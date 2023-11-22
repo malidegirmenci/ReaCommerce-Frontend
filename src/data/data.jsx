@@ -57,20 +57,20 @@ export const data = {
             slides:
                 [
                     {
-                        h5:"SUMMER 2020",
-                        h1:"Vita Classic Product",
-                        h4:"We know how large objects will act, We know how are objects will act, We know",
-                        price:16.48,
+                        h5: "SUMMER 2020",
+                        h1: "Vita Classic Product",
+                        h4: "We know how large objects will act, We know how are objects will act, We know",
+                        price: 16.48,
                         altText: 'SUMMER 2020 Products',
                         caption: 'SUMMER 2020',
                         src: Images.heroBot.summerHeroBot,
                         key: 1,
                     },
                     {
-                        h5:"WINTER 2020",
-                        h1:"Vita Classic Product",
-                        h4:"We know how large objects will act, We known how are objects will act, We know",
-                        price:18.48,
+                        h5: "WINTER 2020",
+                        h1: "Vita Classic Product",
+                        h4: "We know how large objects will act, We known how are objects will act, We know",
+                        price: 18.48,
                         altText: 'SUMMER 2020 Products',
                         caption: 'SUMMER 2020',
                         src: Images.heroBot.winterHeroBot,
@@ -80,11 +80,40 @@ export const data = {
         },
         popularProduct:
         {
-            h5:"SUMMER 2020",
-            h1:"Part of the Neural Universe",
-            h4:"We know how large objects will act, but things on a small scale.",
-            src:Images.popularProduct,
+            h5: "SUMMER 2020",
+            h1: "Part of the Neural Universe",
+            h4: "We know how large objects will act, but things on a small scale.",
+            src: Images.popularProduct,
         },
+        featuredPosts:
+            [
+                {
+                    src:Images.featuredPosts.post1,
+                    title:"Loudest à la Madison #1 (L'integral)",
+                    description:"We focus on ergonomics and meeting you where you work. It's only a keystroke away.",
+                    date:"22 April 2021",
+                    comments:10,
+                    learnMore:"Lorem ipsum falan fıstık",
+                    key:1
+                },
+                {
+                    src:Images.featuredPosts.post2,
+                    title:"Loudest à la Madison #1 (L'integral)",
+                    description:"We focus on ergonomics and meeting you where you work. It's only a keystroke away.",
+                    date:"22 April 2021",
+                    comments:10,
+                    learnMore:"Lorem ipsum falan fıstık",
+                    key:2,
+                },{
+                    src:Images.featuredPosts.post3,
+                    title:"Loudest à la Madison #1 (L'integral)",
+                    description:"We focus on ergonomics and meeting you where you work. It's only a keystroke away.",
+                    date:"22 April 2021",
+                    comments:10,
+                    learnMore:"Lorem ipsum falan fıstık",
+                    key:3
+                }
+            ]
     },
 
 }
