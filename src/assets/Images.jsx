@@ -1,6 +1,6 @@
-/*Hero IMGS*/
-import summer from "./hero/summer.jpeg";
-import winter from "./hero/winter.jpg";
+/*Hero Top IMGS*/
+import summerHeroTop from "./heroTop/heroTop-summer.jpeg";
+import winterHeroTop from "./heroTop/heroTop-winter.jpg";
 
 /*Categories*/
 import men from "./categories/men.jpeg";
@@ -18,9 +18,13 @@ import product6 from "./bestSellerProducts/product-6.jpeg";
 import product7 from "./bestSellerProducts/product-7.jpeg";
 import product8 from "./bestSellerProducts/product-8.jpeg";
 
+/*Hero Bot IMGS*/
+import summerHeroBot from "./heroBot/heroBot-summer.png";
+import winterHeroBot from "./heroBot/heroBot-winter.png";
+
 export const Images = {
-    hero: { summer, winter },
+    heroTop: { summerHeroTop, winterHeroTop },
     categories: { men, women, accessories, kids },
     bestSellerProducts: {product1,product2,product3,product4,product5,product6,product7,product8,},
-    
+    heroBot: {summerHeroBot, winterHeroBot},
 }
