@@ -77,7 +77,14 @@ export const data = {
                         key: 2,
                     },
                 ]
-        }
+        },
+        popularProduct:
+        {
+            h5:"SUMMER 2020",
+            h1:"Part of the Neural Universe",
+            h4:"We know how large objects will act, but things on a small scale.",
+            src:Images.popularProduct,
+        },
     },
 
 }

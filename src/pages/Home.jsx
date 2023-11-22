@@ -1,8 +1,10 @@
+import { data } from '../data/data';
+
 import HeroTop from '../components/home/HeroTop';
 import HeroBot from '../components/home/HeroBot';
-import { data } from '../data/data';
 import RecomendedProducts from '../components/home/RecomendedProducts';
 import BestSellerProducts from '../components/home/BestSellerProducts';
+import PopularProduct from '../components/home/PopularProduct';
 
 export default function Home() {
     return (
@@ -16,6 +18,9 @@ export default function Home() {
             </div>
             <div>
                 <HeroBot data={data.home.heroBot}/>
+            </div>
+            <div>
+                <PopularProduct data={data.home.popularProduct}/>
             </div>
         </>
     )

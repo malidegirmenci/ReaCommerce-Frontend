@@ -22,9 +22,12 @@ import product8 from "./bestSellerProducts/product-8.jpeg";
 import summerHeroBot from "./heroBot/heroBot-summer.png";
 import winterHeroBot from "./heroBot/heroBot-winter.png";
 
+/*Popular Product*/
+import popularProduct from "./popularProduct/popular-product.png";
 export const Images = {
     heroTop: { summerHeroTop, winterHeroTop },
     categories: { men, women, accessories, kids },
     bestSellerProducts: {product1,product2,product3,product4,product5,product6,product7,product8,},
     heroBot: {summerHeroBot, winterHeroBot},
+    popularProduct,
 }
