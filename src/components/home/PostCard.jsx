@@ -30,7 +30,7 @@ export default function PostCard(props) {
                 </div>
                 <div className="flex gap-4 items-center cursor-pointer">
                     <p className="text-neutral-500 text-sm font-bold leading-normal tracking-tight">Learn More</p>
-                    <FontAwesomeIcon icon={faArrowRight} size="md" className="p-1 text-[#23A6F0]" />
+                    <FontAwesomeIcon icon={faArrowRight} size="lg" className="p-1 text-[#23A6F0]" />
                 </div>
             </div>
         </div>
