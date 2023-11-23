@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone, faEnvelope, faUser, faSearch, faCartShopping, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faFacebook, faInstagram, faTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { data } from "../data/data";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 export default function Header() {
     const {phone,mail,offerMsg, companyName} = data.header;
     return (
@@ -37,13 +38,13 @@ export default function Header() {
                 <nav className="justify-start items-start gap-4 flex ">
                     {[
                         ['Home', '/'],
-                        ['Shop', '/shop'],
+                        ['Shop', '/shopping'],
                         ['About', '/about'],
                         ['Blog', '/blog'],
                         ['Contact', '/contact'],
                         ['Pages', '/pages']
                     ].map(([title, url], idx) => (
-                        <a href={url} key={idx} className=" text-neutral-500 font-bold text-sm leading-normal tracking-tigh hover:text-slate-900">{title}</a>
+                        <Link to={url} key={idx} className=" text-neutral-500 font-bold text-sm leading-normal tracking-tigh hover:text-slate-900">{title}</Link>
                     ))}
                 </nav>
                 <div className=" text-sky-500 items-center flex gap-10">
