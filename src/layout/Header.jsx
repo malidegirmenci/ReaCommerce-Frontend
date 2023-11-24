@@ -48,7 +48,7 @@ export default function Header() {
                     ))}
                 </nav>
                 <div className=" text-sky-500 items-center flex gap-10">
-                    <div className="items-center flex ">
+                    <div className="items-center flex gap-1">
                         <FontAwesomeIcon icon={faUser} size="sm" className="" />
                         <div className=" font-bold leading-normal text-sm tracking-tight ">Login / Register</div>
                     </div>

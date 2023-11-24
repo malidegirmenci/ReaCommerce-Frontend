@@ -20,7 +20,7 @@ export const data = {
                         h4: "We know how large objects will act, but things on a small scale.",
                         altText: 'Summer 2020 Products',
                         caption: 'Summer 2020',
-                        src: Images.heroTop.summerHeroTop,
+                        src: Images.home.heroTop.summerHeroTop,
                         key: 1,
                     },
                     {
@@ -29,28 +29,28 @@ export const data = {
                         h4: "We know how large objects will act, but things on a small scale.",
                         altText: 'Winter 2020 Products',
                         caption: 'Winter 2020',
-                        src: Images.heroTop.winterHeroTop,
+                        src: Images.home.heroTop.winterHeroTop,
                         key: 2,
                     },
                 ]
         },
         categories:
         {
-            men: { name: "men", img: Images.categories.men },
-            women: { name: "women", img: Images.categories.women },
-            accessories: { name: "accessories", img: Images.categories.accessories },
-            kids: { name: "kids", img: Images.categories.kids },
+            men: { name: "men", img: Images.home.categories.men },
+            women: { name: "women", img: Images.home.categories.women },
+            accessories: { name: "accessories", img: Images.home.categories.accessories },
+            kids: { name: "kids", img: Images.home.categories.kids },
         },
         bestSellerProducts:
             [
-                { name: "Graphic Design", category: "English Department", price: 16.48, discountedPrice: 6.48, colors: ["blue", "green", "orange", "purple"], img: Images.bestSellerProducts.product1 },
-                { name: "Graphic Design", category: "English Department", price: 16.48, discountedPrice: 6.48, colors: ["blue", "green", "orange", "purple"], img: Images.bestSellerProducts.product2 },
-                { name: "Graphic Design", category: "English Department", price: 16.48, discountedPrice: 6.48, colors: ["blue", "green", "orange", "purple"], img: Images.bestSellerProducts.product3 },
-                { name: "Graphic Design", category: "English Department", price: 16.48, discountedPrice: 6.48, colors: ["blue", "green", "orange", "purple"], img: Images.bestSellerProducts.product4 },
-                { name: "Graphic Design", category: "English Department", price: 16.48, discountedPrice: 6.48, colors: ["blue", "green", "orange", "purple"], img: Images.bestSellerProducts.product5 },
-                { name: "Graphic Design", category: "English Department", price: 16.48, discountedPrice: 6.48, colors: ["blue", "green", "orange", "purple"], img: Images.bestSellerProducts.product6 },
-                { name: "Graphic Design", category: "English Department", price: 16.48, discountedPrice: 6.48, colors: ["blue", "green", "orange", "purple"], img: Images.bestSellerProducts.product7 },
-                { name: "Graphic Design", category: "English Department", price: 16.48, discountedPrice: 6.48, colors: ["blue", "green", "orange", "purple"], img: Images.bestSellerProducts.product8 },
+                { name: "Graphic Design", category: "English Department", price: 16.48, discountedPrice: 6.48, colors: ["blue", "green", "orange", "purple"], img: Images.home.bestSellerProducts.product1InBS },
+                { name: "Graphic Design", category: "English Department", price: 16.48, discountedPrice: 6.48, colors: ["blue", "green", "orange", "purple"], img: Images.home.bestSellerProducts.product2InBS },
+                { name: "Graphic Design", category: "English Department", price: 16.48, discountedPrice: 6.48, colors: ["blue", "green", "orange", "purple"], img: Images.home.bestSellerProducts.product3InBS },
+                { name: "Graphic Design", category: "English Department", price: 16.48, discountedPrice: 6.48, colors: ["blue", "green", "orange", "purple"], img: Images.home.bestSellerProducts.product4InBS },
+                { name: "Graphic Design", category: "English Department", price: 16.48, discountedPrice: 6.48, colors: ["blue", "green", "orange", "purple"], img: Images.home.bestSellerProducts.product5InBS },
+                { name: "Graphic Design", category: "English Department", price: 16.48, discountedPrice: 6.48, colors: ["blue", "green", "orange", "purple"], img: Images.home.bestSellerProducts.product6InBS },
+                { name: "Graphic Design", category: "English Department", price: 16.48, discountedPrice: 6.48, colors: ["blue", "green", "orange", "purple"], img: Images.home.bestSellerProducts.product7InBS },
+                { name: "Graphic Design", category: "English Department", price: 16.48, discountedPrice: 6.48, colors: ["blue", "green", "orange", "purple"], img: Images.home.bestSellerProducts.product8InBS },
             ],
         heroBot:
         {
@@ -63,7 +63,7 @@ export const data = {
                         price: 16.48,
                         altText: 'SUMMER 2020 Products',
                         caption: 'SUMMER 2020',
-                        src: Images.heroBot.summerHeroBot,
+                        src: Images.home.heroBot.summerHeroBot,
                         key: 1,
                     },
                     {
@@ -73,7 +73,7 @@ export const data = {
                         price: 18.48,
                         altText: 'SUMMER 2020 Products',
                         caption: 'SUMMER 2020',
-                        src: Images.heroBot.winterHeroBot,
+                        src: Images.home.heroBot.winterHeroBot,
                         key: 2,
                     },
                 ]
@@ -83,37 +83,85 @@ export const data = {
             h5: "SUMMER 2020",
             h1: "Part of the Neural Universe",
             h4: "We know how large objects will act, but things on a small scale.",
-            src: Images.popularProduct,
+            src: Images.home.popularProduct,
         },
         featuredPosts:
             [
                 {
-                    src:Images.featuredPosts.post1,
-                    title:"Loudest à la Madison #1 (L'integral)",
-                    description:"We focus on ergonomics and meeting you where you work. It's only a keystroke away.",
-                    date:"22 April 2021",
-                    comments:10,
-                    learnMore:"Lorem ipsum falan fıstık",
-                    key:1
+                    src: Images.home.featuredPosts.post1,
+                    title: "Loudest à la Madison #1 (L'integral)",
+                    description: "We focus on ergonomics and meeting you where you work. It's only a keystroke away.",
+                    date: "22 April 2021",
+                    comments: 10,
+                    learnMore: "Lorem ipsum falan fıstık",
+                    key: 1
                 },
                 {
-                    src:Images.featuredPosts.post2,
-                    title:"Loudest à la Madison #1 (L'integral)",
-                    description:"We focus on ergonomics and meeting you where you work. It's only a keystroke away.",
-                    date:"22 April 2021",
-                    comments:10,
-                    learnMore:"Lorem ipsum falan fıstık",
-                    key:2,
-                },{
-                    src:Images.featuredPosts.post3,
-                    title:"Loudest à la Madison #1 (L'integral)",
-                    description:"We focus on ergonomics and meeting you where you work. It's only a keystroke away.",
-                    date:"22 April 2021",
-                    comments:10,
-                    learnMore:"Lorem ipsum falan fıstık",
-                    key:3
+                    src: Images.home.featuredPosts.post2,
+                    title: "Loudest à la Madison #1 (L'integral)",
+                    description: "We focus on ergonomics and meeting you where you work. It's only a keystroke away.",
+                    date: "22 April 2021",
+                    comments: 10,
+                    learnMore: "Lorem ipsum falan fıstık",
+                    key: 2,
+                }, {
+                    src: Images.home.featuredPosts.post3,
+                    title: "Loudest à la Madison #1 (L'integral)",
+                    description: "We focus on ergonomics and meeting you where you work. It's only a keystroke away.",
+                    date: "22 April 2021",
+                    comments: 10,
+                    learnMore: "Lorem ipsum falan fıstık",
+                    key: 3
                 }
             ]
     },
+    productList:{
+        categories:[
+            {
+                title:"CLOTHS",
+                amount:5,
+                src:Images.productList.categories.category1,
+                key:1,
+            },
+            {
+                title:"CLOTHS",
+                amount:5,
+                src:Images.productList.categories.category2,
+                key:2
+            },
+            {
+                title:"CLOTHS",
+                amount:5,
+                src:Images.productList.categories.category3,
+                key:3
+            },
+            {
+                title:"CLOTHS",
+                amount:5,
+                src:Images.productList.categories.category4,
+                key:4
+            },
+            {
+                title:"CLOTHS",
+                amount:5,
+                src:Images.productList.categories.category5,
+                key:5
+            },
+        ],
+        products: [
+            { name: "Graphic Design", category: "English Department", price: 16.48, discountedPrice: 6.48, colors: ["blue", "green", "orange", "purple"], img: Images.productList.products.product1 },
+            { name: "Graphic Design", category: "English Department", price: 16.48, discountedPrice: 6.48, colors: ["blue", "green", "orange", "purple"], img: Images.productList.products.product2 },
+            { name: "Graphic Design", category: "English Department", price: 16.48, discountedPrice: 6.48, colors: ["blue", "green", "orange", "purple"], img: Images.productList.products.product3 },
+            { name: "Graphic Design", category: "English Department", price: 16.48, discountedPrice: 6.48, colors: ["blue", "green", "orange", "purple"], img: Images.productList.products.product4 },
+            { name: "Graphic Design", category: "English Department", price: 16.48, discountedPrice: 6.48, colors: ["blue", "green", "orange", "purple"], img: Images.productList.products.product5 },
+            { name: "Graphic Design", category: "English Department", price: 16.48, discountedPrice: 6.48, colors: ["blue", "green", "orange", "purple"], img: Images.productList.products.product6 },
+            { name: "Graphic Design", category: "English Department", price: 16.48, discountedPrice: 6.48, colors: ["blue", "green", "orange", "purple"], img: Images.productList.products.product7 },
+            { name: "Graphic Design", category: "English Department", price: 16.48, discountedPrice: 6.48, colors: ["blue", "green", "orange", "purple"], img: Images.productList.products.product8 },
+            { name: "Graphic Design", category: "English Department", price: 16.48, discountedPrice: 6.48, colors: ["blue", "green", "orange", "purple"], img: Images.productList.products.product9 },
+            { name: "Graphic Design", category: "English Department", price: 16.48, discountedPrice: 6.48, colors: ["blue", "green", "orange", "purple"], img: Images.productList.products.product10 },
+            { name: "Graphic Design", category: "English Department", price: 16.48, discountedPrice: 6.48, colors: ["blue", "green", "orange", "purple"], img: Images.productList.products.product11 },
+            { name: "Graphic Design", category: "English Department", price: 16.48, discountedPrice: 6.48, colors: ["blue", "green", "orange", "purple"], img: Images.productList.products.product12 },
+        ],
+    }
 
 }
