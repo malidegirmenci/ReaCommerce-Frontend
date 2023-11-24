@@ -1,5 +1,5 @@
 import { data } from "../../data/data"
-import ProductCard from "./ProductCard";
+import ProductCard from "../general/ProductCard";
 
 export default function BestSellerProducts() {
     const { bestSellerProducts } = data.home;
