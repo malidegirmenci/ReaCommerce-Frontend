@@ -54,6 +54,9 @@ import product10 from "./product-list/products/product-10.jpg";
 import product11 from "./product-list/products/product-11.jpg";
 import product12 from "./product-list/products/product-12.jpg";
 
+/*CONTACT*/
+import contactbg from "./contact/contact-bg.jpg";
+
 export const Images = {
     home: {
         heroTop: { summerHeroTop, winterHeroTop },
@@ -66,7 +69,9 @@ export const Images = {
     productList:{
         categories:{category1,category2,category3,category4,category5},
         products:{product1,product2,product3,product4,product5,product6,product7,product8,product9,product10,product11,product12}
+    },
+    contact:{
+        backgroundImg:contactbg,
     }
-
 
 }
