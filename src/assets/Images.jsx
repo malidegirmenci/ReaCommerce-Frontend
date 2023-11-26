@@ -57,6 +57,9 @@ import product12 from "./product-list/products/product-12.jpg";
 /*CONTACT*/
 import contactbg from "./contact/contact-bg.jpg";
 
+/*About*/
+import aboutUsbg from "./about/about-us-bg.png";
+
 export const Images = {
     home: {
         heroTop: { summerHeroTop, winterHeroTop },
@@ -72,6 +75,9 @@ export const Images = {
     },
     contact:{
         backgroundImg:contactbg,
+    },
+    about:{
+        aboutUsbg
     }
 
 }

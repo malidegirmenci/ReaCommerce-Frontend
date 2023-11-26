@@ -172,5 +172,8 @@ export const data = {
             {city:"Lonodon",address:"3517 W. Gray St. Utica.",postCode:"75000 Paris",phone:"+451 215 215", fax:"+451 215 215"},
         ]
     },
+    about:{
+        aboutUsBg:Images.about.aboutUsbg
+    }
 
 }
