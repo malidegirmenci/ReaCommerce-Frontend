@@ -58,8 +58,8 @@ import product12 from "./product-list/products/product-12.jpg";
 import contactbg from "./contact/contact-bg.jpg";
 
 /*About*/
-import aboutUsbg from "./about/about-us-bg.png";
-
+import aboutUsBg from "./about/about-us-bg.png";
+import videoBg from "./about/video-bg.jpg";
 export const Images = {
     home: {
         heroTop: { summerHeroTop, winterHeroTop },
@@ -77,7 +77,7 @@ export const Images = {
         backgroundImg:contactbg,
     },
     about:{
-        aboutUsbg
+        aboutUsBg, videoBg,
     }
 
 }

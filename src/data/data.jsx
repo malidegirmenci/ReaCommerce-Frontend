@@ -173,8 +173,9 @@ export const data = {
         ]
     },
     about:{
-        aboutUsBg:Images.about.aboutUsbg,
-        statics:{customers:15, visitors:150, countries:15, partners:100},            
+        aboutUsBg:Images.about.aboutUsBg,
+        statics:{customers:15, visitors:150, countries:15, partners:100},
+        videoBg:Images.about.videoBg,            
     }
 
 }

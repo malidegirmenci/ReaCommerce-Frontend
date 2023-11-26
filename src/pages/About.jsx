@@ -1,6 +1,8 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { data } from "../data/data"
+import { faPlay } from "@fortawesome/free-solid-svg-icons"
 export default function About() {
-    const { aboutUsBg, statics } = data.about
+    const { aboutUsBg, statics, videoBg } = data.about
     return (
         <div className="flex flex-col w-[90%] mx-auto gap-20">
             <div className="flex items-center justify-between gap-10 w-[80%] mx-auto">
@@ -46,6 +48,13 @@ export default function About() {
                 <div className="flex flex-col w-1/4 gap-1 items-center">
                     <p className=" text-slate-800 text-[58px] font-bold leading-[80px] tracking-tight">{statics.partners}</p>
                     <p className="text-center text-neutral-500 text-base font-bold leading-normal tracking-tight">Top Partners</p>
+                </div>
+            </div>
+            <div className="relative flex items-center justify-center rounded-lg "> 
+                <img className="w-1/2 mx-auto rounded-lg shadow-xl" src={videoBg} />
+                <div className="w-1/2 h-full absolute bg-black opacity-50 rounded-lg shadow-xl"/>
+                <div className="flex items-center justify-center w-16 h-16 bg-sky-500 rounded-full absolute shadow-xl">
+                    <FontAwesomeIcon icon={faPlay} size="xl" className="text-white" />
                 </div>
             </div>
         </div>
