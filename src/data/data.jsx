@@ -175,7 +175,17 @@ export const data = {
     about:{
         aboutUsBg:Images.about.aboutUsBg,
         statics:{customers:15, visitors:150, countries:15, partners:100},
-        videoBg:Images.about.videoBg,            
+        videoBg:Images.about.videoBg,
+        employees:[
+            {fullname:"Username", department:"Profession", src:Images.about.employees.employee1, facebookURL:"facebook.com", instagramURL:"instagram.com", twitterURL:"twitter.com"},
+            {fullname:"Username", department:"Profession", src:Images.about.employees.employee2, facebookURL:"facebook.com", instagramURL:"instagram.com", twitterURL:"twitter.com"},
+            {fullname:"Username", department:"Profession", src:Images.about.employees.employee3, facebookURL:"facebook.com", instagramURL:"instagram.com", twitterURL:"twitter.com"},
+            {fullname:"Username", department:"Profession", src:Images.about.employees.employee4, facebookURL:"facebook.com", instagramURL:"instagram.com", twitterURL:"twitter.com"},
+            {fullname:"Username", department:"Profession", src:Images.about.employees.employee5, facebookURL:"facebook.com", instagramURL:"instagram.com", twitterURL:"twitter.com"},
+            {fullname:"Username", department:"Profession", src:Images.about.employees.employee6, facebookURL:"facebook.com", instagramURL:"instagram.com", twitterURL:"twitter.com"},
+            {fullname:"Username", department:"Profession", src:Images.about.employees.employee7, facebookURL:"facebook.com", instagramURL:"instagram.com", twitterURL:"twitter.com"},
+            {fullname:"Username", department:"Profession", src:Images.about.employees.employee8, facebookURL:"facebook.com", instagramURL:"instagram.com", twitterURL:"twitter.com"},
+            {fullname:"Username", department:"Profession", src:Images.about.employees.employee9, facebookURL:"facebook.com", instagramURL:"instagram.com", twitterURL:"twitter.com"},
+        ]            
     }
-
 }

@@ -60,6 +60,15 @@ import contactbg from "./contact/contact-bg.jpg";
 /*About*/
 import aboutUsBg from "./about/about-us-bg.png";
 import videoBg from "./about/video-bg.jpg";
+import employee1 from "./about/our-team/employee-1.jpg";
+import employee2 from "./about/our-team/employee-2.jpg";
+import employee3 from "./about/our-team/employee-3.jpg";
+import employee4 from "./about/our-team/employee-4.jpg";
+import employee5 from "./about/our-team/employee-5.jpg";
+import employee6 from "./about/our-team/employee-6.jpg";
+import employee7 from "./about/our-team/employee-7.jpg";
+import employee8 from "./about/our-team/employee-8.jpg";
+import employee9 from "./about/our-team/employee-9.jpg";
 export const Images = {
     home: {
         heroTop: { summerHeroTop, winterHeroTop },
@@ -78,6 +87,7 @@ export const Images = {
     },
     about:{
         aboutUsBg, videoBg,
+        employees:{employee1,employee2,employee3,employee4,employee5,employee6,employee7,employee8,employee9}
     }
 
 }

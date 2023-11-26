@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { data } from "../data/data"
 import { faPlay } from "@fortawesome/free-solid-svg-icons"
+import Employees from "../components/about/Employees"
 export default function About() {
     const { aboutUsBg, statics, videoBg } = data.about
     return (
@@ -23,8 +24,8 @@ export default function About() {
                     </div>
                 </div>
             </div>
-            <div className="flex items-center w-[80%] mx-auto justify-between">
-                <div className="flex flex-col w-[35%] gap-6">
+            <div className="flex items-center w-[70%] mx-auto gap-16">
+                <div className="flex flex-col w-[45%] gap-6">
                     <p className="text-red-500 text-sm font-normal leading-tight tracking-tight">Problems trying</p>
                     <h2 className="text-slate-800 text-2xl font-bold  tracking-tight">Met minim Mollie non desert Alamo est sit cliquey dolor do met sent.</h2>
                 </div>
@@ -32,7 +33,7 @@ export default function About() {
                     <p className="text-neutral-500 w-[70%] text-sm font-normal leading-tight tracking-tight">Problems trying to resolve the conflict between the two major realms of Classical physics: Newtonian mechanics </p>
                 </div>
             </div>
-            <div className="flex">
+            <div className="flex w-[85%] mx-auto justify-between">
                 <div className="flex flex-col w-1/4 gap-1 items-center">
                     <p className=" text-slate-800 text-[58px] font-bold leading-[80px] tracking-tight">{statics.customers}K</p>
                     <p className="text-center text-neutral-500 text-base font-bold leading-normal tracking-tight">Happy Customers</p>
@@ -50,12 +51,19 @@ export default function About() {
                     <p className="text-center text-neutral-500 text-base font-bold leading-normal tracking-tight">Top Partners</p>
                 </div>
             </div>
-            <div className="relative flex items-center justify-center rounded-lg "> 
-                <img className="w-1/2 mx-auto rounded-lg shadow-xl" src={videoBg} />
-                <div className="w-1/2 h-full absolute bg-black opacity-50 rounded-lg shadow-xl"/>
+            <div className="w-[75%] relative flex items-center justify-center rounded-lg mx-auto ">
+                <img className="w-full h-[550px] mx-auto rounded-lg shadow-xl" src={videoBg} />
+                <div className="w-full h-full absolute bg-black opacity-50 rounded-lg shadow-xl" />
                 <div className="flex items-center justify-center w-16 h-16 bg-sky-500 rounded-full absolute shadow-xl">
                     <FontAwesomeIcon icon={faPlay} size="xl" className="text-white" />
                 </div>
+            </div>
+            <div className="flex flex-col  gap-5">
+                <div className="flex flex-col items-center justify-center gap-6">
+                    <h2 className="text-slate-800 text-[40px] font-bold leading-[50px] tracking-tight"> Meet Our Team</h2>
+                    <p className="text-center text-neutral-500 text-sm font-normal leading-loose tracking-tight"> Problems trying to resolve the conflict between<br /> the two major realms of Classical physics: Newtonian mechanics </p>
+                </div>
+                <Employees />
             </div>
         </div>
     )
