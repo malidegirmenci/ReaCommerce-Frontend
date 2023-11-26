@@ -4,7 +4,7 @@ import { faPlay } from "@fortawesome/free-solid-svg-icons"
 import Employees from "../components/about/Employees"
 import { faAws, faHooli, faLyft, faPiedPiperHat, faRedditAlien, faStripe } from "@fortawesome/free-brands-svg-icons"
 export default function About() {
-    const { aboutUsBg, statics, videoBg } = data.about
+    const { aboutUsBg, statics, videoBg, workWithUs } = data.about
     return (
         <div className="flex flex-col w-[90%] mx-auto gap-20">
             <div className="flex items-center justify-between gap-10 w-[80%] mx-auto">
@@ -69,7 +69,7 @@ export default function About() {
             <div className="flex flex-col gap-8">
                 <div className="flex flex-col items-center justify-center gap-6">
                     <h2 className="text-slate-800 text-[40px] font-bold leading-[50px] tracking-tight"> Big Companies Are Here</h2>
-                    <p className="text-center text-neutral-500 text-sm font-normal leading-loose tracking-tight"> Problems trying to resolve the conflict between <br/> the two major realms of Classical physics: Newtonian mechanics  </p>
+                    <p className="text-center text-neutral-500 text-sm font-normal leading-loose tracking-tight"> Problems trying to resolve the conflict between <br /> the two major realms of Classical physics: Newtonian mechanics  </p>
                 </div>
                 <div className="flex justify-between w-[75%] mx-auto py-10">
                     <FontAwesomeIcon icon={faHooli} size="xl" className="p-1 text-gray-500 scale-[4]" />
@@ -78,6 +78,19 @@ export default function About() {
                     <FontAwesomeIcon icon={faStripe} size="xl" className="p-1 text-gray-500 scale-[4]" />
                     <FontAwesomeIcon icon={faAws} size="xl" className="p-1 text-gray-500 scale-[4]" />
                     <FontAwesomeIcon icon={faRedditAlien} size="xl" className="p-1 text-gray-500 scale-[4]" />
+                </div>
+            </div>
+            <div className="flex">
+                <div className="w-2/3 bg-[#2a7cc7] flex justify-center rounded-l-md">
+                    <div className=" w-1/2 flex flex-col items-start my-auto mx-auto gap-6">
+                        <h5 className="text-white text-base font-bold leading-normal tracking-tight">WORK WITH US</h5>
+                        <h2 className="text-white text-[40px] font-bold leading-[50px] tracking-tight">Now Let's grow Yours</h2>
+                        <p className="text-white text-sm font-normal leading-tight tracking-tight">The gradual accumulation of information about atomic and small-scale behavior during the first quarter of the 20th </p>
+                        <button className="text-neutral-50 ring-1 px-7 py-2.5 ring-slate-200 rounded-md text-sm font-bold leading-snug tracking-tight">Contact Us</button>
+                    </div>
+                </div>
+                <div className="w-1/3 rounded-r-md">
+                    <img src={workWithUs} className="w-full h-full rounded-r-md" />
                 </div>
             </div>
         </div>
