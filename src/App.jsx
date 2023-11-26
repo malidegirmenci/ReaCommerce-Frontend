@@ -6,12 +6,16 @@ import Home from './pages/Home';
 import Footer from './layout/Footer';
 import ProductList from './pages/ProductList';
 import Contact from './pages/Contact';
+import About from './pages/About';
 
 function App() {
   return (
     <>
       <Header />
       <Switch>
+        <Route path="/about">
+          <About/>
+        </Route>
         <Route path="/contact">
           <Contact/>
         </Route>
