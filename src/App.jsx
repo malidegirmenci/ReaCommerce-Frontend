@@ -7,12 +7,15 @@ import Footer from './layout/Footer';
 import ProductList from './pages/ProductList';
 import Contact from './pages/Contact';
 import About from './pages/About';
-
+import ProductPage from './pages/ProductPage';
 function App() {
   return (
     <>
       <Header />
       <Switch>
+        <Route path="/pages">
+          <ProductPage />
+        </Route>
         <Route path="/about">
           <About/>
         </Route>
