@@ -54,6 +54,22 @@ import product10 from "./product-list/products/product-10.jpg";
 import product11 from "./product-list/products/product-11.jpg";
 import product12 from "./product-list/products/product-12.jpg";
 
+/*CONTACT*/
+import contactbg from "./contact/contact-bg.jpg";
+
+/*About*/
+import aboutUsBg from "./about/about-us-bg.png";
+import videoBg from "./about/video-bg.jpg";
+import employee1 from "./about/our-team/employee-1.jpg";
+import employee2 from "./about/our-team/employee-2.jpg";
+import employee3 from "./about/our-team/employee-3.jpg";
+import employee4 from "./about/our-team/employee-4.jpg";
+import employee5 from "./about/our-team/employee-5.jpg";
+import employee6 from "./about/our-team/employee-6.jpg";
+import employee7 from "./about/our-team/employee-7.jpg";
+import employee8 from "./about/our-team/employee-8.jpg";
+import employee9 from "./about/our-team/employee-9.jpg";
+import workWithUs from "./about/work-with-us.png";
 export const Images = {
     home: {
         heroTop: { summerHeroTop, winterHeroTop },
@@ -66,7 +82,13 @@ export const Images = {
     productList:{
         categories:{category1,category2,category3,category4,category5},
         products:{product1,product2,product3,product4,product5,product6,product7,product8,product9,product10,product11,product12}
+    },
+    contact:{
+        backgroundImg:contactbg,
+    },
+    about:{
+        aboutUsBg, videoBg,
+        employees:{employee1,employee2,employee3,employee4,employee5,employee6,employee7,employee8,employee9},
+        workWithUs,
     }
-
-
 }

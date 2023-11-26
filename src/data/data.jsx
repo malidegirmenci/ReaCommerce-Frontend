@@ -162,6 +162,31 @@ export const data = {
             { name: "Graphic Design", category: "English Department", price: 16.48, discountedPrice: 6.48, colors: ["blue", "green", "orange", "purple"], img: Images.productList.products.product11 },
             { name: "Graphic Design", category: "English Department", price: 16.48, discountedPrice: 6.48, colors: ["blue", "green", "orange", "purple"], img: Images.productList.products.product12 },
         ],
+    },
+    contact:{
+        backgroundSrc:Images.contact.backgroundImg,
+        locations:[
+            {city:"Paris",address:"1901 Thorn ridge Cir.",postCode:"75000 Paris",phone:"+451 215 215", fax:"+451 215 215"},
+            {city:"New York",address:"2715 Ash Dr. San Jose.",postCode:"75000 Paris",phone:"+451 215 215", fax:"+451 215 215"},
+            {city:"Berlin",address:"4140 Parker Rd.",postCode:"75000 Paris",phone:"+451 215 215", fax:"+451 215 215"},
+            {city:"Lonodon",address:"3517 W. Gray St. Utica.",postCode:"75000 Paris",phone:"+451 215 215", fax:"+451 215 215"},
+        ]
+    },
+    about:{
+        aboutUsBg:Images.about.aboutUsBg,
+        statics:{customers:15, visitors:150, countries:15, partners:100},
+        videoBg:Images.about.videoBg,
+        employees:[
+            {fullname:"Username", department:"Profession", src:Images.about.employees.employee1, facebookURL:"facebook.com", instagramURL:"instagram.com", twitterURL:"twitter.com"},
+            {fullname:"Username", department:"Profession", src:Images.about.employees.employee2, facebookURL:"facebook.com", instagramURL:"instagram.com", twitterURL:"twitter.com"},
+            {fullname:"Username", department:"Profession", src:Images.about.employees.employee3, facebookURL:"facebook.com", instagramURL:"instagram.com", twitterURL:"twitter.com"},
+            {fullname:"Username", department:"Profession", src:Images.about.employees.employee4, facebookURL:"facebook.com", instagramURL:"instagram.com", twitterURL:"twitter.com"},
+            {fullname:"Username", department:"Profession", src:Images.about.employees.employee5, facebookURL:"facebook.com", instagramURL:"instagram.com", twitterURL:"twitter.com"},
+            {fullname:"Username", department:"Profession", src:Images.about.employees.employee6, facebookURL:"facebook.com", instagramURL:"instagram.com", twitterURL:"twitter.com"},
+            {fullname:"Username", department:"Profession", src:Images.about.employees.employee7, facebookURL:"facebook.com", instagramURL:"instagram.com", twitterURL:"twitter.com"},
+            {fullname:"Username", department:"Profession", src:Images.about.employees.employee8, facebookURL:"facebook.com", instagramURL:"instagram.com", twitterURL:"twitter.com"},
+            {fullname:"Username", department:"Profession", src:Images.about.employees.employee9, facebookURL:"facebook.com", instagramURL:"instagram.com", twitterURL:"twitter.com"},
+        ],
+        workWithUs:Images.about.workWithUs,            
     }
-
 }

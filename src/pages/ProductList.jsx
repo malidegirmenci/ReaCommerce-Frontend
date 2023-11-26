@@ -5,7 +5,7 @@ import Categories from "../components/product-list/Categories";
 import Dropdown from "../components/micro/Dropdown";
 import PaginationCmp from "../components/micro/Pagination";
 import Products from "../components/product-list/Products";
-import { faAws, faHooli, faLyft, faPiedPiper, faPiedPiperHat, faReddit, faRedditAlien, faStripe } from "@fortawesome/free-brands-svg-icons";
+import { faAws, faHooli, faLyft, faPiedPiperHat, faRedditAlien, faStripe } from "@fortawesome/free-brands-svg-icons";
 
 export default function ProductList() {
 
