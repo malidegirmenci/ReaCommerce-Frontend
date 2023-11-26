@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { data } from "../data/data"
 import { faPlay } from "@fortawesome/free-solid-svg-icons"
 import Employees from "../components/about/Employees"
+import { faAws, faHooli, faLyft, faPiedPiperHat, faRedditAlien, faStripe } from "@fortawesome/free-brands-svg-icons"
 export default function About() {
     const { aboutUsBg, statics, videoBg } = data.about
     return (
@@ -64,6 +65,20 @@ export default function About() {
                     <p className="text-center text-neutral-500 text-sm font-normal leading-loose tracking-tight"> Problems trying to resolve the conflict between<br /> the two major realms of Classical physics: Newtonian mechanics </p>
                 </div>
                 <Employees />
+            </div>
+            <div className="flex flex-col gap-8">
+                <div className="flex flex-col items-center justify-center gap-6">
+                    <h2 className="text-slate-800 text-[40px] font-bold leading-[50px] tracking-tight"> Big Companies Are Here</h2>
+                    <p className="text-center text-neutral-500 text-sm font-normal leading-loose tracking-tight"> Problems trying to resolve the conflict between <br/> the two major realms of Classical physics: Newtonian mechanics  </p>
+                </div>
+                <div className="flex justify-between w-[75%] mx-auto py-10">
+                    <FontAwesomeIcon icon={faHooli} size="xl" className="p-1 text-gray-500 scale-[4]" />
+                    <FontAwesomeIcon icon={faLyft} size="xl" className="p-1 text-gray-500 scale-[4]" />
+                    <FontAwesomeIcon icon={faPiedPiperHat} size="xl" className="p-1 text-gray-500 scale-[4]" />
+                    <FontAwesomeIcon icon={faStripe} size="xl" className="p-1 text-gray-500 scale-[4]" />
+                    <FontAwesomeIcon icon={faAws} size="xl" className="p-1 text-gray-500 scale-[4]" />
+                    <FontAwesomeIcon icon={faRedditAlien} size="xl" className="p-1 text-gray-500 scale-[4]" />
+                </div>
             </div>
         </div>
     )

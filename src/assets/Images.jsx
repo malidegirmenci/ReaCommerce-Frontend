@@ -69,6 +69,7 @@ import employee6 from "./about/our-team/employee-6.jpg";
 import employee7 from "./about/our-team/employee-7.jpg";
 import employee8 from "./about/our-team/employee-8.jpg";
 import employee9 from "./about/our-team/employee-9.jpg";
+
 export const Images = {
     home: {
         heroTop: { summerHeroTop, winterHeroTop },
