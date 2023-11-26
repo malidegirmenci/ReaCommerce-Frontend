@@ -69,7 +69,7 @@ import employee6 from "./about/our-team/employee-6.jpg";
 import employee7 from "./about/our-team/employee-7.jpg";
 import employee8 from "./about/our-team/employee-8.jpg";
 import employee9 from "./about/our-team/employee-9.jpg";
-
+import workWithUs from "./about/work-with-us.png";
 export const Images = {
     home: {
         heroTop: { summerHeroTop, winterHeroTop },
@@ -88,7 +88,7 @@ export const Images = {
     },
     about:{
         aboutUsBg, videoBg,
-        employees:{employee1,employee2,employee3,employee4,employee5,employee6,employee7,employee8,employee9}
+        employees:{employee1,employee2,employee3,employee4,employee5,employee6,employee7,employee8,employee9},
+        workWithUs,
     }
-
 }

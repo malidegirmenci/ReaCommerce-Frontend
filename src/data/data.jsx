@@ -186,6 +186,7 @@ export const data = {
             {fullname:"Username", department:"Profession", src:Images.about.employees.employee7, facebookURL:"facebook.com", instagramURL:"instagram.com", twitterURL:"twitter.com"},
             {fullname:"Username", department:"Profession", src:Images.about.employees.employee8, facebookURL:"facebook.com", instagramURL:"instagram.com", twitterURL:"twitter.com"},
             {fullname:"Username", department:"Profession", src:Images.about.employees.employee9, facebookURL:"facebook.com", instagramURL:"instagram.com", twitterURL:"twitter.com"},
-        ]            
+        ],
+        workWithUs:Images.about.workWithUs,            
     }
 }
