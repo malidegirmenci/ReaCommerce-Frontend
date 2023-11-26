@@ -162,6 +162,15 @@ export const data = {
             { name: "Graphic Design", category: "English Department", price: 16.48, discountedPrice: 6.48, colors: ["blue", "green", "orange", "purple"], img: Images.productList.products.product11 },
             { name: "Graphic Design", category: "English Department", price: 16.48, discountedPrice: 6.48, colors: ["blue", "green", "orange", "purple"], img: Images.productList.products.product12 },
         ],
-    }
+    },
+    contact:{
+        backgroundSrc:Images.contact.backgroundImg,
+        locations:[
+            {city:"Paris",address:"1901 Thorn ridge Cir.",postCode:"75000 Paris",phone:"+451 215 215", fax:"+451 215 215"},
+            {city:"New York",address:"2715 Ash Dr. San Jose.",postCode:"75000 Paris",phone:"+451 215 215", fax:"+451 215 215"},
+            {city:"Berlin",address:"4140 Parker Rd.",postCode:"75000 Paris",phone:"+451 215 215", fax:"+451 215 215"},
+            {city:"Lonodon",address:"3517 W. Gray St. Utica.",postCode:"75000 Paris",phone:"+451 215 215", fax:"+451 215 215"},
+        ]
+    },
 
 }
