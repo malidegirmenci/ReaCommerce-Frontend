@@ -10,7 +10,7 @@ import { faAws, faHooli, faLyft, faPiedPiperHat, faRedditAlien, faStripe } from 
 export default function ProductList() {
 
     return (
-        <div className="w-[85%] mx-auto">
+        <div className="w-[80%] mx-auto">
             <div className="flex justify-between gap-7 items-center py-6">
                 <h2 className="text-slate-800 text-2xl font-bold leading-loose tracking-tight">Shop</h2>
                 <div className="flex items-center justify-center gap-2 py-3">
