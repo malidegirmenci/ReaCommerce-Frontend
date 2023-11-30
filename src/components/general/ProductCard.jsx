@@ -1,7 +1,7 @@
 export default function ProductCard(props) {
     const { name, category, price, discountedPrice, colors, img } = props.data;
     return (
-        <div className="flex flex-col text-center w-[20%] shadow-md rounded-b-md cursor-pointer ease-in duration-300 hover:scale-105 hover:ease-out hover:duration-300">
+        <div className="flex flex-col text-center w-[20%] shadow-md rounded-b-md cursor-pointer ease-out duration-300 hover:scale-105 hover:ease-out hover:duration-300">
             <div className="h-4/5 ">
                 <img src={img} className="max-w-full h-full object-cover rounded-t-md  " />
             </div>
