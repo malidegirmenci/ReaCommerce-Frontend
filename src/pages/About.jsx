@@ -6,7 +6,7 @@ import { faAws, faHooli, faLyft, faPiedPiperHat, faRedditAlien, faStripe } from 
 export default function About() {
     const { aboutUsBg, statics, videoBg, workWithUs } = data.about
     return (
-        <div className="flex flex-col w-[90%] mx-auto gap-20">
+        <div className="flex flex-col mx-auto gap-20">
             <div className="flex items-center justify-between gap-10 w-[80%] mx-auto">
                 <div className=" flex flex-col gap-4 items-start justify-center">
                     <h5 className="text-slate-800 text-base font-bold leading-normal tracking-tight">ABOUT COMPANY</h5>
