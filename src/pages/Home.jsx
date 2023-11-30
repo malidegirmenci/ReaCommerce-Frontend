@@ -13,7 +13,7 @@ export default function Home() {
             <div>
                 <HeroTop data={data.home.heroTop} />
             </div>
-            <div className='flex flex-col justify-center w-full items-center gap-20'>
+            <div className='flex flex-col justify-center w-full items-center gap-20 py-5'>
                 <RecomendedProducts />
                 <div className="w-5/6 gap-12 flex-col inline-flex">
                     <div className='text-center flex flex-col gap-2'>
@@ -23,7 +23,6 @@ export default function Home() {
                     </div>
                     <BestSellerProducts />
                 </div>
-                
             </div>
             <div>
                 <HeroBot data={data.home.heroBot} />
