@@ -6,7 +6,7 @@ import { faAws, faHooli, faLyft, faPiedPiperHat, faRedditAlien, faStripe } from 
 export default function About() {
     const { aboutUsBg, statics, videoBg, workWithUs } = data.about
     return (
-        <div className="flex flex-col w-[90%] mx-auto gap-20">
+        <div className="flex flex-col mx-auto gap-20">
             <div className="flex items-center justify-between gap-10 w-[80%] mx-auto">
                 <div className=" flex flex-col gap-4 items-start justify-center">
                     <h5 className="text-slate-800 text-base font-bold leading-normal tracking-tight">ABOUT COMPANY</h5>
@@ -25,14 +25,12 @@ export default function About() {
                     </div>
                 </div>
             </div>
-            <div className="flex items-center w-[70%] mx-auto gap-16">
-                <div className="flex flex-col w-[45%] gap-6">
+            <div className="flex items-center w-[75%] mx-auto gap-20">
+                <div className="flex flex-col gap-6">
                     <p className="text-red-500 text-sm font-normal leading-tight tracking-tight">Problems trying</p>
-                    <h2 className="text-slate-800 text-2xl font-bold  tracking-tight">Met minim Mollie non desert Alamo est sit cliquey dolor do met sent.</h2>
+                    <h2 className="text-slate-800 text-2xl font-bold tracking-tight">Met minim Mollie non desert <br/> Alamo est sit cliquey dolor do met sent.</h2>
                 </div>
-                <div>
-                    <p className="text-neutral-500 w-[70%] text-sm font-normal leading-tight tracking-tight">Problems trying to resolve the conflict between the two major realms of Classical physics: Newtonian mechanics </p>
-                </div>
+                <p className="text-neutral-500 w-[70%] text-sm font-normal leading-tight tracking-tight">Problems trying to resolve the conflict between the two major realms of <br/>Classical physics: Newtonian mechanics </p>
             </div>
             <div className="flex w-[85%] mx-auto justify-between">
                 <div className="flex flex-col w-1/4 gap-1 items-center">

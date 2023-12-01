@@ -1,3 +1,6 @@
+/*Icons*/
+import starRegular from "./icons/star-regular.png";
+
 /*HOME*/
 /*Hero Top IMGS*/
 import summerHeroTop from "./home/hero-top/heroTop-summer.jpeg";
@@ -70,7 +73,14 @@ import employee7 from "./about/our-team/employee-7.jpg";
 import employee8 from "./about/our-team/employee-8.jpg";
 import employee9 from "./about/our-team/employee-9.jpg";
 import workWithUs from "./about/work-with-us.png";
+
+/*Product Page*/
+import firstImgOfProduct from "./product-page/product-1.jpeg";
+import midImgOfProduct from "./product-page/product-2.jpeg";
+import lastImgOfProduct from "./product-page/product-3.jpeg";
+
 export const Images = {
+    icons:{starRegular},
     home: {
         heroTop: { summerHeroTop, winterHeroTop },
         categories: { men, women, accessories, kids },
@@ -90,5 +100,10 @@ export const Images = {
         aboutUsBg, videoBg,
         employees:{employee1,employee2,employee3,employee4,employee5,employee6,employee7,employee8,employee9},
         workWithUs,
+    },
+    productPage:{
+        firstImgOfProduct,
+        midImgOfProduct,
+        lastImgOfProduct,
     }
 }

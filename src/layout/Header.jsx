@@ -31,9 +31,9 @@ export default function Header() {
                     </div>
                 </div>
             </div>
-            <div className="flex justify-between items-center flex-wrap px-10">
+            <div className="w-[80%] mx-auto flex justify-between items-center flex-wrap">
                 <header>
-                    <h3 className="text-2xl text-slate-800 font-bold leading-loose tracking-tight">{companyName}</h3>
+                    <Link to="/"><h3 className="text-2xl text-slate-800 font-bold leading-loose tracking-tight cursor-pointer">{companyName}</h3></Link>
                 </header>
                 <nav className="justify-start items-start gap-4 flex ">
                     {[

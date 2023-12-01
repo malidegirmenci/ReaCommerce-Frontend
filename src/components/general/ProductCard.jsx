@@ -1,9 +1,9 @@
 export default function ProductCard(props) {
     const { name, category, price, discountedPrice, colors, img } = props.data;
     return (
-        <div className="flex flex-col text-center w-[20%]">
+        <div className="flex flex-col text-center w-[20%] shadow-md rounded-b-md cursor-pointer ease-out duration-300 hover:scale-105 hover:ease-out hover:duration-300">
             <div className="h-4/5 ">
-                <img src={img} className="max-w-full h-full object-cover" />
+                <img src={img} className="max-w-full h-full object-cover rounded-t-md  " />
             </div>
             <div className="p-6 flex-col gap-2">
                 <h5 className="text-slate-800 text-base font-bold leading-normal tracking-tight">{name}</h5>
