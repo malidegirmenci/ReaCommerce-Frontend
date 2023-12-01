@@ -40,7 +40,6 @@ export default function Header() {
                         ['Home', '/'],
                         ['Shop', '/shopping'],
                         ['About', '/about'],
-                        ['Blog', '/blog'],
                         ['Contact', '/contact'],
                         ['Pages', '/pages']
                     ].map(([title, url], idx) => (
