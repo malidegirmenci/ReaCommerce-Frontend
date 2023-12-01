@@ -7,7 +7,7 @@ export default function Contact() {
 
     const locationsArr = locations.map((item, index) => {
         return (
-            <div className="p-4 rounded-sm " key={index}>
+            <div className="basis-[40%]" key={index}>
                 <div className="text-white text-2xl font-bold leading-loose">{item.city}</div>
                 <div className="text-white text-xl font-normal  leading-[30px]">{item.address}</div>
                 <div className="w-[58px] h-[2px] my-2 bg-[#23A6F0]" />
@@ -28,7 +28,7 @@ export default function Contact() {
                             <button onClick={() => setShowForm(!isShowForm)} className="px-10 py-3 rounded-md bg-[#23A6F0] text-white text-sm font-bold leading-snug tracking-tight">CONTACT US</button>
                         </div>
                     }
-                    <div className="flex flex-wrap gap-10 w-1/2 ">
+                    <div className="flex flex-wrap gap-10 justify-start items-start w-1/2">
                         {locationsArr}
                     </div>
                 </div>
