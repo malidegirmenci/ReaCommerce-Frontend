@@ -45,7 +45,7 @@ export default function HeroBot(props) {
                         <h4 className='text-neutral-50 text-xl font-normal leading-8 tracking-tight w-[60%]'>{item.h4}</h4>
                         <div className='flex items-center gap-8'>
                             <h5 className='text-white text-2xl font-bold leading-loose tracking-tight'>${item.price}</h5>
-                            <button className='bg-green-500 py-4 w-[50%] text-center rounded text-white text-2xl font-bold leading-loose tracking-tight'>ADD TO CART</button>
+                            <button className='bg-green-500 py-2 px-4 text-center rounded text-white text-2xl font-bold leading-loose tracking-tight'>ADD TO CART</button>
                         </div>
                     </div>
                     <div></div>

@@ -43,7 +43,7 @@ export default function HeroTop(props) {
                         <h5 className="text-white text-base font-bold leading-normal tracking-tight">{item.h5}</h5>
                         <h1 className='text-white text-6xl font-bold leading-normal tracking-tight'>{item.h1}</h1>
                         <h4 className='text-neutral-50 text-xl font-normal leading-8 tracking-tight'>{item.h4}</h4>
-                        <button className='bg-green-500 py-4 w-[50%] text-center rounded text-white text-2xl font-bold leading-loose tracking-tight'>SHOP NOW</button>
+                        <button className='bg-green-500 py-3 px-2 w-[50%] rounded text-white text-2xl font-bold leading-loose tracking-tight'>SHOP NOW</button>
                     </div>
                     <div></div>
                 </div>
