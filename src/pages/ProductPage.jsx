@@ -73,8 +73,8 @@ export default function ProductPage() {
                             />
                         </Carousel>
                         <div className='flex gap-3 '>
-                            <img src={slides[1]} className='w-28 h-24 object-cover object-bottom hover:scale-105 hover:ease-out hover:duration-300 ease-out duration-300 rounded-b-md' />
-                            <img src={slides[0]} className='opacity-50 w-28 h-24 object-cover object-bottom hover:scale-105 hover:ease-out hover:duration-300 ease-out duration-300 rounded-b-md' />
+                            <img onClick={()=>setActiveIndex(1)} src={slides[1]} className='w-28 h-24 object-cover object-bottom hover:scale-105 hover:ease-out hover:duration-300 ease-out duration-300 rounded-b-md cursor-pointer' />
+                            <img onClick={()=>setActiveIndex(0)} src={slides[0]} className='opacity-50 w-28 h-24 object-cover object-bottom hover:scale-105 hover:ease-out hover:duration-300 ease-out duration-300 rounded-b-md cursor-pointer' />
                         </div>
                     </div>
                 </div>
