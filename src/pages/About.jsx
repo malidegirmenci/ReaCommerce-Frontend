@@ -7,14 +7,14 @@ export default function About() {
     const { aboutUsBg, statics, videoBg, workWithUs } = data.about
     return (
         <div className="flex flex-col mx-auto gap-20">
-            <div className="flex items-center justify-between gap-10 w-[80%] mx-auto max-sm:flex-col">
+            <div className="flex items-center justify-between gap-10 w-[80%] mx-auto max-sm:flex-col max-sm:w-full">
                 <div className=" flex flex-col gap-4 items-start justify-center max-sm:text-center max-sm:items-center">
                     <h5 className="text-slate-800 text-base font-bold leading-normal tracking-tight">ABOUT COMPANY</h5>
                     <h1 className=" text-slate-800 text-[58px] font-bold leading-[80px] tracking-tight">ABOUT US</h1>
                     <h4 className=" w-[60%] text-neutral-500 text-xl font-normal leading-[30px] tracking-tight">We know how large objects will act, but things on a small scale</h4>
                     <button className="px-10 py-[15px] bg-sky-500 rounded-[5px] text-white text-sm font-bold leading-snug tracking-tight">Get Quote Now</button>
                 </div>
-                <div className=" w-3/5 flex justify-end max-sm:w-screen">
+                <div className=" w-3/5 flex justify-end max-sm:w-full">
                     <div className="relative flex-col justify-center items-center inline-flex">
                         <img className="w-full z-1" src={aboutUsBg} />
                         <div className="w-[50%] h-[75%] absolute bg-rose-100 rounded-full" />
@@ -33,21 +33,21 @@ export default function About() {
                 <p className="text-neutral-500 w-[70%] text-sm  max-sm:text-lg max-sm:text-justify font-normal leading-tight tracking-tight max-sm:w-full">Problems trying to resolve the conflict between the two major realms of Classical physics: Newtonian mechanics </p>
             </div>
             <div className="flex w-[85%] mx-auto justify-between max-sm:flex-col max-sm:items-center max-sm:gap-12 ">
-                <div className="flex flex-col w-1/4 gap-1 items-center">
+                <div className="flex flex-col w-1/4 gap-1 items-center max-sm:w-full">
                     <p className=" text-slate-800 text-[58px] font-bold leading-[80px] tracking-tight">{statics.customers}K</p>
-                    <p className="text-center text-neutral-500 text-base font-bold leading-normal tracking-tight max-sm:w-screen ">Happy Customers</p>
+                    <p className="text-center text-neutral-500 text-base font-bold leading-normal tracking-tight ">Happy Customers</p>
                 </div>
-                <div className="flex flex-col w-1/4 gap-1 items-center">
+                <div className="flex flex-col w-1/4 gap-1 items-center max-sm:w-full">
                     <p className=" text-slate-800 text-[58px] font-bold leading-[80px] tracking-tight">{statics.visitors}K</p>
-                    <p className="text-center text-neutral-500 text-base font-bold leading-normal tracking-tight max-sm:w-screen">Montly Visitors</p>
+                    <p className="text-center text-neutral-500 text-base font-bold leading-normal tracking-tight ">Montly Visitors</p>
                 </div>
-                <div className="flex flex-col w-1/4 gap-1 items-center">
+                <div className="flex flex-col w-1/4 gap-1 items-center max-sm:w-full">
                     <p className=" text-slate-800 text-[58px] font-bold leading-[80px] tracking-tight">{statics.countries}</p>
-                    <p className="text-center text-neutral-500 text-base font-bold leading-normal tracking-tight max-sm:w-screen">Countries Worldwide</p>
+                    <p className="text-center text-neutral-500 text-base font-bold leading-normal tracking-tight ">Countries Worldwide</p>
                 </div>
-                <div className="flex flex-col w-1/4 gap-1 items-center">
+                <div className="flex flex-col w-1/4 gap-1 items-center max-sm:w-full">
                     <p className=" text-slate-800 text-[58px] font-bold leading-[80px] tracking-tight">{statics.partners}</p>
-                    <p className="text-center text-neutral-500 text-base font-bold leading-normal tracking-tight max-sm:w-screen">Top Partners</p>
+                    <p className="text-center text-neutral-500 text-base font-bold leading-normal tracking-tight ">Top Partners</p>
                 </div>
             </div>
             <div className="w-[75%] relative flex items-center justify-center rounded-lg mx-auto ">
