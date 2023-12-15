@@ -42,6 +42,7 @@ export default function Header() {
                         ['Shop', '/shopping'],
                         ['About', '/about'],
                         ['Contact', '/contact'],
+                        ['Team','/team'],
                         ['Pages', '/pages']
                     ].map(([title, url], idx) => (
                         <Link to={url} key={idx} className=" text-neutral-500 font-bold text-sm leading-normal tracking-tigh max-sm:text-3xl max-sm:font-normal hover:text-slate-900">{title}</Link>
