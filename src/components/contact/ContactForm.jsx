@@ -10,7 +10,7 @@ export default function ContactForm(props) {
     console.log(errors);
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4 w-1/2 items-start'>
+        <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4 w-1/2 items-start max-sm:w-full max-sm:items-center'>
             <FontAwesomeIcon className='text-white cursor-pointer' icon={faArrowLeft} size="lg" onClick={()=>setShowForm(false)} />
             <input className='p-2 bg-gradient-to-r from-[#002229] to-[#01586b] ring-2 ring-slate-300 rounded text-white placeholder:text-white w-[75%]' type="text" placeholder="Full Name" {...register("Full Name", { required: true, maxLength: 18 })} />
             <input className='p-2 bg-gradient-to-r from-[#002229] to-[#01586b]   ring-2 ring-slate-300 rounded text-white placeholder:text-white w-[75%]'type="text" placeholder="Email" {...register("Email", { required: true, pattern: /^\S+@\S+$/i })} />
