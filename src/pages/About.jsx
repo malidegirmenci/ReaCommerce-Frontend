@@ -1,10 +1,26 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { data } from "../data/data"
 import { faPlay } from "@fortawesome/free-solid-svg-icons"
-import Employees from "../components/about/Employees"
-import { faAws, faHooli, faLyft, faPiedPiperHat, faRedditAlien, faStripe } from "@fortawesome/free-brands-svg-icons"
+import { faAws, faFacebook, faHooli, faInstagram, faLyft, faPiedPiperHat, faRedditAlien, faStripe, faTwitter } from "@fortawesome/free-brands-svg-icons"
+
 export default function About() {
     const { aboutUsBg, statics, videoBg, workWithUs } = data.about
+    const ourTeamFirstThree = data.about.employees.slice(0, 3).map((item, index) => {
+        return (
+            <div className="flex flex-col items-center w-[33%] ring-1 ring-slate-400 rounded shadow-lg max-sm:w-full" key={index}>
+                <img src={item.src} className="w-full h-full rounded-t" />
+                <div className="flex flex-col gap-2 text-center py-3">
+                    <h5 className="text-slate-800 text-base font-bold leading-normal tracking-tight">{item.fullname}</h5>
+                    <h6 className="text-neutral-500 text-sm font-bold leading-normal tracking-tight">{item.department}</h6>
+                    <div className="flex gap-3 items-center text-[#23A6F0]">
+                        <FontAwesomeIcon icon={faFacebook} size="lg" />
+                        <FontAwesomeIcon icon={faInstagram} size="lg" />
+                        <FontAwesomeIcon icon={faTwitter} size="lg" />
+                    </div>
+                </div>
+            </div>
+        )
+    })
     return (
         <div className="flex flex-col mx-auto gap-20">
             <div className="flex items-center justify-between gap-10 w-[80%] mx-auto max-sm:flex-col max-sm:w-full">
@@ -57,12 +73,14 @@ export default function About() {
                     <FontAwesomeIcon icon={faPlay} size="xl" className="text-white" />
                 </div>
             </div>
-            <div className="flex flex-col  gap-5">
+            <div className="flex flex-col gap-5">
                 <div className="flex flex-col items-center justify-center gap-6 max-sm:w-[80%] max-sm:mx-auto">
                     <h2 className="text-slate-800 text-[40px] max-sm:text-[50px] font-bold leading-[50px] tracking-tight"> Meet Our Team</h2>
                     <p className="text-center text-neutral-500 text-sm max-sm:text-lg font-normal leading-loose tracking-tight"> Problems trying to resolve the conflict between<br /> the two major realms of Classical physics: Newtonian mechanics </p>
                 </div>
-                <Employees />
+                <div className="flex gap-5 w-[80%] mx-auto max-sm:flex-col">
+                    {ourTeamFirstThree}
+                </div>
             </div>
             <div className="flex flex-col gap-8">
                 <div className="flex flex-col items-center justify-center gap-6">
