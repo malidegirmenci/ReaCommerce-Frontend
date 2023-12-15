@@ -40,21 +40,21 @@ export default function ProductPage() {
                 onExited={() => setAnimating(false)}
                 key={index}
             >
-                <div className='h-[500px] rounded-lg'>
-                    <img src={item} alt={name} className='rounded-t-lg' />
+                <div className='h-[500px] rounded-lg max-sm:h-[400px]'>
+                    <img src={item} alt={name} className='rounded-t-lg ' />
                 </div>
             </CarouselItem>
         );
     });
     return (
-        <div className='w-4/5 mx-auto flex flex-col gap-10'>
+        <div className='w-4/5 mx-auto flex flex-col gap-10 max-sm:items-center'>
             <nav className='flex items-center gap-2'>
                     <div className="text-slate-800 text-sm font-bold leading-normal tracking-tight">Home</div>
                     <FontAwesomeIcon icon={faArrowRight} size="sm" className='text-slate-400' />
                     <div className="text-slate-400 text-sm font-bold leading-normal tracking-tight">Shop</div>
                 </nav>
-            <div className='flex gap-8'>
-                <div className='w-1/2'>
+            <div className='flex gap-8 max-sm:flex-col'>
+                <div className='w-1/2 max-sm:w-full'>
                     <div className='flex flex-col gap-2'>
                         <Carousel
                             activeIndex={activeIndex}
@@ -78,7 +78,7 @@ export default function ProductPage() {
                         </div>
                     </div>
                 </div>
-                <div className='w-1/2 flex flex-col items-start gap-4'>
+                <div className='w-1/2 flex flex-col items-start gap-4 max-sm:w-full'>
                     <h4 className='text-slate-800 text-xl font-normal leading-[30px] tracking-tight'>{name}</h4>
                     <div className='flex items-center gap-2'>
                         <div className='flex gap-1'>
@@ -117,18 +117,18 @@ export default function ProductPage() {
                 </div>
             </div>
             <div className=''>
-                <nav className='flex justify-center'>
+                <nav className='flex justify-center max-sm:w-full max-sm:text-center'>
                     <a className="p-6 text-neutral-500 text-sm font-bold leading-normal tracking-tight">Description</a>
                     <a className="p-6 text-neutral-500 text-sm font-bold leading-normal tracking-tight">Additional Information</a>
                     <a className="p-6 text-neutral-500 text-sm font-bold leading-normal tracking-tight">Reviews<span className='text-green-900 font-bold pl-1'>(0)</span></a>
                 </nav>
                 <hr className='border border-gray-200' />
             </div>
-            <div className='flex justify-start gap-14 '>
-                <div className='w-[28%]'>
+            <div className='flex justify-start gap-14 max-sm:flex-col'>
+                <div className='w-[28%] max-sm:w-full'>
                     <img className='w-full h-96 object-cover object-center rounded-md border-[30px] border-sky-500' src={descriptionSrc} />
                 </div>
-                <div className='w-[27%] flex flex-col gap-6 '>
+                <div className='w-[27%] flex flex-col gap-6 max-sm:w-full '>
                     <h5 className=' text-slate-800 text-2xl font-bold  tracking-tight'>the quick fox jumps over</h5>
                     <h6 className='text-neutral-500 text-sm font-normal leading-tight tracking-tight'>Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.</h6>
                     <h6 className='text-neutral-500 text-sm font-normal leading-tight tracking-tight'>Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.</h6>
@@ -176,17 +176,17 @@ export default function ProductPage() {
                 </div>
             </div>
             <div className=''>
-                <h3 className='text-slate-800 text-2xl font-bold leading-loose tracking-tight'>BESTSELLER PRODUCTS</h3>
+                <h3 className='text-slate-800 text-2xl font-bold leading-loose tracking-tight max-sm:text-center'>BESTSELLER PRODUCTS</h3>
                 <hr className='py-4 border border-gray-200' />
                 <BestSellerProducts />
             </div>
-            <div className="flex justify-between w-[90%] mx-auto py-10">
-                <FontAwesomeIcon icon={faHooli} size="xl" className="p-1 text-gray-500 scale-[4]" />
-                <FontAwesomeIcon icon={faLyft} size="xl" className="p-1 text-gray-500 scale-[4]" />
-                <FontAwesomeIcon icon={faPiedPiperHat} size="xl" className="p-1 text-gray-500 scale-[4]" />
-                <FontAwesomeIcon icon={faStripe} size="xl" className="p-1 text-gray-500 scale-[4]" />
-                <FontAwesomeIcon icon={faAws} size="xl" className="p-1 text-gray-500 scale-[4]" />
-                <FontAwesomeIcon icon={faRedditAlien} size="xl" className="p-1 text-gray-500 scale-[4]" />
+            <div className="flex justify-between w-[90%] mx-auto py-10 max-sm:gap-y-4 max-sm:flex-col">
+                <FontAwesomeIcon icon={faHooli} size="xl" className="p-1 text-gray-500 text-9xl" />
+                <FontAwesomeIcon icon={faLyft} size="xl" className="p-1 text-gray-500  text-9xl" />
+                <FontAwesomeIcon icon={faPiedPiperHat} size="xl" className="p-1 text-gray-500  text-9xl" />
+                <FontAwesomeIcon icon={faStripe} size="xl" className="p-1 text-gray-500 text-9xl" />
+                <FontAwesomeIcon icon={faAws} size="xl" className="p-1 text-gray-500 text-9xl" />
+                <FontAwesomeIcon icon={faRedditAlien} size="xl" className="p-1 text-gray-500  text-9xl" />
             </div>
         </div>
     )
