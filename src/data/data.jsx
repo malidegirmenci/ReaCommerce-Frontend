@@ -203,4 +203,8 @@ export const data = {
         ],
         descriptionSrc: Images.productPage.lastImgOfProduct,
     }
+    ,
+    team:{
+        hero:{headline:Images.team.hero.headline, others:Images.team.hero.others}
+    }
 }

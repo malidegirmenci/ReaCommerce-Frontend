@@ -7,7 +7,7 @@ export default function BestSellerProducts() {
         return <ProductCard data={item} key={index} className="w-[25%]" />
     })
     return (
-        <div className="flex flex-wrap justify-center items-center gap-7">
+        <div className="flex flex-wrap justify-center items-center gap-7 max-sm:flex-col">
             {productCards}
         </div>
     )

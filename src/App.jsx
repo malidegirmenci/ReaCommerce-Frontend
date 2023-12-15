@@ -8,11 +8,15 @@ import ProductList from './pages/ProductList';
 import Contact from './pages/Contact';
 import About from './pages/About';
 import ProductPage from './pages/ProductPage';
+import Team from './pages/Team';
 function App() {
   return (
     <>
       <Header />
       <Switch>
+        <Route path="/team">
+          <Team/>
+        </Route>
         <Route path="/pages">
           <ProductPage />
         </Route>

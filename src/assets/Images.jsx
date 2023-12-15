@@ -78,7 +78,12 @@ import workWithUs from "./about/work-with-us.png";
 import firstImgOfProduct from "./product-page/product-1.jpeg";
 import midImgOfProduct from "./product-page/product-2.jpeg";
 import lastImgOfProduct from "./product-page/product-3.jpeg";
-
+/* TEAM */
+import hero1 from "./team/hero-1.jpeg";
+import hero2 from "./team/hero-2.jpeg";
+import hero3 from "./team/hero-3.jpeg";
+import hero4 from "./team/hero-4.jpeg";
+import hero5 from "./team/hero-5.jpeg";
 export const Images = {
     icons:{starRegular},
     home: {
@@ -105,5 +110,12 @@ export const Images = {
         firstImgOfProduct,
         midImgOfProduct,
         lastImgOfProduct,
+    },
+    team:{
+        hero:
+        {
+            headline:hero1,
+            others:[hero2,hero3,hero4,hero5]
+        },
     }
 }

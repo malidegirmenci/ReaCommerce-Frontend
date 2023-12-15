@@ -9,7 +9,7 @@ import FeaturedPosts from '../components/home/FeaturedPosts';
 
 export default function Home() {
     return (
-        <div className=''>
+        <div className='max-sm:mx-auto'>
             <div>
                 <HeroTop data={data.home.heroTop} />
             </div>
