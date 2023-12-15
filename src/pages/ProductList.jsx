@@ -11,7 +11,7 @@ export default function ProductList() {
 
     return (
         <div className="w-[80%] mx-auto">
-            <div className="flex justify-between gap-7 items-center py-6">
+            <div className="flex justify-between gap-7 items-center py-6 max-sm:flex-col">
                 <h2 className="text-slate-800 text-2xl font-bold leading-loose tracking-tight">Shop</h2>
                 <div className="flex items-center justify-center gap-2 py-3">
                     <Link to="/home" className="text-slate-800 text-sm font-bold leading-normal tracking-tight">Home</Link>
@@ -22,7 +22,7 @@ export default function ProductList() {
             <div>
                 <Categories />
             </div>
-            <div className="flex justify-between py-6 px-3">
+            <div className="flex justify-between py-6 px-3 max-sm:flex-col max-sm:justify-center max-sm:items-center max-sm:gap-6">
                 <p>Showing all 12 results</p>
                 <div className="flex items-center gap-3">
                     <p className="text-neutral-500 text-sm font-bold leading-normal tracking-tight">Views:</p>
@@ -43,13 +43,13 @@ export default function ProductList() {
                 </div>
             </div>
             <hr className="border border-neutral-200" />
-            <div className="flex justify-between w-[90%] mx-auto py-10">
-                <FontAwesomeIcon icon={faHooli} size="xl" className="p-1 text-gray-500 scale-[4]" />
-                <FontAwesomeIcon icon={faLyft} size="xl" className="p-1 text-gray-500 scale-[4]" />
-                <FontAwesomeIcon icon={faPiedPiperHat} size="xl" className="p-1 text-gray-500 scale-[4]" />
-                <FontAwesomeIcon icon={faStripe} size="xl" className="p-1 text-gray-500 scale-[4]" />
-                <FontAwesomeIcon icon={faAws} size="xl" className="p-1 text-gray-500 scale-[4]" />
-                <FontAwesomeIcon icon={faRedditAlien} size="xl" className="p-1 text-gray-500 scale-[4]" />
+            <div className="flex justify-between w-[90%] mx-auto py-10 max-sm:gap-y-4 max-sm:flex-col">
+                <FontAwesomeIcon icon={faHooli} size="xl" className="p-1 text-gray-500 text-9xl" />
+                <FontAwesomeIcon icon={faLyft} size="xl" className="p-1 text-gray-500  text-9xl" />
+                <FontAwesomeIcon icon={faPiedPiperHat} size="xl" className="p-1 text-gray-500  text-9xl" />
+                <FontAwesomeIcon icon={faStripe} size="xl" className="p-1 text-gray-500 text-9xl" />
+                <FontAwesomeIcon icon={faAws} size="xl" className="p-1 text-gray-500 text-9xl" />
+                <FontAwesomeIcon icon={faRedditAlien} size="xl" className="p-1 text-gray-500  text-9xl" />
             </div>
             <hr className="border border-neutral-200" />
         </div>
