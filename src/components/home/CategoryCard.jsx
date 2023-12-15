@@ -3,7 +3,7 @@ export default function CategoryCard(props) {
     return (
         <>
             <img src={img} className='w-full h-full object-cover rounded-md shadow-2xl' />
-            <button className=' absolute bottom-[5%] left-[5%] w-44 text-slate-800 text-base font-bold leading-normal tracking-tight py-3 bg-white'>{name}</button>
+            <button className='rounded absolute bottom-[5%] left-[5%] px-4 w-[40%] max-sm:px-8 max-sm:uppercase text-slate-800 text-base font-bold leading-normal tracking-tight py-3 bg-white'>{name}</button>
         </>
     )
 }

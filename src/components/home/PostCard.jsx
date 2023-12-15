@@ -5,9 +5,9 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 export default function PostCard(props) {
     const { src, title, description, date, comments, learnMore } = props.data;
     return (
-        <div className="flex flex-col border basis-[30%]">
+        <div className="flex flex-col border basis-[30%] max-sm:basis-[90%] max-sm:mx-auto">
             <div className="relative">
-                <img src={src} className="h-[500px] w-full object-cover" />
+                <img src={src} className="h-[500px] w-full object-cover max-sm:h-[250px]" />
                 <div className="absolute rounded-sm shadow px-2.5 left-5 top-5 bg-red-500 text-white text-sm font-bold leading-normal tracking-tight">NEW</div>
             </div>
             <div className="flex flex-col p-6 gap-3">

@@ -35,11 +35,11 @@ export default function HeroTop(props) {
                 onExited={() => setAnimating(false)}
                 key={item.key}
             >
-                <div className={`flex items-center justify-left relative`}>
+                <div className={`flex items-center justify-left relative `}>
                     <div className='w-full'>
                         <img src={item.src} alt={item.altText} className='w-full h-screen object-cover' />
                     </div>
-                    <div className=' flex flex-col gap-9 my-9 ml-[15%] absolute'>
+                    <div className=' flex flex-col gap-9 my-9 ml-[15%] absolute max-sm:text-center max-sm:items-center'>
                         <h5 className="text-white text-base font-bold leading-normal tracking-tight">{item.h5}</h5>
                         <h1 className='text-white text-6xl font-bold leading-normal tracking-tight'>{item.h1}</h1>
                         <h4 className='text-neutral-50 text-xl font-normal leading-8 tracking-tight'>{item.h4}</h4>

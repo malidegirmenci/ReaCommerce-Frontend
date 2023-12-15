@@ -35,15 +35,15 @@ export default function HeroBot(props) {
                 onExited={() => setAnimating(false)}
                 key={item.key}
             >
-                <div className={`flex items-center justify-left relative`}>
+                <div className={`flex items-center justify-left relative max-sm:flex-col-reverse max-sm:bg-[#23856d]`}>
                     <div className='w-full'>
-                        <img src={item.src} alt={item.altText} className='w-full h-screen object-cover' />
+                        <img src={item.src} alt={item.altText} className='w-full h-screen object-cover max-sm:w-screen max-sm:object-center' />
                     </div>
-                    <div className=' flex flex-col gap-9 my-9 ml-[15%] absolute'>
+                    <div className=' flex flex-col gap-9 my-9 ml-[15%] absolute max-sm:text-center max-sm:items-center max-sm:ml-0 max-sm:mt-[40%] max-sm:static'>
                         <h5 className="text-white text-base font-bold leading-normal tracking-tight">{item.h5}</h5>
                         <h1 className='text-white text-6xl font-bold leading-normal tracking-tight w-[60%]'>{item.h1}</h1>
                         <h4 className='text-neutral-50 text-xl font-normal leading-8 tracking-tight w-[60%]'>{item.h4}</h4>
-                        <div className='flex items-center gap-8'>
+                        <div className='flex items-center gap-8 max-sm:flex-col'>
                             <h5 className='text-white text-2xl font-bold leading-loose tracking-tight'>${item.price}</h5>
                             <button className='bg-green-500 py-2 px-4 text-center rounded text-white text-2xl font-bold leading-loose tracking-tight'>ADD TO CART</button>
                         </div>
