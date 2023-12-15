@@ -3,9 +3,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Footer() {
     return (
-        <div className="w-[85%] mx-auto">
+        <div className="w-[85%] mx-auto max-sm:grid max-sm:grid-flow-row-dense">
             <div className="">
-                <div className="flex justify-between items-center py-10">
+                <div className="flex justify-between items-center py-10 max-sm:block">
                     <h3 className="text-slate-800 text-2xl font-bold leading-loose tracking-tight">Bandage</h3>
                     <div className="text-[#23A6F0] gap-3 flex pr-16">
                         <FontAwesomeIcon icon={faFacebook} size="lg" />
@@ -15,7 +15,7 @@ export default function Footer() {
                 </div>
                 <hr className="border border-neutral-200" />
             </div>
-            <div className="py-12 flex gap-8 justify-between">
+            <div className="py-12 flex gap-8 justify-between max-sm:grid max-sm:grid-flow-row-dense">
                 <div className="flex flex-col gap-4">
                     <h5 className="text-slate-800 text-base font-bold leading-normal tracking-tight">Company info</h5>
                     <div className="flex flex-col gap-3">
@@ -64,7 +64,7 @@ export default function Footer() {
                 </div>
             </div>
             <div className="pb-4">
-                <p className="text-neutral-500 text-sm font-bold leading-normal tracking-tight">Made With Love By Finland All Right Reserved</p>
+                <p className=" text-neutral-500 text-sm font-bold leading-normal tracking-tight">Made With Love By Finland All Right Reserved</p>
             </div>
         </div>
     )
