@@ -37,7 +37,7 @@ export default function HeroBot(props) {
             >
                 <div className={`flex items-center justify-left relative max-sm:flex-col-reverse max-sm:bg-[#23856d]`}>
                     <div className='w-full'>
-                        <img src={item.src} alt={item.altText} className='w-full h-screen object-cover max-sm:w-screen max-sm:object-center' />
+                        <img src={item.src} alt={item.altText} className='w-full h-screen object-cover ' />
                     </div>
                     <div className=' flex flex-col gap-9 my-9 ml-[15%] absolute max-sm:text-center max-sm:items-center max-sm:ml-0 max-sm:mt-[40%] max-sm:static'>
                         <h5 className="text-white text-base font-bold leading-normal tracking-tight">{item.h5}</h5>

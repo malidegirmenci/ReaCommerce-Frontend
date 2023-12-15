@@ -8,11 +8,11 @@ export default function FeaturedPosts() {
     return (
         <div className="py-28 gap-20 flex-col flex justify-center items-center ">
             <div className='text-center flex flex-col gap-3'>
-                <h6 className="text-sky-500 text-sm font-bold leading-normal tracking-tight"> Practice Advice </h6>
-                <h2 className="text-slate-800 text-[40px] font-bold leading-loose tracking-tight">Featured Posts</h2>
-                <p className="text-neutral-500 text-sm font-normal leading-tight tracking-tight ">Problems trying to resolve the conflict between the two major realms of Classical physics: Newtonian mechanics  </p>
+                <h6 className="text-sky-500 text-sm font-bold leading-normal tracking-tight max-sm:text-lg"> Practice Advice </h6>
+                <h2 className="text-slate-800 text-[40px] font-bold leading-loose tracking-tight max-sm:text-[50px]">Featured Posts</h2>
+                <p className="text-neutral-500 text-sm font-normal leading-tight tracking-tight max-sm:text-lg max-sm:w-[90%] max-sm:mx-auto ">Problems trying to resolve the conflict between the two major realms of Classical physics: Newtonian mechanics  </p>
             </div>
-            <div className="flex flex-wrap justify-center items-center gap-7 w-[90%] max-sm:w-screen">
+            <div className="flex flex-wrap justify-center items-center gap-7 w-[90%] max-sm:flex-col">
                 {productCards}
             </div>
         </div>
