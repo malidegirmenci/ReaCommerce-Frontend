@@ -23,7 +23,7 @@ import product7InBS from "./home/bestseller-products/product-7.jpeg";
 import product8InBS from "./home/bestseller-products/product-8.jpeg";
 
 /*Hero Bot IMGS*/
-import summerHeroBot from "./home/hero-Bot/heroBot-summer.png";
+import summerHeroBot from "./home/hero-Bot/summer.png";
 import winterHeroBot from "./home/hero-Bot/heroBot-winter.png";
 
 /*Popular Product*/
