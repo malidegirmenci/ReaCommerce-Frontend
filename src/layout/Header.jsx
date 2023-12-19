@@ -8,7 +8,7 @@ export default function Header() {
     return (
         <div>
             <div className="bg-[#252B42] text-center items-center justify-between flex px-6 max-sm:flex-col max-sm:justify-start">
-                <div className="flex">
+                <div className="flex max-sm:flex-col max-sm:items-center">
                     <div className="text-white items-center  p-2.5 gap-[5px] flex">
                         <FontAwesomeIcon icon={faPhone} size="sm" />
                         <h6 className="text-sm font-bold leading-normal tracking-tight">{phone}</h6>
