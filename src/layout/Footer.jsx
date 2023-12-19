@@ -56,8 +56,8 @@ export default function Footer() {
                     <h5 className="text-slate-800 text-base font-bold leading-normal tracking-tight">Get in Touch</h5>
                     <div className="flex flex-col items-start">
                         <div className="flex items-center">
-                            <input type="text" placeholder="Your Email" className="p-3 border rounded-l-md text-neutral-500 font-normal leading-7 tracking-tight bg-stone-50 " />
-                            <button className="py-3 px-6 border border-neutral-200 bg-[#23A6F0] text-white rounded-r-md">Subscribe</button>
+                            <input type="text" placeholder="Your Email" className="p-[5%] border rounded-l-md text-neutral-500 font-normal leading-7 tracking-tight bg-stone-50 " />
+                            <button className="py-[5%] px-[4%] border border-neutral-200 bg-[#23A6F0] text-white rounded-r-md">Subscribe</button>
                         </div>
                         <p className="text-neutral-500 text-xs font-normal leading-7 tracking-tight">Lore imp sum dolor Amit</p>
                     </div>
