@@ -3,6 +3,7 @@ import { faPhone, faEnvelope, faUser, faSearch, faCartShopping, faHeart, faBars 
 import { faFacebook, faInstagram, faTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { data } from "../data/data";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+
 export default function Header() {
     const {phone,mail,offerMsg, companyName} = data.header;
     return (
@@ -51,7 +52,7 @@ export default function Header() {
                 <div className=" text-sky-500 items-center flex gap-10 max-sm:flex-col max-sm:gap-0">
                     <div className="items-center flex gap-1">
                         <FontAwesomeIcon icon={faUser} size="sm" className="" />
-                        <div className=" font-bold leading-normal text-sm tracking-tight max-sm:text-2xl max-sm:font-normal ">Login / Register</div>
+                        <div className=" font-bold leading-normal text-sm tracking-tight max-sm:text-2xl max-sm:font-normal ">Login / <Link to="/signup">Register</Link></div>
                     </div>
                     <div className="items-center flex max-sm:flex-col max-sm:text-2xl ">
                         <FontAwesomeIcon icon={faSearch} size="sm" className="p-4 " />
