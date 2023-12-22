@@ -7,7 +7,7 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 export default function Header() {
     const {phone,mail,offerMsg, companyName} = data.header;
     return (
-        <div>
+        <div className="">
             <div className="bg-[#252B42] text-center items-center justify-between flex px-6 max-sm:flex-col max-sm:justify-start">
                 <div className="flex max-sm:flex-col max-sm:items-center">
                     <div className="text-white items-center  p-2.5 gap-[5px] flex">
@@ -37,7 +37,7 @@ export default function Header() {
                     <Link to="/"><h3 className="text-2xl max-sm:text-2xl text-slate-800 font-bold leading-loose tracking-tight cursor-pointer">{companyName}</h3></Link>
                     <FontAwesomeIcon icon={faBars} size='lg' className="hidden max-sm:block"/>
                 </header>
-                <nav className="justify-start items-start gap-4 flex max-sm:flex-col">
+                <nav className="justify-start items-start gap-4 flex max-sm:flex-col z-10">
                     {[
                         ['Home', '/'],
                         ['Shop', '/shopping'],
@@ -52,7 +52,7 @@ export default function Header() {
                 <div className=" text-sky-500 items-center flex gap-10 max-sm:flex-col max-sm:gap-0">
                     <div className="items-center flex gap-1">
                         <FontAwesomeIcon icon={faUser} size="sm" className="" />
-                        <div className=" font-bold leading-normal text-sm tracking-tight max-sm:text-2xl max-sm:font-normal ">Login / <Link to="/signup">Register</Link></div>
+                        <div className=" font-bold leading-normal text-sm tracking-tight max-sm:text-2xl max-sm:font-normal z-10">Login / <Link to="/signup">Register</Link></div>
                     </div>
                     <div className="items-center flex max-sm:flex-col max-sm:text-2xl ">
                         <FontAwesomeIcon icon={faSearch} size="sm" className="p-4 " />
