@@ -84,6 +84,9 @@ import hero2 from "./team/hero-2.jpeg";
 import hero3 from "./team/hero-3.jpeg";
 import hero4 from "./team/hero-4.jpeg";
 import hero5 from "./team/hero-5.jpeg";
+
+/* SIGNUP */
+import formBanner from "./signup-login/banner.png";
 export const Images = {
     icons:{starRegular},
     home: {
@@ -117,5 +120,8 @@ export const Images = {
             headline:hero1,
             others:[hero2,hero3,hero4,hero5]
         },
+    },
+    signup:{
+        formBanner
     }
 }
