@@ -4,9 +4,10 @@ import { useForm } from 'react-hook-form';
 import { Images } from '../../assets/Images'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faGoogle, faTwitter } from '@fortawesome/free-brands-svg-icons';
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { Link, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 export default function SignUp() {
     const { register, handleSubmit, watch, reset, formState: { errors, isValid } } = useForm({ mode: "onBlur" });
+    const history = useHistory();
     const instanceAxios = axios.create({
         baseURL: 'https://workintech-fe-ecommerce.onrender.com',
         timeout: 1000,
@@ -54,6 +55,7 @@ export default function SignUp() {
             instanceAxios.post("/signup", dataForm)
                 .then((response) => {
                     console.log("Data sent successfully:", response.data);
+                    history.goBack()
                 })
                 .catch((error) => {
                     console.error("Error sending data:", error);
