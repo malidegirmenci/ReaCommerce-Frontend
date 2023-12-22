@@ -10,11 +10,15 @@ import About from './pages/About';
 import ProductPage from './pages/ProductPage';
 import Team from './pages/Team';
 import SignUp from './components/home/SignUp';
+import Login from './components/home/Login';
 function App() {
   return (
     <>
       <Header />
       <Switch>
+        <Route path="/login">
+          <Login/>
+        </Route>
         <Route path="/signup">
           <SignUp/>
         </Route>
