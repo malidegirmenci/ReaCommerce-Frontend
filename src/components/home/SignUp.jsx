@@ -6,13 +6,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faGoogle, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 export default function SignUp() {
-
     const { register, handleSubmit, watch, reset, formState: { errors, isValid } } = useForm({ mode: "onBlur" });
-    const onSubmit = data => console.log(data);
     const instanceAxios = axios.create({
         baseURL: 'https://workintech-fe-ecommerce.onrender.com',
         timeout: 1000,
     });
+    const [dataForm, setDataForm] = useState({})
     const [roles, setRoles] = useState([]);
     useEffect(() => {
         instanceAxios.get("/roles")
@@ -24,7 +23,43 @@ export default function SignUp() {
                 console.log(error);
             })
     }, []);
-
+    const onSubmit = (data) => {
+        console.log("Soft Data:",data)
+        if(data.role == "customer" || data.role == "admin"){
+            setDataForm({
+                name:data.name,
+                email:data.email,
+                password:data.password,
+                role_id:data.role === "admin" ? 0 : 2
+            });
+        }else{
+            setDataForm({
+                name:data.name,
+                email:data.email,
+                password:data.password,
+                role_id:1,
+                store:{
+                    name:data.storeName,
+                    phone:data.storePhone,
+                    tax_no:data.storeTaxNumber,
+                    bank_account:data.storeIBAN
+                }
+            });
+        }
+        
+    };
+    useEffect(() => {
+        console.log("Sending data", dataForm);
+        if (Object.keys(dataForm).length > 0) {
+            instanceAxios.post("/signup", dataForm)
+                .then((response) => {
+                    console.log("Data sent successfully:", response.data);
+                })
+                .catch((error) => {
+                    console.error("Error sending data:", error);
+                });
+        }
+    }, [dataForm]);
     return (
         <div className="relative flex my-8">
             <div className="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0 bg-white">
@@ -63,9 +98,9 @@ export default function SignUp() {
                         </div>
                         <form className=" flex flex-col gap-2 " onSubmit={handleSubmit(onSubmit)}>
                             <div>
-                                <label htmlFor='fullName' className="ml-3 text-sm font-bold text-gray-700 tracking-wide">Full Name</label>
-                                <input id="fullName" className=" w-full text-base px-4 py-2 border-b border-gray-300 focus:outline-none rounded-2xl focus:border-indigo-500" type="text" placeholder="Enter your full name" {...register("fullName", { required: { value: true, message: "Full name is required" }, minLength: { value: 3, message: "You must enter at least 3 characters" }, maxLength: { value: 35, message: "You can enter up to 35 characters." } })} />
-                                {errors["fullName"] && <p role="alert" className='ml-3 text-sm font-bold text-red-600 tracking-wide'>{errors["fullName"]?.message}</p>}
+                                <label htmlFor='name' className="ml-3 text-sm font-bold text-gray-700 tracking-wide">Full Name</label>
+                                <input id="name" className=" w-full text-base px-4 py-2 border-b border-gray-300 focus:outline-none rounded-2xl focus:border-indigo-500" type="text" placeholder="Enter your full name" {...register("name", { required: { value: true, message: "Full name is required" }, minLength: { value: 3, message: "You must enter at least 3 characters" }, maxLength: { value: 35, message: "You can enter up to 35 characters." } })} />
+                                {errors["name"] && <p role="alert" className='ml-3 text-sm font-bold text-red-600 tracking-wide'>{errors["name"]?.message}</p>}
                             </div>
                             <div >
                                 <label htmlFor='email' className="ml-3 text-sm font-bold text-gray-700 tracking-wide">Email</label>
