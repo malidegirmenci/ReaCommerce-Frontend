@@ -26,7 +26,7 @@ export default function SignUp() {
     }, []);
 
     return (
-        <div className="relative  flex">
+        <div className="relative flex my-8">
             <div className="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0 bg-white">
                 <img src={Images.signup.formBanner} className="max-md:hidden max-w-[75%]  absolute  object-cover left-0 bottom-0 z-1" />
                 <div className="basis-[50%] sm:w-1/2 xl:w-[45%] h-full hidden md:flex items-center justify-start p-10 overflow-hidden bg-[#395185] text-white bg-no-repeat bg-cover relative" >
