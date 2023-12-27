@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Images } from '../../assets/Images'
+import { Images } from '../assets/Images'
 import { faFacebook, faGoogle, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -9,24 +9,6 @@ export default function Login() {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => console.log(data);
     console.log(errors);
-    /*
-  
-           
-           <form onSubmit={handleSubmit(onSubmit)} '>
-           
-               <input type="email" placeholder="Email" {...register("Email", { required: true, pattern: /^\S+@\S+$/i })} />
-               <input type="tel" placeholder="Mobile number" {...register("Mobile number", { required: true, minLength: 6, maxLength: 12 })} />
-               <input type="password" placeholder="Password" {...register("Password", { required: true, pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/i })} />
-               <select {...register("Gender")}>
-                   <option value="Male">Male</option>
-                   <option value="Female">Female</option>
-               </select>
-               <input type="checkbox" placeholder="I have read and accept the terms of the Membership Agreement." {...register("I have read and accept the terms of the Membership Agreement.", { required: true })} />
-               <input type="submit" />
-           </form>
-           
-   */
-
     return (
         <div className="relative min-h-screen flex ">
             <div className="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0 bg-white">

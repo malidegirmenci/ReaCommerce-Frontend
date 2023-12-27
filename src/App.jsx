@@ -9,8 +9,8 @@ import Contact from './pages/Contact';
 import About from './pages/About';
 import ProductPage from './pages/ProductPage';
 import Team from './pages/Team';
-import SignUp from './components/home/SignUp';
-import Login from './components/home/Login';
+import SignUp from './pages/SignUp';
+import Login from './pages/Login';
 function App() {
   return (
     <>

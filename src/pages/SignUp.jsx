@@ -1,28 +1,24 @@
-import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { Images } from '../../assets/Images'
+import { Images } from '../assets/Images'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faGoogle, faTwitter } from '@fortawesome/free-brands-svg-icons';
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { Link, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateRoles } from '../store/actions/globalAction/globalAction';
+import { instanceAxios } from '../store/store';
+
 export default function SignUp() {
     const { register, handleSubmit, watch, reset, formState: { errors, isValid } } = useForm({ mode: "onBlur" });
-    const instanceAxios = axios.create({
-        baseURL: 'https://workintech-fe-ecommerce.onrender.com',
-        timeout: 1000,
-    });
+    const history = useHistory();
+    const dispatch = useDispatch();
+    const roles = useSelector(state => state.global.roles);
     const [dataForm, setDataForm] = useState({})
-    const [roles, setRoles] = useState([]);
-    useEffect(() => {
-        instanceAxios.get("/roles")
-            .then((response) => {
-                console.log("Response", response);
-                setRoles(response.data);
-            })
-            .catch((error) => {
-                console.log(error);
-            })
-    }, []);
+
+    useEffect(()=> {
+        dispatch(updateRoles());
+    },[]);
+
     const onSubmit = (data) => {
         console.log("Soft Data:",data)
         if(data.role == "customer" || data.role == "admin"){
@@ -54,6 +50,7 @@ export default function SignUp() {
             instanceAxios.post("/signup", dataForm)
                 .then((response) => {
                     console.log("Data sent successfully:", response.data);
+                    history.goBack()
                 })
                 .catch((error) => {
                     console.error("Error sending data:", error);
@@ -63,7 +60,7 @@ export default function SignUp() {
     return (
         <div className="relative flex my-8">
             <div className="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0 bg-white">
-                <img src={Images.signup.formBanner} className="max-md:hidden max-w-[75%]  absolute  object-cover left-0 bottom-0 z-1" />
+                <img src={Images.signup.formBanner} className="max-md:hidden max-w-[70%]  absolute  object-cover left-0 bottom-0 z-1" />
                 <div className="basis-[50%] sm:w-1/2 xl:w-[45%] h-full hidden md:flex items-center justify-start p-10 overflow-hidden bg-[#395185] text-white bg-no-repeat bg-cover relative" >
                     <div className="absolute bg-gradient-to-b from-blue-600 to-white opacity-60 inset-0 z-0"></div>
                     <div className="absolute triangle right-0 w-16 z-0"></div>
