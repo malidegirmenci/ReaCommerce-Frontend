@@ -6,9 +6,14 @@ import Dropdown from "../components/micro/Dropdown";
 import PaginationCmp from "../components/micro/Pagination";
 import Products from "../components/product-list/Products";
 import { faAws, faHooli, faLyft, faPiedPiperHat, faRedditAlien, faStripe } from "@fortawesome/free-brands-svg-icons";
-
+import { updateCategories } from "../store/actions/globalAction/globalAction";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 export default function ProductList() {
-
+    const dispatch = useDispatch();
+    useEffect(()=> {
+        dispatch(updateCategories());
+    },[]);
     return (
         <div className="w-[80%] mx-auto">
             <div className="flex justify-between gap-7 items-center py-6 max-sm:flex-col">
