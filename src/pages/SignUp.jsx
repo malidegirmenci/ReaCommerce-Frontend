@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { Images } from '../../assets/Images'
+import { Images } from '../assets/Images'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faGoogle, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { Link, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
