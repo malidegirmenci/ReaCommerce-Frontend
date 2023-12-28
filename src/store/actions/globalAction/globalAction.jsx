@@ -5,11 +5,12 @@ import { instanceAxios } from '../../store';
 export const updateRoles = () => {
     return (dispatch) => {
         instanceAxios.get("/roles")
+            //console.log(response)
             .then((response) => {
                 dispatch({ type: types.UPDATE_ROLES, payload: response.data });
             })
             .catch((error) => {
-                console.log(error);
+                console.log("Roles Fetching Error: " + error.message);
             });
     };
 };
@@ -18,11 +19,11 @@ export const updateCategories = () => {
     return (dispatch) => {
         instanceAxios.get("/categories")
             .then((response) => {
-                console.log(response)
+                //console.log(response)
                 dispatch({ type: types.UPDATE_CATEGORIES, payload: response.data });
             })
             .catch((error) => {
-                console.log(error);
+                console.log("Categories Fetching Error: " + error.message);
             });
     };
 };

@@ -29,13 +29,13 @@ const beginFetch = () => (dispatch) => {
     instanceAxios
         .get("/products")
         .then((response) => {
-            console.log(response)
+            //console.log(response)
             dispatch(fetchProductsSuccess(response.data.products,response.data.total));
         })
         .catch((error) => {
-            console.log(error);
+            console.log("Products Fetching Error:"+ error.message);
             dispatch(fetchProductsFailure());
-        });
+        })
 }
 
 export {
