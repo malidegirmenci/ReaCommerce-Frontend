@@ -9,10 +9,12 @@ import { faAws, faHooli, faLyft, faPiedPiperHat, faRedditAlien, faStripe } from 
 import { updateCategories } from "../store/actions/globalAction/globalAction";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { beginFetch } from "../store/actions/productAction/productAction";
 export default function ProductList() {
     const dispatch = useDispatch();
     useEffect(()=> {
         dispatch(updateCategories());
+        dispatch(beginFetch());
     },[]);
     return (
         <div className="w-[80%] mx-auto">
