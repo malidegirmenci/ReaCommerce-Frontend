@@ -17,22 +17,22 @@ function App() {
       <Header />
       <Switch>
         <Route path="/login">
-          <Login/>
+          <Login />
         </Route>
         <Route path="/signup">
-          <SignUp/>
+          <SignUp />
         </Route>
         <Route path="/team">
-          <Team/>
+          <Team />
         </Route>
         <Route path="/pages">
           <ProductPage />
         </Route>
         <Route path="/about">
-          <About/>
+          <About />
         </Route>
         <Route path="/contact">
-          <Contact/>
+          <Contact />
         </Route>
         <Route path="/shopping">
           <ProductList />
