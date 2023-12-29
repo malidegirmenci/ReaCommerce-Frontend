@@ -2,6 +2,7 @@ import * as types from '../actions/userAction/userActionTypes';
 const initialState = {
     isLoading: false,
     error: null,
+    responseMessage:"",
     userData: {},
 };
 
@@ -11,13 +12,15 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: true,
+                userData:action.payload,
                 error: null,
             };
         case types.SIGN_UP_USER_SUCCESS:
             return {
                 ...state,
                 isLoading: false,
-                userData: action.payload,
+                responseMessage: action.payload,
+                error:null,
             };
         case types.SIGN_UP_USER_FAILURE:
             return {

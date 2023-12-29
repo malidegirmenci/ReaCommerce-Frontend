@@ -6,57 +6,46 @@ import { faFacebook, faGoogle, faTwitter } from '@fortawesome/free-brands-svg-ic
 import { Link, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateRoles } from '../store/actions/globalAction/globalAction';
-import { instanceAxios } from '../store/store';
+import { signUpUser } from '../store/actions/userAction/userAction';
 
 export default function SignUp() {
-    const { register, handleSubmit, watch, reset, formState: { errors, isValid } } = useForm({ mode: "onBlur" });
+    const { register, handleSubmit, watch, formState: { errors, isValid } } = useForm({ mode: "onBlur" });
     const history = useHistory();
     const dispatch = useDispatch();
     const roles = useSelector(state => state.global.roles);
-    const [dataForm, setDataForm] = useState({})
 
-    useEffect(()=> {
+    useEffect(() => {
         dispatch(updateRoles());
-    },[]);
+    }, []);
 
     const onSubmit = (data) => {
-        console.log("Soft Data:",data)
-        if(data.role == "customer" || data.role == "admin"){
-            setDataForm({
-                name:data.name,
-                email:data.email,
-                password:data.password,
-                role_id:data.role === "admin" ? 0 : 2
-            });
-        }else{
-            setDataForm({
-                name:data.name,
-                email:data.email,
-                password:data.password,
-                role_id:1,
-                store:{
-                    name:data.storeName,
-                    phone:data.storePhone,
-                    tax_no:data.storeTaxNumber,
-                    bank_account:data.storeIBAN
-                }
-            });
+        console.log("Soft Data:", data)
+        if (data.role == "customer" || data.role == "admin") {
+            dispatch(signUpUser(
+                {
+                    name: data.name,
+                    email: data.email,
+                    password: data.password,
+                    role_id: data.role === "admin" ? 0 : 2
+                },history
+            ))
+        } else {
+            dispatch(signUpUser(
+                {
+                    name: data.name,
+                    email: data.email,
+                    password: data.password,
+                    role_id: 1,
+                    store: {
+                        name: data.storeName,
+                        phone: data.storePhone,
+                        tax_no: data.storeTaxNumber,
+                        bank_account: data.storeIBAN
+                    }
+                },history
+            ))
         }
-        
     };
-    useEffect(() => {
-        console.log("Sending data", dataForm);
-        if (Object.keys(dataForm).length > 0) {
-            instanceAxios.post("/signup", dataForm)
-                .then((response) => {
-                    console.log("Data sent successfully:", response.data);
-                    history.goBack()
-                })
-                .catch((error) => {
-                    console.error("Error sending data:", error);
-                });
-        }
-    }, [dataForm]);
     return (
         <div className="relative flex my-8">
             <div className="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0 bg-white">
@@ -127,7 +116,7 @@ export default function SignUp() {
                                         Customer
                                     </option>
                                     {roles.map(role => (
-                                        (role.code !== "customer") && 
+                                        (role.code !== "customer") &&
                                         <option key={role.id} value={role.code}>
                                             {role.code.charAt(0).toUpperCase() + role.code.slice(1)}
                                         </option>
