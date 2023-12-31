@@ -12,6 +12,12 @@ import { useDispatch } from "react-redux";
 import { beginFetch } from "../store/actions/productAction/productAction";
 export default function ProductList() {
     const dispatch = useDispatch();
+    const filters = [
+        {title:"Highest Price",url:"/#"},
+        {title:"Lowest Price",url:"/#"},
+        {title:"Popular Product",url:"/#"},
+        {title:"Recomended Product",url:"/#"},
+    ]
     useEffect(()=> {
         dispatch(beginFetch());
     },[]);
@@ -37,7 +43,7 @@ export default function ProductList() {
                 </div>
                 <div className="flex items-center gap-3">
                     <div className="border rounded">
-                        <Dropdown />
+                        <Dropdown data={filters} />
                     </div>
                     <button className="bg-[#23A6F0] px-4 py-2 text-white text-sm font-bold leading-normal tracking-tight rounded">Filter</button>
                 </div>
