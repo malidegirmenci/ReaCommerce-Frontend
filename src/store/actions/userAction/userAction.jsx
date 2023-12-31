@@ -32,7 +32,7 @@ export const signUpUser = (userData, history) => (dispatch) => {
             dispatch(userSuccess(response.data));
             toastMixin.fire({
                 animation: true,
-                title: response.data.message
+                title: "Sign up has been successfully"
             });
             history.goBack();
         }).catch((error) => {
@@ -45,19 +45,19 @@ export const signUpUser = (userData, history) => (dispatch) => {
         })
 };
 
-export const loginUser = (userData, history) => (dispatch) => {
+export const loginUser = (userData, history,setToken) => (dispatch) => {
     dispatch(userRequest(userData));
     instanceAxios
         .post('/login', userData)
         .then((response) => {
             dispatch(userSuccess(response.data));
+            setToken(response.data.token)
             toastMixin.fire({
                 animation: true,
-                title: response.data.message
+                title: "Login has been successfully"
             });
             history.push("/");
         }).catch((error) => {
-            console.log(error);
             dispatch(userFailure(error))
             toastMixin.fire({
                 animation: true,
