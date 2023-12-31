@@ -68,17 +68,25 @@ export default function Header() {
                                         <div className=" p-2 shadow bg-white flex rounded-box  gap-4">
                                             <ul>
                                                 <li className="font-bold text-gray-800"><a>Women</a></li>
-                                                <hr className="border"/>
+                                                <hr className="border" />
                                                 {womanCategories.map((category, idx) => {
-                                                    return (<li key={idx}><a>{category.title}</a></li>)
+                                                    return (
+                                                        <li key={idx}>
+                                                            <Link to={`/shopping/kadin/${category.code.slice(2)}${search}`}>{category.title}</Link>
+                                                        </li>
+                                                    )
                                                 })}
                                             </ul>
                                             <hr className="my-4 border-t-2 border-gray-300 bg-slate-400" />
                                             <ul>
                                                 <li className="font-bold text-gray-800"><a>Men</a></li>
-                                                <hr className="border"/>
+                                                <hr className="border" />
                                                 {manCategories.map((category, idx) => {
-                                                    return (<li key={idx}><a>{category.title}</a></li>)
+                                                    return (
+                                                        <li key={idx}>
+                                                            <Link to={`/shopping/erkek/${category.code.slice(2)}${search}`}>{category.title}</Link>
+                                                        </li>
+                                                    )
                                                 })}
                                             </ul>
                                         </div>
