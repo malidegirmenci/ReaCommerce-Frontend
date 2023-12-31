@@ -52,7 +52,7 @@ export default function Header() {
                 <div className=" text-sky-500 items-center flex gap-10 max-sm:flex-col max-sm:gap-0">
                     <div className="items-center flex gap-1">
                         <FontAwesomeIcon icon={faUser} size="sm" className="" />
-                        <div className=" font-bold leading-normal text-sm tracking-tight max-sm:text-2xl max-sm:font-normal z-10">Login / <Link to="/signup">Register</Link></div>
+                        <div className=" font-bold leading-normal text-sm tracking-tight max-sm:text-2xl max-sm:font-normal z-10"><Link to="/login">Login</Link> / <Link to="/signup">Register</Link></div>
                     </div>
                     <div className="items-center flex max-sm:flex-col max-sm:text-2xl ">
                         <FontAwesomeIcon icon={faSearch} size="sm" className="p-4 " />
