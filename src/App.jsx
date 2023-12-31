@@ -1,6 +1,8 @@
 import { Route, Switch } from 'react-router-dom/cjs/react-router-dom.min';
+import { useDispatch, useSelector } from 'react-redux';
 
 import './App.css';
+
 import Header from './layout/Header';
 import Home from './pages/Home';
 import Footer from './layout/Footer';
@@ -11,7 +13,34 @@ import ProductPage from './pages/ProductPage';
 import Team from './pages/Team';
 import SignUp from './pages/SignUp';
 import Login from './pages/Login';
+
+import useLocalStorage from './hooks/useLocalStorage';
+import axiosWithAuth from './api/axiosWithAuth';
+import { updateCategories } from './store/actions/globalAction/globalAction';
+import { useEffect } from 'react';
+import { userSuccess } from './store/actions/userAction/userAction';
+
 function App() {
+  const user = useSelector((store) => store.user.response);
+  const dispatch = useDispatch();
+  const [token, setToken] = useLocalStorage("Token", "");
+
+  useEffect(() => {
+    if (token) {
+      axiosWithAuth()
+        .get("/verify")
+        .then((response) => {
+          //console.log("Verify:",response.data);
+          dispatch(userSuccess(response.data));
+          user.length && setToken(user.token);
+        })
+        .catch((error) => {
+          //console.log("Error: ",error);
+          localStorage.removeItem("Token");
+        });
+    }
+    dispatch(updateCategories());
+  }, []);
   return (
     <>
       <Header />

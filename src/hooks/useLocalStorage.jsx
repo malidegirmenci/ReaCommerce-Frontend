@@ -1,13 +1,29 @@
 import { useState } from "react";
 
-export const useLocaleStorage = (key, initialValue) => { 
-    const [storedValue, setStoredValue] = useState(()=>{
-        const item = window.localStorage.getItem(key);
-        return item ? JSON.parse(item) : initialValue;
+const useLocalStorage = (key, initialValue) => {
+    const [storedValue, setStoredValue] = useState(() => {
+        const item = localStorage.getItem(key);
+        if (item) {
+            try {
+                return JSON.parse(item);
+            } catch (e) {
+                return item;
+            }
+        } else return initialValue;
     });
-    const setValue = value => {
+    const setValue = (value) => {
         setStoredValue(value);
-        window.localStorage.setItem(key, JSON.stringify(value));
+        if (
+            typeof value === "string" ||
+            typeof value === "number" ||
+            typeof value === "boolean"
+        ) {
+            localStorage.setItem(key, value);
+        } else {
+            localStorage.setItem(key, JSON.stringify(value));
+        }
     };
     return [storedValue, setValue];
 };
+
+export default useLocalStorage;

@@ -1,60 +1,71 @@
 import * as types from './userActionTypes';
-import { instanceAxios } from '../../store';
-import Swal from 'sweetalert2';
+import  instanceAxios  from '../../../api/axiosInstance';
+import toastMixin from '../../../utils/sweetAlertToastify';
 
-export const createUserRequest = (userData) => {
+export const userRequest = (userData) => {
     return {
-        type: types.SIGN_UP_USER_REQUEST,
+        type: types.USER_REQUEST,
         payload: userData,
     };
 };
 
-export const createUserSuccess = (response) => {
+export const userSuccess = (response) => {
     return {
-        type: types.SIGN_UP_USER_SUCCESS,
+        type: types.USER_SUCCESS,
         payload: response,
     };
 };
 
-export const createUserFailure = (error) => {
+export const userFailure = (error) => {
     return {
-        type: types.SIGN_UP_USER_FAILURE,
+        type: types.USER_FAILURE,
         payload: error,
     };
 };
-var toastMixin = Swal.mixin({
-    toast: true,
-    icon: 'success',
-    title: 'General Title',
-    animation: false,
-    position: 'top-right',
-    showConfirmButton: false,
-    timer: 3000,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)
-    }
-});
+
 
 export const signUpUser = (userData, history) => (dispatch) => {
-    dispatch(createUserRequest(userData));
+    dispatch(userRequest(userData));
     instanceAxios
         .post('/signup', userData)
         .then((response) => {
-            dispatch(createUserSuccess(response.data));
+            dispatch(userSuccess(response.data));
             toastMixin.fire({
                 animation: true,
-                title: response.data.message
+                title: "Sign up has been successfully"
             });
             history.goBack();
         }).catch((error) => {
-            dispatch(createUserFailure(error))
+            dispatch(userFailure(error))
             toastMixin.fire({
                 animation: true,
-                title: error,
+                title: "Sign up has been failed",
                 icon:'error',
             });
         })
 };
+
+export const loginUser = (userData, history,setToken) => (dispatch) => {
+    dispatch(userRequest(userData));
+    instanceAxios
+        .post('/login', userData)
+        .then((response) => {
+            dispatch(userSuccess(response.data));
+            setToken(response.data.token)
+            toastMixin.fire({
+                animation: true,
+                title: "Login has been successfully"
+            });
+            history.push("/");
+        }).catch((error) => {
+            dispatch(userFailure(error))
+            toastMixin.fire({
+                animation: true,
+                title: "Login has been failed",
+                icon:'error',
+            });
+        })
+};
+
+
 

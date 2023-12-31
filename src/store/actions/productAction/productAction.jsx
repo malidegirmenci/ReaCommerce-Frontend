@@ -1,5 +1,5 @@
 import * as types from './productActionTypes';
-import { instanceAxios } from '../../store';
+import  instanceAxios  from '../../../api/axiosInstance';
 
 
 const fetchProductsRequest = () => ({

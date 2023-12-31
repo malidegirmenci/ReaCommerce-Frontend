@@ -1,28 +1,29 @@
 import * as types from '../actions/userAction/userActionTypes';
+
 const initialState = {
     isLoading: false,
     error: null,
-    responseMessage:"",
+    response:"",
     userData: {},
 };
 
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
-        case types.SIGN_UP_USER_REQUEST:
+        case types.USER_REQUEST:
             return {
                 ...state,
                 isLoading: true,
                 userData:action.payload,
                 error: null,
             };
-        case types.SIGN_UP_USER_SUCCESS:
+        case types.USER_SUCCESS:
             return {
                 ...state,
                 isLoading: false,
-                responseMessage: action.payload,
+                response: action.payload,
                 error:null,
             };
-        case types.SIGN_UP_USER_FAILURE:
+        case types.USER_FAILURE:
             return {
                 ...state,
                 isLoading: false,

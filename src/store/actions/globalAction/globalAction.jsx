@@ -1,5 +1,5 @@
 import * as types from './globalActionTypes';
-import { instanceAxios } from '../../store';
+import  instanceAxios  from '../../../api/axiosInstance';
 
 
 export const updateRoles = () => {

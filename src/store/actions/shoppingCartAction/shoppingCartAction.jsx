@@ -1,5 +1,5 @@
 import * as types from './shoppingCartActionTypes';
-import { instanceAxios } from '../../store';
+import  instanceAxios  from '../../../api/axiosInstance';
 
 const addToCart = (product, count) => ({
     type: types.ADD_TO_CART,
