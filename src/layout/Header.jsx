@@ -55,36 +55,33 @@ export default function Header() {
                         ['Team', '/team'],
                         ['Pages', '/pages']
                     ].map(([title, url], idx) => (
-                        <>
+                        <div className="flex items-center justify-center">
                             {title == "Shop" ?
                                 <div className="dropdown dropdown-hover">
                                     <label
                                         tabIndex={0}
                                         className="text-neutral-500 font-bold text-sm leading-normal tracking-tigh max-sm:text-3xl max-sm:font-normal hover:text-slate-900">
-                                        Shop
+                                        <Link to="/shopping">Shop</Link>
                                         <FontAwesomeIcon icon={faAngleDown} className="text-neutral-500 font-bold text-sm pl-4" />
                                     </label>
-                                    <div tabIndex={0} className="dropdown-content z-[1] menu">
-                                        <div className=" p-2 shadow bg-white flex rounded-box  gap-4">
+                                    <div tabIndex={0} className="dropdown-content z-[1] menu ">
+                                        <div className=" p-2 shadow bg-white flex rounded-box gap-4 divide-x-[12px]">
                                             <ul>
-                                                <li className="font-bold text-gray-800"><a>Women</a></li>
-                                                <hr className="border" />
+                                                <li className="font-bold text-gray-800"><Link>Women</Link></li>
                                                 {womanCategories.map((category, idx) => {
                                                     return (
                                                         <li key={idx}>
-                                                            <Link to={`/shopping/kadin/${category.code.slice(2)}${search}`}>{category.title}</Link>
+                                                            <Link to={`/shopping/kadin/${category.code.slice(2)}${search}`} className="font-semibold text-gray-500">{category.title}</Link>
                                                         </li>
                                                     )
                                                 })}
                                             </ul>
-                                            <hr className="my-4 border-t-2 border-gray-300 bg-slate-400" />
                                             <ul>
-                                                <li className="font-bold text-gray-800"><a>Men</a></li>
-                                                <hr className="border" />
+                                                <li className="font-bold text-gray-800"><Link>Men</Link></li>
                                                 {manCategories.map((category, idx) => {
                                                     return (
                                                         <li key={idx}>
-                                                            <Link to={`/shopping/erkek/${category.code.slice(2)}${search}`}>{category.title}</Link>
+                                                            <Link to={`/shopping/erkek/${category.code.slice(2)}${search}`} className="font-semibold text-gray-500">{category.title}</Link>
                                                         </li>
                                                     )
                                                 })}
@@ -95,7 +92,7 @@ export default function Header() {
                                 :
                                 <Link to={url} key={idx} className=" text-neutral-500 font-bold text-sm leading-normal tracking-tigh max-sm:text-3xl max-sm:font-normal hover:text-slate-900">{title}</Link>
                             }
-                        </>
+                        </div>
                     ))}
                 </nav>
                 <div className=" text-sky-500 items-center flex gap-10 max-sm:flex-col max-sm:gap-0">
