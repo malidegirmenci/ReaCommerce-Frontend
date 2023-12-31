@@ -1,8 +1,6 @@
-import { useHistory } from "react-router-dom/cjs/react-router-dom";
 import { useLocation } from "react-router-dom/cjs/react-router-dom";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 export default function CategoryCard(props) {
-    const history = useHistory();
     const { pathname, search } = useLocation();
     const { title, rating, gender, img, code } = props.data;
     return (
