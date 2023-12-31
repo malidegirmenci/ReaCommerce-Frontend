@@ -3,9 +3,11 @@ import { faPhone, faEnvelope, faUser, faSearch, faCartShopping, faHeart, faBars 
 import { faFacebook, faInstagram, faTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { data } from "../data/data";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
-
+import { useSelector } from "react-redux";
+import MD5 from "crypto-js/md5";
 export default function Header() {
-    const {phone,mail,offerMsg, companyName} = data.header;
+    const { phone, mail, offerMsg, companyName } = data.header;
+    const user = useSelector((store) => store.user.response);
     return (
         <div className="">
             <div className="bg-[#252B42] text-center items-center justify-between flex px-6 max-sm:flex-col max-sm:justify-start">
@@ -35,7 +37,7 @@ export default function Header() {
             <div className="w-[80%] mx-auto flex justify-between items-center max-sm:flex-col max-sm:gap-4">
                 <header className="flex justify-between items-center max-sm:w-full">
                     <Link to="/"><h3 className="text-2xl max-sm:text-2xl text-slate-800 font-bold leading-loose tracking-tight cursor-pointer">{companyName}</h3></Link>
-                    <FontAwesomeIcon icon={faBars} size='lg' className="hidden max-sm:block"/>
+                    <FontAwesomeIcon icon={faBars} size='lg' className="hidden max-sm:block" />
                 </header>
                 <nav className="justify-start items-start gap-4 flex max-sm:flex-col z-10">
                     {[
@@ -43,7 +45,7 @@ export default function Header() {
                         ['Shop', '/shopping'],
                         ['About', '/about'],
                         ['Contact', '/contact'],
-                        ['Team','/team'],
+                        ['Team', '/team'],
                         ['Pages', '/pages']
                     ].map(([title, url], idx) => (
                         <Link to={url} key={idx} className=" text-neutral-500 font-bold text-sm leading-normal tracking-tigh max-sm:text-3xl max-sm:font-normal hover:text-slate-900">{title}</Link>
@@ -51,8 +53,24 @@ export default function Header() {
                 </nav>
                 <div className=" text-sky-500 items-center flex gap-10 max-sm:flex-col max-sm:gap-0">
                     <div className="items-center flex gap-1">
-                        <FontAwesomeIcon icon={faUser} size="sm" className="" />
-                        <div className=" font-bold leading-normal text-sm tracking-tight max-sm:text-2xl max-sm:font-normal z-10"><Link to="/login">Login</Link> / <Link to="/signup">Register</Link></div>
+                        <div className=" font-bold leading-normal text-sm tracking-tight max-sm:text-2xl max-sm:font-normal z-10">
+                            {Object.keys(user).length ? (
+                                <div className="flex items-center gap-3">
+                                    <img
+                                        src={`https://www.gravatar.com/avatar/${MD5(
+                                            user.email
+                                        )}?s=24`}
+                                        className="border-2 border-solid border-secondary-content rounded-[50%]"
+                                    />
+                                    <p>{user.name}</p>
+                                </div>
+                            ) : (
+                                <div className="flex items-center gap-1">
+                                    <FontAwesomeIcon icon={faUser} size="sm" className="" />
+                                    <Link to="/login">Login</Link> / <Link to="/signup">Register</Link>
+                                </div>
+                            )}
+                        </div>
                     </div>
                     <div className="items-center flex max-sm:flex-col max-sm:text-2xl ">
                         <FontAwesomeIcon icon={faSearch} size="sm" className="p-4 " />
