@@ -1,7 +1,6 @@
 import * as types from './userActionTypes';
-import { instanceAxios } from '../../store';
-import Swal from 'sweetalert2';
-
+import  instanceAxios  from '../../../api/axiosInstance';
+import toastMixin from '../../../utils/sweetAlertToastify';
 export const createUserRequest = (userData) => {
     return {
         type: types.SIGN_UP_USER_REQUEST,
@@ -22,20 +21,7 @@ export const createUserFailure = (error) => {
         payload: error,
     };
 };
-var toastMixin = Swal.mixin({
-    toast: true,
-    icon: 'success',
-    title: 'General Title',
-    animation: false,
-    position: 'top-right',
-    showConfirmButton: false,
-    timer: 3000,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)
-    }
-});
+
 
 export const signUpUser = (userData, history) => (dispatch) => {
     dispatch(createUserRequest(userData));
