@@ -1,13 +1,20 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPhone, faEnvelope, faUser, faSearch, faCartShopping, faHeart, faBars } from "@fortawesome/free-solid-svg-icons";
+import { faPhone, faEnvelope, faUser, faSearch, faCartShopping, faHeart, faBars, faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { faFacebook, faInstagram, faTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { data } from "../data/data";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { useSelector } from "react-redux";
 import MD5 from "crypto-js/md5";
+import { useLocation } from "react-router-dom/cjs/react-router-dom";
 export default function Header() {
     const { phone, mail, offerMsg, companyName } = data.header;
     const user = useSelector((store) => store.user.response);
+    const categories = useSelector((store) => store.global.categories);
+    const { pathname, search } = useLocation();
+    const womanCategories = categories.filter((category) => category.gender === 'k');
+    console.log("woman", womanCategories)
+    const manCategories = categories.filter((category) => category.gender === 'e');
+    console.log("man", manCategories)
     return (
         <div className="">
             <div className="bg-[#252B42] text-center items-center justify-between flex px-6 max-sm:flex-col max-sm:justify-start">
@@ -48,7 +55,39 @@ export default function Header() {
                         ['Team', '/team'],
                         ['Pages', '/pages']
                     ].map(([title, url], idx) => (
-                        <Link to={url} key={idx} className=" text-neutral-500 font-bold text-sm leading-normal tracking-tigh max-sm:text-3xl max-sm:font-normal hover:text-slate-900">{title}</Link>
+                        <>
+                            {title == "Shop" ?
+                                <div className="dropdown dropdown-hover">
+                                    <label
+                                        tabIndex={0}
+                                        className="text-neutral-500 font-bold text-sm leading-normal tracking-tigh max-sm:text-3xl max-sm:font-normal hover:text-slate-900">
+                                        Shop
+                                        <FontAwesomeIcon icon={faAngleDown} className="text-neutral-500 font-bold text-sm pl-4" />
+                                    </label>
+                                    <div tabIndex={0} className="dropdown-content z-[1] menu">
+                                        <div className=" p-2 shadow bg-white flex rounded-box  gap-4">
+                                            <ul>
+                                                <li className="font-bold text-gray-800"><a>Women</a></li>
+                                                <hr className="border"/>
+                                                {womanCategories.map((category, idx) => {
+                                                    return (<li key={idx}><a>{category.title}</a></li>)
+                                                })}
+                                            </ul>
+                                            <hr className="my-4 border-t-2 border-gray-300 bg-slate-400" />
+                                            <ul>
+                                                <li className="font-bold text-gray-800"><a>Men</a></li>
+                                                <hr className="border"/>
+                                                {manCategories.map((category, idx) => {
+                                                    return (<li key={idx}><a>{category.title}</a></li>)
+                                                })}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                :
+                                <Link to={url} key={idx} className=" text-neutral-500 font-bold text-sm leading-normal tracking-tigh max-sm:text-3xl max-sm:font-normal hover:text-slate-900">{title}</Link>
+                            }
+                        </>
                     ))}
                 </nav>
                 <div className=" text-sky-500 items-center flex gap-10 max-sm:flex-col max-sm:gap-0">
