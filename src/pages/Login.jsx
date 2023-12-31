@@ -1,22 +1,22 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import { Images } from '../assets/Images'
-import { faFacebook, faGoogle, faTwitter } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
+import { useForm } from 'react-hook-form';
+import { faFacebook, faGoogle, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import { Images } from '../assets/Images';
 import { loginUser } from '../store/actions/userAction/userAction';
+import useLocalStorage from '../hooks/useLocalStorage';
 
 export default function Login() {
-
-    const { register, handleSubmit, formState: { errors, isValid } } = useForm({ mode: "onBlur" });
     const history = useHistory();
     const dispatch = useDispatch();
+    const [token, setToken] = useLocalStorage("Token", "");
+    const { register, handleSubmit, formState: { errors, isValid } } = useForm({ mode: "onBlur" });
+    
     const onSubmit = (userData) => {
-        console.log("loginPage:",userData);
-        dispatch(loginUser(userData,history));
+        dispatch(loginUser(userData,history,setToken));
     }
     return (
         <div className="relative flex my-8">
