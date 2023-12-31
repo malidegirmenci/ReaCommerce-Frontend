@@ -13,7 +13,6 @@ import { beginFetch } from "../store/actions/productAction/productAction";
 export default function ProductList() {
     const dispatch = useDispatch();
     useEffect(()=> {
-        
         dispatch(beginFetch());
     },[]);
     return (
