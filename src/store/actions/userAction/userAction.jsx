@@ -1,46 +1,71 @@
 import * as types from './userActionTypes';
 import  instanceAxios  from '../../../api/axiosInstance';
 import toastMixin from '../../../utils/sweetAlertToastify';
-export const createUserRequest = (userData) => {
+
+export const userRequest = (userData) => {
     return {
-        type: types.SIGN_UP_USER_REQUEST,
+        type: types.USER_REQUEST,
         payload: userData,
     };
 };
 
-export const createUserSuccess = (response) => {
+export const userSuccess = (response) => {
     return {
-        type: types.SIGN_UP_USER_SUCCESS,
+        type: types.USER_SUCCESS,
         payload: response,
     };
 };
 
-export const createUserFailure = (error) => {
+export const userFailure = (error) => {
     return {
-        type: types.SIGN_UP_USER_FAILURE,
+        type: types.USER_FAILURE,
         payload: error,
     };
 };
 
 
 export const signUpUser = (userData, history) => (dispatch) => {
-    dispatch(createUserRequest(userData));
+    dispatch(userRequest(userData));
     instanceAxios
         .post('/signup', userData)
         .then((response) => {
-            dispatch(createUserSuccess(response.data));
+            dispatch(userSuccess(response.data));
             toastMixin.fire({
                 animation: true,
                 title: response.data.message
             });
             history.goBack();
         }).catch((error) => {
-            dispatch(createUserFailure(error))
+            dispatch(userFailure(error))
             toastMixin.fire({
                 animation: true,
-                title: error,
+                title: "Sign up has been failed",
                 icon:'error',
             });
         })
 };
+
+export const loginUser = (userData, history) => (dispatch) => {
+    dispatch(userRequest(userData));
+    instanceAxios
+        .post('/login', userData)
+        .then((response) => {
+            dispatch(userSuccess(response.data));
+            toastMixin.fire({
+                animation: true,
+                title: response.data.message
+            });
+            history.push("/");
+        }).catch((error) => {
+            console.log(error);
+            dispatch(userFailure(error))
+            toastMixin.fire({
+                animation: true,
+                title: "Login has been failed",
+                icon:'error',
+            });
+        })
+};
+
+
 
