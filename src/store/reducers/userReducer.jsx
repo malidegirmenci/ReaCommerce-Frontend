@@ -3,7 +3,7 @@ import * as types from '../actions/userAction/userActionTypes';
 const initialState = {
     isLoading: false,
     error: null,
-    responseMessage:"",
+    response:"",
     userData: {},
 };
 
@@ -20,7 +20,7 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
-                responseMessage: action.payload,
+                response: action.payload,
                 error:null,
             };
         case types.USER_FAILURE:
