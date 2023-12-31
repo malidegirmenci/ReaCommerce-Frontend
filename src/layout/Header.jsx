@@ -55,7 +55,7 @@ export default function Header() {
                         ['Team', '/team'],
                         ['Pages', '/pages']
                     ].map(([title, url], idx) => (
-                        <div className="flex items-center justify-center">
+                        <div className="flex items-center justify-center" key = {idx}>
                             {title == "Shop" ?
                                 <div className="dropdown dropdown-hover">
                                     <label
