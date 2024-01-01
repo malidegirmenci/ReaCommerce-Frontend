@@ -14,34 +14,29 @@ const fetchProductsSuccess = (productList, totalProductCount) => ({
     }
 });
 
-const fetchProductsFailure = () => ({
-    type: types.FETCH_PRODUCTS_FAILURE
+const fetchProductsFailure = (error) => ({
+    type: types.FETCH_PRODUCTS_FAILURE,
+    payload : {error}
 });
 
-const changeActivePage = (pageNumber) => ({
-    type: types.CHANGE_ACTIVE_PAGE,
-    payload: pageNumber
-});
-
-const beginFetch = () => (dispatch) => {
-    console.log("Started fetching processes for products")
+const fetchProducts = (params) => {
+    return (dispatch) => {
     dispatch(fetchProductsRequest());
     instanceAxios
-        .get("/products")
+        .get("/products", {params})
         .then((response) => {
-            //console.log(response)
             dispatch(fetchProductsSuccess(response.data.products,response.data.total));
         })
         .catch((error) => {
-            console.log("Products Fetching Error:"+ error.message);
-            dispatch(fetchProductsFailure());
+            //console.log("Products Fetching Error:"+ error.message);
+            dispatch(fetchProductsFailure(error.message));
         })
+    }
 }
 
 export {
     fetchProductsRequest,
     fetchProductsSuccess,
     fetchProductsFailure,
-    changeActivePage,
-    beginFetch
+    fetchProducts
 };
