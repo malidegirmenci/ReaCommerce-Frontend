@@ -1,9 +1,9 @@
-import { data } from "../../data/data"
+import { useSelector } from "react-redux";
 import ProductCard from "./ProductCard";
 
 export default function BestSellerProducts() {
-    const { bestSellerProducts } = data.home;
-    const productCards = bestSellerProducts.map((item, index) => {
+    const bestSellerProducts = useSelector((state) => state.products.productList);
+    const productCards = bestSellerProducts.sort((a, b) => b.sell_count - a.sell_count).slice(0, 8).map((item, index) => {
         return <ProductCard data={item} key={index} className="w-[25%]" />
     })
     return (
