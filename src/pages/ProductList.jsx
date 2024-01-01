@@ -5,22 +5,23 @@ import Categories from "../components/product-list/Categories";
 import Dropdown from "../components/micro/Dropdown";
 import PaginationCmp from "../components/micro/Pagination";
 import Products from "../components/product-list/Products";
+
 import { faAws, faHooli, faLyft, faPiedPiperHat, faRedditAlien, faStripe } from "@fortawesome/free-brands-svg-icons";
 
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { beginFetch } from "../store/actions/productAction/productAction";
+import {  useSelector } from "react-redux";
+
 export default function ProductList() {
-    const dispatch = useDispatch();
+
     const filters = [
-        {title:"Highest Price",url:"/#"},
-        {title:"Lowest Price",url:"/#"},
-        {title:"Popular Product",url:"/#"},
-        {title:"Recomended Product",url:"/#"},
+        { title: "Highest Price", url: "/#" },
+        { title: "Lowest Price", url: "/#" },
+        { title: "Highest Rating", url: "/#" },
+        { title: "Lowest Rating", url: "/#" },
     ]
-    useEffect(()=> {
-        dispatch(beginFetch());
-    },[]);
+
+    const products = useSelector((store) => store.products);
+    const { totalProductCount, productList } = products;
+
     return (
         <div className="w-[80%] mx-auto">
             <div className="flex justify-between gap-7 items-center py-6 max-sm:flex-col">
@@ -35,7 +36,7 @@ export default function ProductList() {
                 <Categories />
             </div>
             <div className="flex justify-between py-6 px-3 max-sm:flex-col max-sm:justify-center max-sm:items-center max-sm:gap-6">
-                <p>Showing all 12 results</p>
+                <p>{`Showing ${productList.length} of all ${totalProductCount} results`}</p>
                 <div className="flex items-center gap-3">
                     <p className="text-neutral-500 text-sm font-bold leading-normal tracking-tight">Views:</p>
                     <FontAwesomeIcon icon={faBorderAll} className="p-2 border rounded cursor-pointer" />
