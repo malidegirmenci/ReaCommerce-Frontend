@@ -1,7 +1,6 @@
 import { Route, Switch } from 'react-router-dom/cjs/react-router-dom.min';
 import { useDispatch, useSelector } from 'react-redux';
-
-import './App.css';
+import { useEffect } from 'react';
 
 import Header from './layout/Header';
 import Home from './pages/Home';
@@ -16,13 +15,18 @@ import Login from './pages/Login';
 
 import useLocalStorage from './hooks/useLocalStorage';
 import axiosWithAuth from './api/axiosWithAuth';
+
 import { updateCategories } from './store/actions/globalAction/globalAction';
-import { useEffect } from 'react';
 import { userSuccess } from './store/actions/userAction/userAction';
+import { fetchProducts } from './store/actions/productAction/productAction';
+
+import './App.css';
 
 function App() {
-  const user = useSelector((store) => store.user.response);
   const dispatch = useDispatch();
+
+  const user = useSelector((store) => store.user.response);
+  
   const [token, setToken] = useLocalStorage("Token", "");
 
   useEffect(() => {
@@ -30,16 +34,16 @@ function App() {
       axiosWithAuth()
         .get("/verify")
         .then((response) => {
-          //console.log("Verify:",response.data);
           dispatch(userSuccess(response.data));
           user.length && setToken(user.token);
         })
         .catch((error) => {
-          //console.log("Error: ",error);
+          console.log("Error: ",error);
           localStorage.removeItem("Token");
         });
     }
     dispatch(updateCategories());
+    dispatch(fetchProducts());
   }, []);
   return (
     <>
@@ -63,7 +67,7 @@ function App() {
         <Route path="/contact">
           <Contact />
         </Route>
-        <Route path="/shopping">
+        <Route path="/shopping/:gender?/:category?">
           <ProductList />
         </Route>
         <Route path="/home">
