@@ -1,12 +1,11 @@
 export default function ProductCard(props) {
-    const { name, price, images, description,sell_count} = props.data;
-    console.log("product card: ",props.data)
+    const { name, price, images, description, sell_count } = props.data;
     const priceWithoutDiscount = price + (price * 0.3);
     const image = images.length ? images[0].url : ""
     return (
         <div className="flex flex-col text-center w-[20%] max-sm:w-full shadow-md rounded-b-md cursor-pointer ease-out duration-300 hover:scale-105 hover:ease-out hover:duration-300">
             <div>
-                <img  src={image} className="max-w-full max-sm:w-full object-cover rounded-t-md  " />
+                <img src={image} className="max-w-full max-sm:w-full object-cover rounded-t-md  " />
             </div>
             <div className="p-6 flex-col gap-2">
                 <h5 className="text-slate-800 text-base font-bold leading-normal tracking-tight">{name}</h5>
