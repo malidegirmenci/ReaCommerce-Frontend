@@ -1,9 +1,26 @@
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+
 export default function ProductCard(props) {
-    const { name, price, images, description, sell_count } = props.data;
+    const categories = useSelector((store) => store.global.categories);
+    const history = useHistory();
+    const { name, price, images, description, sell_count, category_id, id } = props.data;
     const priceWithoutDiscount = price + (price * 0.3);
     const image = images.length ? images[0].url : ""
+    const nameSlug = name.toLowerCase().replaceAll(" ", "-");
+    const catCode = categories.find(
+        (c) => c.id == category_id
+    )?.code;
+    const gender = catCode?.slice(0, 1) == 'k' ? 'kadin' : 'erkek'
+    const category = catCode?.slice(2)
+    const productURL = `/shopping/${gender}/${category}/${id}/${nameSlug}`
     return (
-        <div className="flex flex-col text-center w-[20%] max-sm:w-full shadow-md rounded-b-md cursor-pointer ease-out duration-300 hover:scale-105 hover:ease-out hover:duration-300">
+        <div onClick={() => {
+            history.push(
+                productURL
+            );
+            window.scrollTo(0, 0);
+        }} className="flex flex-col text-center w-[20%] max-sm:w-full shadow-md rounded-b-md cursor-pointer ease-out duration-300 hover:scale-105 hover:ease-out hover:duration-300">
             <div>
                 <img src={image} className="max-w-full max-sm:w-full object-cover rounded-t-md  " />
             </div>
