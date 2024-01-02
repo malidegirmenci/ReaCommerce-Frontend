@@ -6,7 +6,7 @@ export default function Categories() {
         return <CategoryCard data={item} key={key} />
     })
     return (
-        <div className="flex w-full object-center max-sm:flex-col max-sm:gap-4">
+        <div className="flex w-full gap-1 bg-slate-200 object-center max-sm:flex-col max-sm:gap-4">
             {categoriesField}
         </div>
     );
