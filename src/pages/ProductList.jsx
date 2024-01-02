@@ -1,26 +1,49 @@
 import { faArrowRight, faBorderAll, faListCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { Link, useParams } from "react-router-dom/cjs/react-router-dom.min";
 import Categories from "../components/product-list/Categories";
-import Dropdown from "../components/micro/Dropdown";
-import PaginationCmp from "../components/micro/Pagination";
 import Products from "../components/product-list/Products";
-
+import * as fetchTypes from '../store/actions/fetchStatesTypes';
 import { faAws, faHooli, faLyft, faPiedPiperHat, faRedditAlien, faStripe } from "@fortawesome/free-brands-svg-icons";
-
-import {  useSelector } from "react-redux";
-
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import useQueryParams from "../hooks/useQueryParams";
+import { fetchProducts } from "../store/actions/productAction/productAction";
+import { ClimbingBoxLoader } from "react-spinners";
 export default function ProductList() {
+    const dispatch = useDispatch();
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const categories = useSelector((store) => store.global.categories);
+    const [queryParams, setQueryParams] = useQueryParams({
+        filter: "",
+        sort: "",
+    });
+    const onSubmit = data => {
+        setQueryParams(data)
+    };
 
-    const filters = [
-        { title: "Highest Price", url: "/#" },
-        { title: "Lowest Price", url: "/#" },
-        { title: "Highest Rating", url: "/#" },
-        { title: "Lowest Rating", url: "/#" },
-    ]
+    const { gender, category } = useParams();
+    let categoryId;
+    let genderCode;
+    if (gender, category) {
+        genderCode = gender[0]
+        categoryId = categories.find((c) => c.code == `${genderCode}:${category}`)?.id
+    }
 
     const products = useSelector((store) => store.products);
-    const { totalProductCount, productList } = products;
+    const { totalProductCount, productList, fetchState } = products;
+
+    useEffect(() => {
+        dispatch(
+            fetchProducts({
+                ...queryParams,
+                limit: 24,
+                offset: 0,
+                category: categoryId,
+            })
+        )
+    }, [queryParams, category])
 
     return (
         <div className="w-[80%] mx-auto">
@@ -35,25 +58,31 @@ export default function ProductList() {
             <div>
                 <Categories />
             </div>
-            <div className="flex justify-between py-6 px-3 max-sm:flex-col max-sm:justify-center max-sm:items-center max-sm:gap-6">
-                <p>{`Showing ${productList.length} of all ${totalProductCount} results`}</p>
+            <div className="flex justify-between items-center py-6 px-3 max-sm:flex-col max-sm:justify-center max-sm:items-center max-sm:gap-6">
+                <p className="text-neutral-500 text-sm font-semibold leading-normal tracking-tight">{`Showing ${productList.length} of all ${totalProductCount} results`}</p>
                 <div className="flex items-center gap-3">
                     <p className="text-neutral-500 text-sm font-bold leading-normal tracking-tight">Views:</p>
                     <FontAwesomeIcon icon={faBorderAll} className="p-2 border rounded cursor-pointer" />
                     <FontAwesomeIcon icon={faListCheck} className="p-2 border rounded cursor-pointer" />
                 </div>
                 <div className="flex items-center gap-3">
-                    <div className="border rounded">
-                        <Dropdown data={filters} />
-                    </div>
-                    <button className="bg-[#23A6F0] px-4 py-2 text-white text-sm font-bold leading-normal tracking-tight rounded">Filter</button>
+                    <form onSubmit={handleSubmit(onSubmit)} className="flex items-center gap-3">
+                        <input type="search" placeholder="Search" {...register("filter", {})} className="bg-white input input-bordered w-full max-w-xs text-neutral-500 text-sm font-semibold leading-normal tracking-tight" />
+                        <select {...register("sort")} className="select w-full max-w-xs bg-white text-neutral-500 text-sm font-semibold leading-normal tracking-tight">
+                            <option className="text-neutral-500 text-sm font-semibold leading-normal tracking-tight" value="">Sort By</option>
+                            <option className="text-neutral-500 text-sm font-semibold leading-normal tracking-tight" value="price:desc">Highest Price</option>
+                            <option className="text-neutral-500 text-sm font-semibold leading-normal tracking-tight" value="price:asc">Lowest Price</option>
+                            <option className="text-neutral-500 text-sm font-semibold leading-normal tracking-tight" value="rating:asc">Lowest Rating</option>
+                            <option className="text-neutral-500 text-sm font-semibold leading-normal tracking-tight" value="rating:desc">Highest Rating</option>
+                        </select>
+                        <button type="submit" className="bg-[#23A6F0] px-4 py-2 text-white text-sm font-bold leading-normal tracking-tight rounded"> Filter</button>
+                    </form>
                 </div>
             </div>
             <div className="flex flex-col items-center mx-auto">
                 <Products />
-                <div className="p-12">
-                    <PaginationCmp />
-                </div>
+                {productList.length || <p className="text-neutral-500 text-lg font-semibold leading-normal tracking-tight">There are no more products in this category</p>}
+                {fetchState === fetchTypes.FETCHING && <ClimbingBoxLoader color="#23a6f0" />}
             </div>
             <hr className="border border-neutral-200" />
             <div className="flex justify-between w-[90%] mx-auto py-10 max-sm:gap-y-4 max-sm:flex-col">
