@@ -3,7 +3,7 @@ import BestSellerProducts from '../components/general/BestSellerProducts';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faEye, faCartShopping, faHeart, faStar } from '@fortawesome/free-solid-svg-icons';
 import { Images } from '../assets/Images';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
     Carousel,
     CarouselItem,
@@ -11,20 +11,41 @@ import {
     CarouselIndicators,
 } from 'reactstrap';
 import { faAws, faHooli, faLyft, faPiedPiperHat, faRedditAlien, faStripe } from '@fortawesome/free-brands-svg-icons';
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import axiosInstance from '../api/axiosInstance';
 export default function ProductPage() {
-    const { name, rate, reviews, price, availability, descriptionShort, color, slides, descriptionSrc } = data.productPage;
+    const {reviews, availability, descriptionSrc } = data.productPage;
     const [activeIndex, setActiveIndex] = useState(0);
     const [animating, setAnimating] = useState(false);
-
+    const { productId } = useParams();
+    const [isLoading, setLoading] = useState(false);
+    const [product, setProduct] = useState({ images: [] });
+    const requestURL = `/products/${productId}`
+    console.log(requestURL);
+    useEffect(() => {
+        axiosInstance
+            .get(requestURL)
+            .then((response) => {
+                console.log("data", response.data)
+                setProduct(response.data);
+                setLoading(true);
+            })
+            .catch((error) => {
+                console.log("error", error)
+            });
+    }, [productId]);
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     const next = () => {
         if (animating) return;
-        const nextIndex = activeIndex === slides.length - 1 ? 0 : activeIndex + 1;
+        const nextIndex = activeIndex === product?.images.length - 1 ? 0 : activeIndex + 1;
         setActiveIndex(nextIndex);
     };
 
     const previous = () => {
         if (animating) return;
-        const nextIndex = activeIndex === 0 ? slides.length - 1 : activeIndex - 1;
+        const nextIndex = activeIndex === 0 ? product?.images.length - 1 : activeIndex - 1;
         setActiveIndex(nextIndex);
     };
 
@@ -33,7 +54,8 @@ export default function ProductPage() {
         setActiveIndex(newIndex);
     };
 
-    const newSlides = slides.map((item, index) => {
+
+    const newSlides = product?.images.map((item, index) => {
         return (
             <CarouselItem
                 onExiting={() => setAnimating(true)}
@@ -41,7 +63,7 @@ export default function ProductPage() {
                 key={index}
             >
                 <div className='h-[500px] rounded-lg max-sm:h-[400px]'>
-                    <img src={item} alt={name} className='rounded-t-lg ' />
+                    <img src={item.url} alt={product?.name} className='rounded-t-lg' />
                 </div>
             </CarouselItem>
         );
@@ -49,10 +71,10 @@ export default function ProductPage() {
     return (
         <div className='w-4/5 mx-auto flex flex-col gap-10 max-sm:items-center'>
             <nav className='flex items-center gap-2'>
-                    <div className="text-slate-800 text-sm font-bold leading-normal tracking-tight">Home</div>
-                    <FontAwesomeIcon icon={faArrowRight} size="sm" className='text-slate-400' />
-                    <div className="text-slate-400 text-sm font-bold leading-normal tracking-tight">Shop</div>
-                </nav>
+                <div className="text-slate-800 text-sm font-bold leading-normal tracking-tight">Home</div>
+                <FontAwesomeIcon icon={faArrowRight} size="sm" className='text-slate-400' />
+                <div className="text-slate-400 text-sm font-bold leading-normal tracking-tight">Shop</div>
+            </nav>
             <div className='flex gap-8 max-sm:flex-col'>
                 <div className='w-1/2 max-sm:w-full'>
                     <div className='flex flex-col gap-2'>
@@ -73,13 +95,19 @@ export default function ProductPage() {
                             />
                         </Carousel>
                         <div className='flex gap-3 '>
-                            <img onClick={()=>setActiveIndex(1)} src={slides[1]} className='w-28 h-24 object-cover object-bottom hover:scale-105 hover:ease-out hover:duration-300 ease-out duration-300 rounded-b-md cursor-pointer' />
-                            <img onClick={()=>setActiveIndex(0)} src={slides[0]} className='opacity-50 w-28 h-24 object-cover object-bottom hover:scale-105 hover:ease-out hover:duration-300 ease-out duration-300 rounded-b-md cursor-pointer' />
+                            {/* <img onClick={() => setActiveIndex(1)} src={product.images[1].url} className='w-28 h-24 object-cover object-bottom hover:scale-105 hover:ease-out hover:duration-300 ease-out duration-300 rounded-b-md cursor-pointer' /> */}
+                            {product.images.length > 0 && (
+                                <img
+                                    onClick={() => setActiveIndex(0)}
+                                    src={product.images[0].url}
+                                    className='opacity-50 w-28 h-24 object-cover object-center hover:scale-105 hover:ease-out hover:duration-300 ease-out duration-300 rounded-b-md cursor-pointer'
+                                />
+                            )}
                         </div>
                     </div>
                 </div>
                 <div className='w-1/2 flex flex-col items-start gap-4 max-sm:w-full'>
-                    <h4 className='text-slate-800 text-xl font-normal leading-[30px] tracking-tight'>{name}</h4>
+                    <h4 className='text-slate-800 text-xl font-normal leading-[30px] tracking-tight'>{product.name}</h4>
                     <div className='flex items-center gap-2'>
                         <div className='flex gap-1'>
                             <FontAwesomeIcon icon={faStar} className='text-yellow-300' size="lg" />
@@ -91,10 +119,10 @@ export default function ProductPage() {
                         <h6 className='text-neutral-500 text-sm font-bold leading-normal tracking-tight'>{reviews} Reviews</h6>
                     </div>
                     <div className='flex flex-col items-start'>
-                        <h5 className='text-slate-800 text-2xl font-bold leading-loose tracking-tight'>${price}</h5>
+                        <h5 className='text-slate-800 text-2xl font-bold leading-loose tracking-tight'>${product.price}</h5>
                         <h6 className='text-neutral-500 text-sm font-bold leading-normal tracking-tight'>Availability : <span className='text-sky-500 text-sm font-bold leading-normal tracking-tight'>{availability}</span></h6>
                     </div>
-                    <p className='text-zinc-500 text-sm font-normal leading-tight tracking-tight'>{descriptionShort}</p>
+                    <p className='text-zinc-500 text-sm font-normal leading-tight tracking-tight'>{product.description}</p>
                     <div className="w-[445px] h-[0px] border border-stone-300"></div>
                     <div className='flex gap-2'>
                         <div className="w-[30px] h-[30px] bg-sky-500 rounded-full shadow-sm" />
