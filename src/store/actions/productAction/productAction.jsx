@@ -13,6 +13,13 @@ const fetchProductsSuccess = (productList, totalProductCount) => ({
         totalProductCount,
     }
 });
+const fetchMoreProducts = (productList, totalProductCount) => ({
+    type: types.FETCH_MORE_PRODUCTS,
+    payload: {
+        productList,
+        totalProductCount,
+    }
+});
 
 const fetchProductsFailure = (error) => ({
     type: types.FETCH_PRODUCTS_FAILURE,
@@ -33,10 +40,26 @@ const fetchProducts = (params) => {
         })
     }
 }
+const addMoreProducts = (params) => {
+    return (dispatch) => {
+    dispatch(fetchProductsRequest());
+    instanceAxios
+        .get("/products", {params})
+        .then((response) => {
+            dispatch(fetchMoreProducts(response.data.products,response.data.total));
+        })
+        .catch((error) => {
+            //console.log("Products Fetching Error:"+ error.message);
+            dispatch(fetchProductsFailure(error.message));
+        })
+    }
+}
+
 
 export {
     fetchProductsRequest,
     fetchProductsSuccess,
     fetchProductsFailure,
-    fetchProducts
+    fetchProducts,
+    addMoreProducts
 };
