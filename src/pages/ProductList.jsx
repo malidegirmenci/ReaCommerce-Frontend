@@ -7,23 +7,34 @@ import * as fetchTypes from '../store/actions/fetchStatesTypes';
 import { faAws, faHooli, faLyft, faPiedPiperHat, faRedditAlien, faStripe } from "@fortawesome/free-brands-svg-icons";
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useQueryParams from "../hooks/useQueryParams";
-import { fetchProducts } from "../store/actions/productAction/productAction";
+import { addMoreProducts, fetchProducts } from "../store/actions/productAction/productAction";
 import { ClimbingBoxLoader } from "react-spinners";
+import InfiniteScroll from "react-infinite-scroll-component";
+
 export default function ProductList() {
     const dispatch = useDispatch();
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { gender, category } = useParams();
     const categories = useSelector((store) => store.global.categories);
+    const products = useSelector((store) => store.products);
+    const { totalProductCount, productList, fetchState } = products;
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const [queryParams, setQueryParams] = useQueryParams({
         filter: "",
         sort: "",
     });
-    const onSubmit = data => {
-        setQueryParams(data)
+    const [offset, setOffset] = useState(0);
+    const [hasMore, setHasMore] = useState(true);
+    const infiniteScrollParams = {
+        limit: 24,
+        offset: offset,
     };
 
-    const { gender, category } = useParams();
+    const onSubmit = data => {
+        setOffset(0);
+        setQueryParams(data);
+    };
     let categoryId;
     let genderCode;
     if (gender, category) {
@@ -31,20 +42,48 @@ export default function ProductList() {
         categoryId = categories.find((c) => c.code == `${genderCode}:${category}`)?.id
     }
 
-    const products = useSelector((store) => store.products);
-    const { totalProductCount, productList, fetchState } = products;
-
     useEffect(() => {
         dispatch(
             fetchProducts({
                 ...queryParams,
-                limit: 24,
+                limit: infiniteScrollParams.limit,
                 offset: 0,
                 category: categoryId,
             })
         )
     }, [queryParams, category])
 
+    const nextProducts = () => {
+        let lastLimit = (totalProductCount - productList.length) % 24
+        if (lastLimit === 0) {
+            dispatch(
+                addMoreProducts({
+                    ...queryParams,
+                    ...infiniteScrollParams,
+                    category: categoryId
+                })
+            );
+            setOffset(offset + 8);
+        }else{
+            dispatch(
+                addMoreProducts({
+                    ...queryParams,
+                    limit:lastLimit,
+                    offset:infiniteScrollParams.offset,
+                    category: categoryId
+                })
+            );
+        }
+    };
+
+    useEffect(() => {
+        if (totalProductCount && productList.length >= totalProductCount) {
+            setOffset(0);
+            setHasMore(false);
+        } else {
+            setHasMore(true);
+        }
+    }, [totalProductCount, productList.length]);
     return (
         <div className="w-[80%] mx-auto">
             <div className="flex justify-between gap-7 items-center py-6 max-sm:flex-col">
@@ -80,9 +119,24 @@ export default function ProductList() {
                 </div>
             </div>
             <div className="flex flex-col items-center mx-auto">
-                <Products />
-                {productList.length || <p className="text-neutral-500 text-lg font-semibold leading-normal tracking-tight">There are no more products in this category</p>}
-                {fetchState === fetchTypes.FETCHING && <ClimbingBoxLoader color="#23a6f0" />}
+                {fetchState === fetchTypes.FETCHED && (
+                    <InfiniteScroll
+                        dataLength={productList.length && 0}
+                        next={nextProducts}
+                        hasMore={hasMore}
+                        loader={<ClimbingBoxLoader color="#23a6f0" className="mx-auto" />}
+                        endMessage={
+                            <p className="text-center p-4 text-neutral-500 text-lg font-semibold leading-normal tracking-tight">There are no more products in this category</p>
+                        }
+                        className="flex flex-col overflow-hidden h-full pt-4"
+                    >
+                        <Products products={productList} />
+                    </InfiniteScroll>)}
+                {fetchState === fetchTypes.FETCHING &&
+                    <>
+                        <p className="text-center p-4 text-neutral-500 text-lg font-semibold leading-normal tracking-tight">There are no more products in this category</p>
+                        <ClimbingBoxLoader color="#23a6f0" />
+                    </>}
             </div>
             <hr className="border border-neutral-200" />
             <div className="flex justify-between w-[90%] mx-auto py-10 max-sm:gap-y-4 max-sm:flex-col">
