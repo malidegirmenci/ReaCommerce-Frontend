@@ -67,7 +67,7 @@ export default function Header() {
                                     <div tabIndex={0} className="dropdown-content z-[1] menu ">
                                         <div className=" p-2 shadow bg-white flex rounded-box gap-4 divide-x-[12px]">
                                             <ul>
-                                                <li className="font-bold text-gray-800"><Link>Women</Link></li>
+                                                <li className="font-bold text-gray-800"><Link to="/shopping">Women</Link></li>
                                                 {womanCategories.map((category, idx) => {
                                                     return (
                                                         <li key={idx}>
@@ -77,7 +77,7 @@ export default function Header() {
                                                 })}
                                             </ul>
                                             <ul>
-                                                <li className="font-bold text-gray-800"><Link>Men</Link></li>
+                                                <li className="font-bold text-gray-800"><Link to="/shopping">Men</Link></li>
                                                 {manCategories.map((category, idx) => {
                                                     return (
                                                         <li key={idx}>
