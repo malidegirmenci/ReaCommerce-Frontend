@@ -19,7 +19,7 @@ export default function SignUp() {
     }, []);
 
     const onSubmit = (data) => {
-        console.log("Soft Data:", data)
+        //console.log("Soft Data:", data)
         if (data.role == "customer" || data.role == "admin") {
             dispatch(signUpUser(
                 {

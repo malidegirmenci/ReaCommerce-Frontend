@@ -12,9 +12,9 @@ export default function Header() {
     const categories = useSelector((store) => store.global.categories);
     const { pathname, search } = useLocation();
     const womanCategories = categories.filter((category) => category.gender === 'k');
-    console.log("woman", womanCategories)
+    //console.log("woman categories", womanCategories)
     const manCategories = categories.filter((category) => category.gender === 'e');
-    console.log("man", manCategories)
+    //console.log("man categories", manCategories)
     return (
         <div className="">
             <div className="bg-[#252B42] text-center items-center justify-between flex px-6 max-sm:flex-col max-sm:justify-start">
