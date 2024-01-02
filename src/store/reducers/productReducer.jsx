@@ -4,7 +4,7 @@ import * as fetchTypes from '../actions/fetchStatesTypes';
 const initialState = {
     productList: [],
     totalProductCount: 0,
-    error:"",
+    error: "",
     fetchState: fetchTypes.NOT_FETCHED,
 };
 
@@ -18,20 +18,25 @@ const productReducer = (state = initialState, action) => {
         case types.FETCH_PRODUCTS_SUCCESS:
             return {
                 ...state,
-                fetchState: fetchTypes.FETCHED,
+                fetchState: action.payload.productList.length !== 0 ? fetchTypes.FETCHED : fetchTypes.FETCHING,
                 productList: action.payload.productList,
+                totalProductCount: action.payload.totalProductCount,
+            };
+        case types.FETCH_MORE_PRODUCTS:
+            return {
+                ...state,
+                fetchState: fetchTypes.FETCHED,
+                productList: [...state.productList,...action.payload.productList],
                 totalProductCount: action.payload.totalProductCount,
             };
         case types.FETCH_PRODUCTS_FAILURE:
             return {
                 ...state,
                 fetchState: fetchTypes.FAILED,
-                error:action.payload
+                error: action.payload
             };
         default:
             return state;
     }
-
-
 };
 export default productReducer;
