@@ -80,7 +80,7 @@ export default function ProductList() {
                 </div>
             </div>
             <div className="flex flex-col items-center mx-auto">
-                <Products />
+                <Products products={productList}/>
                 {productList.length || <p className="text-neutral-500 text-lg font-semibold leading-normal tracking-tight">There are no more products in this category</p>}
                 {fetchState === fetchTypes.FETCHING && <ClimbingBoxLoader color="#23a6f0" />}
             </div>
