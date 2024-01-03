@@ -23,6 +23,11 @@ export const userFailure = (error) => {
     };
 };
 
+export const userLogOut = () => {
+    return {
+        type: types.USER_LOG_OUT
+    }
+} 
 
 export const signUpUser = (userData, history) => (dispatch) => {
     dispatch(userRequest(userData));
@@ -67,5 +72,12 @@ export const loginUser = (userData, history,setToken) => (dispatch) => {
         })
 };
 
-
+export const logOutUser = (history) => (dispatch) => {
+    dispatch(userLogOut());
+    toastMixin.fire({
+        animation: true,
+        title: "Log out has been successfully"
+    });
+    history.push("/");
+}
 

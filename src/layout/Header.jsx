@@ -2,19 +2,24 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone, faEnvelope, faUser, faSearch, faCartShopping, faHeart, faBars, faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { faFacebook, faInstagram, faTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { data } from "../data/data";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
-import { useSelector } from "react-redux";
+import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useDispatch, useSelector } from "react-redux";
 import MD5 from "crypto-js/md5";
 import { useLocation } from "react-router-dom/cjs/react-router-dom";
+import { logOutUser } from "../store/actions/userAction/userAction";
 export default function Header() {
     const { phone, mail, offerMsg, companyName } = data.header;
+    const dispatch = useDispatch();
+    const history = useHistory();
     const user = useSelector((store) => store.user.response);
     const categories = useSelector((store) => store.global.categories);
     const { pathname, search } = useLocation();
     const womanCategories = categories.filter((category) => category.gender === 'k');
-    //console.log("woman categories", womanCategories)
     const manCategories = categories.filter((category) => category.gender === 'e');
-    //console.log("man categories", manCategories)
+    const handleLogOut = () => {
+        dispatch(logOutUser(history));
+        localStorage.removeItem('Token');
+    }
     return (
         <div className="">
             <div className="bg-[#252B42] text-center items-center justify-between flex px-6 max-sm:flex-col max-sm:justify-start">
@@ -55,7 +60,7 @@ export default function Header() {
                         ['Team', '/team'],
                         ['Pages', '/pages']
                     ].map(([title, url], idx) => (
-                        <div className="flex items-center justify-center" key = {idx}>
+                        <div className="flex items-center justify-center" key={idx}>
                             {title == "Shop" ?
                                 <div className="dropdown dropdown-hover">
                                     <label
@@ -98,15 +103,20 @@ export default function Header() {
                 <div className=" text-sky-500 items-center flex gap-10 max-sm:flex-col max-sm:gap-0">
                     <div className="items-center flex gap-1">
                         <div className=" font-bold leading-normal text-sm tracking-tight max-sm:text-2xl max-sm:font-normal z-10">
-                            {Object.keys(user).length ? (
-                                <div className="flex items-center gap-3">
+                            {Object.keys(user).length > 1 ? (
+                                <div className="flex items-center gap-3 cursor-pointer">
                                     <img
                                         src={`https://www.gravatar.com/avatar/${MD5(
                                             user.email
                                         )}?s=24`}
                                         className="border-2 border-solid border-secondary-content rounded-[50%]"
                                     />
-                                    <p>{user.name}</p>
+                                    <div className="dropdown">
+                                        <div tabIndex={0} role="button" className=" m-1 bg-white border-none">{user.name}</div>
+                                        <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-white rounded-box w-32">
+                                            <li><div onClick={() => handleLogOut()}>Log out</div></li>
+                                        </ul>
+                                    </div>
                                 </div>
                             ) : (
                                 <div className="flex items-center gap-1">
