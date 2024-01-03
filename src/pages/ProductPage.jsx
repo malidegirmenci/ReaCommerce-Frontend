@@ -1,27 +1,45 @@
 import { data } from '../data/data';
 import BestSellerProducts from '../components/general/BestSellerProducts';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight, faEye, faCartShopping, faHeart, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight, faEye, faCartShopping, faHeart, faStar, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { Images } from '../assets/Images';
 import { useEffect, useState } from 'react';
 import {
     Carousel,
     CarouselItem,
     CarouselControl,
-    CarouselIndicators,
 } from 'reactstrap';
 import { faAws, faHooli, faLyft, faPiedPiperHat, faRedditAlien, faStripe } from '@fortawesome/free-brands-svg-icons';
-import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import axiosInstance from '../api/axiosInstance';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart, updateCartItemQuantity } from '../store/actions/shoppingCartAction/shoppingCartAction';
+import toastMixin from '../utils/sweetAlertToastify';
 export default function ProductPage() {
-    const {reviews, availability, descriptionSrc } = data.productPage;
+    const { reviews, availability, descriptionSrc } = data.productPage;
     const [activeIndex, setActiveIndex] = useState(0);
     const [animating, setAnimating] = useState(false);
+    const history = useHistory();
     const { productId } = useParams();
+    const dispatch = useDispatch();
     const [isLoading, setLoading] = useState(false);
+    const { cart } = useSelector((store) => store.shoppingCart);
     const [product, setProduct] = useState({ images: [] });
     const requestURL = `/products/${productId}`
-    console.log(requestURL);
+    const addingToCartHandler = () => {
+        let isAvailable = false;
+        cart.map((item) => {
+            if (item.product.id == productId) isAvailable = true;
+            return item;
+        });
+        isAvailable
+            ? dispatch(updateCartItemQuantity(productId, true))
+            : dispatch(addToCart(product));
+        toastMixin.fire({
+            animation: true,
+            title: "Product added to cart"
+        });
+    };
     useEffect(() => {
         axiosInstance
             .get(requestURL)
@@ -62,18 +80,24 @@ export default function ProductPage() {
                 onExited={() => setAnimating(false)}
                 key={index}
             >
-                <div className='h-[500px] rounded-lg max-sm:h-[400px]'>
-                    <img src={item.url} alt={product?.name} className='rounded-t-lg' />
+                <div className='h-[500px] rounded-lg max-sm:h-[400px] flex'>
+                    <img src={item.url} alt={product?.name} className='w-full h-full rounded-t-lg object-cover object-center' />
                 </div>
             </CarouselItem>
         );
     });
     return (
         <div className='w-4/5 mx-auto flex flex-col gap-10 max-sm:items-center'>
-            <nav className='flex items-center gap-2'>
-                <div className="text-slate-800 text-sm font-bold leading-normal tracking-tight">Home</div>
-                <FontAwesomeIcon icon={faArrowRight} size="sm" className='text-slate-400' />
-                <div className="text-slate-400 text-sm font-bold leading-normal tracking-tight">Shop</div>
+            <nav className='flex items-center justify-between'>
+                <div className='flex gap-2 items-center'>
+                    <div className="text-slate-800 text-sm font-bold leading-normal tracking-tight cursor-pointer" onClick={() => history.push("/")}>Home</div>
+                    <FontAwesomeIcon icon={faArrowRight} size="sm" className='text-slate-400' />
+                    <div className="text-slate-400 text-sm font-bold leading-normal tracking-tight">Shop</div>
+                </div>
+                <div onClick={() => history.goBack()} className='cursor-pointer flex items-center gap-2'>
+                    <FontAwesomeIcon icon={faArrowLeft} size="sm" className='text-slate-600' />
+                    <div className="text-slate-600 text-sm font-bold leading-normal tracking-tight cursor-pointer" >Go Back</div>
+                </div>
             </nav>
             <div className='flex gap-8 max-sm:flex-col'>
                 <div className='w-1/2 max-sm:w-full'>
@@ -97,11 +121,15 @@ export default function ProductPage() {
                         <div className='flex gap-3 '>
                             {/* <img onClick={() => setActiveIndex(1)} src={product.images[1].url} className='w-28 h-24 object-cover object-bottom hover:scale-105 hover:ease-out hover:duration-300 ease-out duration-300 rounded-b-md cursor-pointer' /> */}
                             {product.images.length > 0 && (
-                                <img
-                                    onClick={() => setActiveIndex(0)}
-                                    src={product.images[0].url}
-                                    className='opacity-50 w-28 h-24 object-cover object-center hover:scale-105 hover:ease-out hover:duration-300 ease-out duration-300 rounded-b-md cursor-pointer'
-                                />
+                                product.images.map((image, idx) => {
+                                    return (
+                                        <img key={idx}
+                                            onClick={() => setActiveIndex(idx)}
+                                            src={image.url}
+                                            className='opacity-50 w-28 h-24 object-cover object-center hover:scale-105 hover:ease-out hover:duration-300 ease-out duration-300 rounded-b-md cursor-pointer'
+                                        />
+                                    )
+                                })
                             )}
                         </div>
                     </div>
@@ -116,13 +144,14 @@ export default function ProductPage() {
                             <FontAwesomeIcon icon={faStar} className='text-yellow-300' size="lg" />
                             <img src={Images.icons.starRegular} />
                         </div>
-                        <h6 className='text-neutral-500 text-sm font-bold leading-normal tracking-tight'>{reviews} Reviews</h6>
+                        <h6 className='text-neutral-500 text-sm font-bold leading-normal tracking-tight'>{parseInt(product.sell_count / 15)} Reviews</h6>
                     </div>
+                    <h5 className='text-slate-800 text-2xl font-bold leading-loose tracking-tight'>${product.price}</h5>
                     <div className='flex flex-col items-start'>
-                        <h5 className='text-slate-800 text-2xl font-bold leading-loose tracking-tight'>${product.price}</h5>
                         <h6 className='text-neutral-500 text-sm font-bold leading-normal tracking-tight'>Availability : <span className='text-sky-500 text-sm font-bold leading-normal tracking-tight'>{availability}</span></h6>
+                        <p className='text-zinc-500 text-sm font-normal leading-tight tracking-tight'>{product.description}</p>
+                        <p className='text-zinc-500 text-sm font-normal leading-tight tracking-tight'>{product.sell_count} amount purchased</p>
                     </div>
-                    <p className='text-zinc-500 text-sm font-normal leading-tight tracking-tight'>{product.description}</p>
                     <div className="w-[445px] h-[0px] border border-stone-300"></div>
                     <div className='flex gap-2'>
                         <div className="w-[30px] h-[30px] bg-sky-500 rounded-full shadow-sm" />
@@ -131,7 +160,7 @@ export default function ProductPage() {
                         <div className="w-[30px] h-[30px] bg-slate-800 rounded-full shadow-sm" />
                     </div>
                     <div className='flex gap-2'>
-                        <button className='text-white text-sm font-bold leading-normal tracking-tight rounded-md bg-sky-500 px-3 py-2.5'> Select Options</button>
+                        <button onClick={addingToCartHandler} className='text-white text-sm font-bold leading-normal tracking-tight rounded-md bg-sky-500 px-3 py-2.5'> Add to Cart </button>
                         <div className='rounded-full border border-gray-800 w-10 flex justify-center items-center'>
                             <FontAwesomeIcon icon={faHeart} size="sm" className='text-red-600' />
                         </div>
