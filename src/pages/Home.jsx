@@ -6,8 +6,12 @@ import RecomendedProducts from '../components/home/RecomendedProducts';
 import BestSellerProducts from '../components/general/BestSellerProducts';
 import PopularProduct from '../components/home/PopularProduct';
 import FeaturedPosts from '../components/home/FeaturedPosts';
+import { useEffect } from 'react';
 
 export default function Home() {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     return (
         <div className='max-sm:mx-auto'>
             <div>

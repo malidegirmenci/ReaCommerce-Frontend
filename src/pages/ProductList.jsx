@@ -84,6 +84,9 @@ export default function ProductList() {
             setHasMore(true);
         }
     }, [totalProductCount, productList.length]);
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     return (
         <div className="w-[80%] mx-auto">
             <div className="flex justify-between gap-7 items-center py-6 max-sm:flex-col">
