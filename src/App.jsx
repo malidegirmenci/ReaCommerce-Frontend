@@ -2,6 +2,8 @@ import { Route, Switch } from 'react-router-dom/cjs/react-router-dom.min';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
+import './App.css';
+
 import Header from './layout/Header';
 import Home from './pages/Home';
 import Footer from './layout/Footer';
@@ -12,6 +14,7 @@ import ProductPage from './pages/ProductPage';
 import Team from './pages/Team';
 import SignUp from './pages/SignUp';
 import Login from './pages/Login';
+import Cart from './pages/Cart';
 
 import useLocalStorage from './hooks/useLocalStorage';
 import axiosWithAuth from './api/axiosWithAuth';
@@ -20,13 +23,11 @@ import { updateCategories } from './store/actions/globalAction/globalAction';
 import { userSuccess } from './store/actions/userAction/userAction';
 import { fetchProducts } from './store/actions/productAction/productAction';
 
-import './App.css';
-
 function App() {
   const dispatch = useDispatch();
 
   const user = useSelector((store) => store.user.response);
-  
+
   const [token, setToken] = useLocalStorage("Token", "");
 
   useEffect(() => {
@@ -38,13 +39,13 @@ function App() {
           user.length && setToken(user.token);
         })
         .catch((error) => {
-          console.log("Error: ",error);
+          console.log("Error: ", error);
           localStorage.removeItem("Token");
         });
     }
     dispatch(updateCategories());
     dispatch(fetchProducts());
-    
+
   }, []);
   return (
     <>
@@ -64,6 +65,9 @@ function App() {
         </Route>
         <Route path="/contact">
           <Contact />
+        </Route>
+        <Route path="/cart">
+          <Cart />
         </Route>
         <Route path="/shopping/:gender/:category/:productId/:productNameSlug">
           <ProductPage />

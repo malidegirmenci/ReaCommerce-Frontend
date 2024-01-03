@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { data } from "../data/data"
 import { faPlay } from "@fortawesome/free-solid-svg-icons"
 import { faAws, faFacebook, faHooli, faInstagram, faLyft, faPiedPiperHat, faRedditAlien, faStripe, faTwitter } from "@fortawesome/free-brands-svg-icons"
+import { useEffect } from "react"
 
 export default function About() {
     const { aboutUsBg, statics, videoBg, workWithUs } = data.about
@@ -21,6 +22,9 @@ export default function About() {
             </div>
         )
     })
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     return (
         <div className="flex flex-col mx-auto gap-20">
             <div className="flex items-center justify-between gap-10 w-[80%] mx-auto max-sm:flex-col max-sm:w-full">

@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Images } from '../assets/Images';
 import { loginUser } from '../store/actions/userAction/userAction';
 import useLocalStorage from '../hooks/useLocalStorage';
+import { useEffect } from 'react';
 
 export default function Login() {
     const history = useHistory();
@@ -18,6 +19,9 @@ export default function Login() {
     const onSubmit = (userData) => {
         dispatch(loginUser(userData,history,setToken));
     }
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     return (
         <div className="relative flex my-8">
             <div className="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0 bg-white">
@@ -58,19 +62,19 @@ export default function Login() {
                             <input type="hidden" name="remember" defaultValue="false" />
                             <div >
                                 <label htmlFor='email' className="ml-3 text-sm font-bold text-gray-700 tracking-wide">Email</label>
-                                <input autoComplete='true' id='email' className=" w-full text-base px-4 py-2 border-b border-gray-300 focus:outline-none rounded-2xl focus:border-indigo-500" type="email" placeholder="Enter your mail" {...register("email", { required: { value: true, message: "Email is required" }, minLength: { value: 15, message: "Email must be at least 15 characters long." }, maxLength: { value: 100, message: "Email can not be longer than 100 characters." }, pattern: { value: /^(([^<>()[\]\.,;:\s@"]+(\.[^<>()[\]\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, message: "Invalid email" } })} />
-                                {errors["email"] && <p role="alert" className='ml-3 text-sm font-bold text-red-600 tracking-wide'>{errors["email"]?.message}</p>}
+                                <input autoComplete='true' id='email' className=" bg-white w-full text-base px-4 py-2 border-b border-gray-300 focus:outline-none rounded-2xl focus:border-indigo-500" type="email" placeholder="Enter your mail" {...register("email", { required: { value: true, message: "Email is required" }, minLength: { value: 15, message: "Email must be at least 15 characters long." }, maxLength: { value: 100, message: "Email can not be longer than 100 characters." }, pattern: { value: /^(([^<>()[\]\.,;:\s@"]+(\.[^<>()[\]\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, message: "Invalid email" } })} />
+                                {errors["email"] && <p role="alert" className='ml-3 text-sm font-bold  text-red-600 tracking-wide'>{errors["email"]?.message}</p>}
                             </div>
                             <div >
-                                <label htmlFor='password' className="ml-3 text-sm font-bold text-gray-700 tracking-wide">
+                                <label htmlFor='password' className=" ml-3 text-sm font-bold text-gray-700 tracking-wide">
                                     Password
                                 </label>
-                                <input id='password' className="w-full content-center text-base px-4 py-2 border-b rounded-2xl border-gray-300 focus:outline-none focus:border-indigo-500" type="password" placeholder="Enter your password" {...register("password", { required: { value: true, message: "Password is required" }})} />
+                                <input id='password' className="bg-white w-full content-center text-base px-4 py-2 border-b rounded-2xl border-gray-300 focus:outline-none focus:border-indigo-500" type="password" placeholder="Enter your password" {...register("password", { required: { value: true, message: "Password is required" }})} />
                                 {errors["password"] && <p role="alert" className='ml-3 text-sm font-bold text-red-600 tracking-wide'>{errors["password"]?.message}</p>}
                             </div>
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center">
-                                    <input id="remember_me" name="remember_me" type="checkbox" className="h-4 w-4 bg-blue-500 focus:ring-blue-400 border-gray-300 rounded" />
+                                    <input id="remember_me" name="remember_me" type="checkbox" className=" h-4 w-4 bg-blue-500 focus:ring-blue-400 border-gray-300 rounded" />
                                     <label htmlFor="remember_me" className="ml-2 block text-sm text-gray-900">
                                         Remember me
                                     </label>

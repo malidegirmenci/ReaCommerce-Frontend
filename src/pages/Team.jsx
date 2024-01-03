@@ -4,8 +4,12 @@ import { data } from "../data/data";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { faFacebook, faInstagram, faLinkedin, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { useEffect } from "react";
 export default function Team() {
     const { hero } = data.team;
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     return (
         <div className="flex flex-col gap-12 justify-center py-12">
             <div className="flex flex-col items-center justify-center gap-4 max-sm:text-center ">

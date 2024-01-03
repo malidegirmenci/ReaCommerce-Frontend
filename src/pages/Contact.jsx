@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { data } from "../data/data"
 import ContactForm from "../components/contact/ContactForm";
 export default function Contact() {
@@ -17,10 +17,13 @@ export default function Contact() {
             </div>
         )
     })
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     return (
         <>
             <div className="relative h-screen bg-cover bg-right bg-no-repeat max-sm:h-[1600px]" style={{ backgroundImage: `url('${backgroundSrc}')` }}>
-                <div className="absolute z-10 inset-0 flex items-center w-[80%] mx-auto gap-20 max-sm:flex-col max-sm:py-16">
+                <div className="absolute z-1 inset-0 flex items-center w-[80%] mx-auto gap-20 max-sm:flex-col max-sm:py-16">
                     {isShowForm ? <ContactForm setShowForm={setShowForm} /> :
                         <div className="flex flex-col items-start w-1/2 max-sm:w-full max-sm:text-center max-sm:items-center">
                             <h2 className="text-white text-5xl font-bold leading-[50px] tracking-tight mb-4">CONTACT US</h2>
