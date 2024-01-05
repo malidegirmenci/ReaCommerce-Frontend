@@ -5,14 +5,14 @@ const toastMixin = Swal.mixin({
     icon: 'success',
     title: 'General Title',
     animation: false,
-    position: 'top-end',
+    position: 'bottom-end',
     showConfirmButton: false,
     timer: 3000,
     timerProgressBar: true,
     didOpen: (toast) => {
         toast.addEventListener('mouseenter', Swal.stopTimer)
         toast.addEventListener('mouseleave', Swal.resumeTimer)
-        toast.style.top = '150px'; 
+        toast.style.bottom = '50px'; 
     }
 });
 
