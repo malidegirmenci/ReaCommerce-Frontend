@@ -171,7 +171,7 @@ export default function Header() {
                                                             <h3 className=" font-semibold ">{product.name}</h3>
                                                             <p className="font-normal text-xs text-slate-500">Amount: {count}</p>
                                                             <p className="font-semibold ">
-                                                                {`$${product.price * count}`}
+                                                                {`$${(product.price * count).toFixed(2)}`}
                                                             </p>
                                                         </div>
                                                     </div>
