@@ -160,13 +160,13 @@ function Cart() {
                                 {productTotal >= freeShippingPriceLimit && (
                                     <div className="flex justify-between gap-2">
                                         <p>Free Shipping for orders ${freeShippingPriceLimit} or Above</p>
-                                        <p className="font-bold text-secondary">-${shippingPrice}</p>
+                                        <p className="font-bold text-success">-${shippingPrice}</p>
                                     </div>
                                 )}
                                 {couponCode &&
                                     <div className="flex justify-between ">
                                         <p> 10 percent discount applied</p>
-                                        <p>${(productTotal * 0.1).toFixed(2)}</p>
+                                        <p className="font-bold text-success">-${(productTotal * 0.1).toFixed(2)}</p>
                                     </div>}
                                 <hr />
                                 <div className="flex justify-between gap-2">
