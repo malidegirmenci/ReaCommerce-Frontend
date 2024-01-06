@@ -3,7 +3,7 @@ import * as types from '../actions/shoppingCartAction/shoppingCartActionTypes';
 const initialState = {
     cart: [],
     payment: {},
-    address: {}
+    address: []
 };
 
 const shoppingCartReducer = (state = initialState, action) => {
@@ -48,10 +48,10 @@ const shoppingCartReducer = (state = initialState, action) => {
                 ...state,
                 payment: action.payload
             };
-        case types.UPDATE_ADDRESS_INFO:
+        case types.ADD_TO_ADDRESSES:
             return {
                 ...state,
-                address: action.payload
+                address: [...state.address,action.payload]
             };
         default:
             return state;

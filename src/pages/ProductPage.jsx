@@ -81,7 +81,7 @@ export default function ProductPage() {
                 key={index}
             >
                 <div className='h-[500px] rounded-lg max-sm:h-[400px] flex'>
-                    <img src={item.url} alt={product?.name} className='w-full h-full rounded-t-lg object-cover object-center' />
+                    <img src={item.url} alt={product?.name} className=' w-full h-full rounded-t-lg object-cover object-center' />
                 </div>
             </CarouselItem>
         );
@@ -103,6 +103,7 @@ export default function ProductPage() {
                 <div className='w-1/2 max-sm:w-full'>
                     <div className='flex flex-col gap-2'>
                         <Carousel
+                            className='shadow-md ring-1 ring-slate-200 rounded'
                             activeIndex={activeIndex}
                             next={next}
                             previous={previous}>
@@ -117,8 +118,8 @@ export default function ProductPage() {
                                 directionText="Next"
                                 onClickHandler={next}
                             />
-                        </Carousel>
-                        <div className='flex gap-3 '>
+                        </Carousel >
+                        <div className='flex gap-3 shadow-m'>
                             {/* <img onClick={() => setActiveIndex(1)} src={product.images[1].url} className='w-28 h-24 object-cover object-bottom hover:scale-105 hover:ease-out hover:duration-300 ease-out duration-300 rounded-b-md cursor-pointer' /> */}
                             {product.images.length > 0 && (
                                 product.images.map((image, idx) => {
@@ -126,7 +127,7 @@ export default function ProductPage() {
                                         <img key={idx}
                                             onClick={() => setActiveIndex(idx)}
                                             src={image.url}
-                                            className='opacity-50 w-28 h-24 object-cover object-center hover:scale-105 hover:ease-out hover:duration-300 ease-out duration-300 rounded-b-md cursor-pointer'
+                                            className='ring-1 ring-slate-200 rounded opacity-50 w-28 h-24 object-cover object-center hover:scale-105 hover:ease-out hover:duration-300 ease-out duration-300 rounded-b-md cursor-pointer'
                                         />
                                     )
                                 })
