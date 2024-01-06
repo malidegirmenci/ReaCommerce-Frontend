@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import axiosWithAuth from "../../api/axiosWithAuth";
-import AddressCard from "./addressCard";
+import AddressCard from "./AddressCard";
 import AddressForm from "./AddresForm";
 
 export default function Address() {
