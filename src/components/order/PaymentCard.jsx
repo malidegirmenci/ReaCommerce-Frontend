@@ -1,5 +1,5 @@
-export default function PaymentCard(props){
-    const {nameOnCard, cardNumber, expirationDate} = props.card;
+export default function PaymentCard(){
+    
     return(
         <div>
             
