@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-    baseURL: 'https://workintech-fe-ecommerce.onrender.com'
+    baseURL: 'https://madtech.up.railway.app/api/v1/ecommerce',
 });
 
 

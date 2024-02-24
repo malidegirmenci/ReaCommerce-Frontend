@@ -4,9 +4,9 @@ const axiosWithAuth = () => {
     const token = localStorage.getItem("Token");
 
     return axios.create({
-        baseURL : "https://workintech-fe-ecommerce.onrender.com/",
+        baseURL : 'https://madtech.up.railway.app/api/v1/ecommerce',
         headers : {
-            Authorization: token,
+            Authorization: `Bearer ${token}`,
         },
     });
 }
