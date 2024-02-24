@@ -7,3 +7,9 @@
             font-family: 'Montserrat', sans-serif;
         }
     }
+
+@layer components{
+    .contact-form-input-tb{
+        @apply p-2 bg-gradient-to-r from-[#002229] to-[#01586b] ring-2 ring-slate-300 rounded text-white placeholder:text-white w-[75%];
+    }
+}
