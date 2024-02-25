@@ -2,18 +2,23 @@ import * as types from '../actions/shoppingCartAction/shoppingCartActionTypes';
 
 const initialState = {
     cart: [],
-    payment: {},
-    address: []
+    hasCouponCode: false,
 };
 
 const shoppingCartReducer = (state = initialState, action) => {
     switch (action.type) {
+        case types.FETCH_TO_CART:
+            return {
+                ...state,
+                cart: action.payload
+            }
         case types.ADD_TO_CART:
             return {
                 ...state,
                 cart: [
-                    ...state.cart, { 
-                    count: 1, checked: true,   ...action.payload  }
+                    ...state.cart, {
+                        quantity: 1, isChecked: true, ...action.payload
+                    }
                 ]
             };
         case types.REMOVE_FROM_CART:
@@ -30,29 +35,24 @@ const shoppingCartReducer = (state = initialState, action) => {
                 ...state,
                 cart: state.cart.map((item) =>
                     item.product.id == productId ?
-                        { ...item, count: isAdding ? item.count + 1 : item.count - 1 } : item),
+                        { ...item, quantity: isAdding ? item.quantity + 1 : item.quantity - 1 } : item),
             }
         case types.SET_CHECK_STATUS:
             return {
                 ...state,
                 cart: state.cart.map((item) =>
-                    item.product.id == productId ? { ...item, checked: isChecked } : item),
+                    item.product.id == action.payload.productId ? { ...item, isChecked: action.payload.isChecked } : item),
             }
-            case types.CLEAR_CART:
-                return{
-                    ...state,
-                    cart:[],
-                }
-        case types.UPDATE_PAYMENT_INFO:
+        case types.CLEAR_CART:
             return {
                 ...state,
-                payment: action.payload
-            };
-        case types.ADD_TO_ADDRESSES:
+                cart: [],
+            }
+        case types.UPDATE_HAS_COUPON_CODE:
             return {
                 ...state,
-                address: [...state.address,action.payload]
-            };
+                hasCouponCode : action.payload
+            }
         default:
             return state;
     }
