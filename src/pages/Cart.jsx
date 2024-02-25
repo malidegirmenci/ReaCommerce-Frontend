@@ -1,32 +1,38 @@
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-
-import {
-    clearCart,
-    removeFromCart,
-    setCheckStatus,
-    updateCartItemQuantity,
-} from "../store/actions/shoppingCartAction/shoppingCartAction";
+import { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faAngleRight, faTrash } from "@fortawesome/free-solid-svg-icons";
 import Swal from "sweetalert2";
 import Summary from "../components/cart/Summary";
+import { setCart } from "../store/actions/orderAction/orderAction";
+import CouponArea from "../components/cart/CouponArea";
+import {
+    clearCart,
+    fetchCart,
+    removeCartItemFromDB,
+    removeFromCart,
+    setCheckStatus,
+    updateCartItemIsCheckedToDB,
+    updateCartItemQuantity,
+    updateCartItemQuantityToDB,
+} from "../store/actions/shoppingCartAction/shoppingCartAction";
 
-function Cart() {
+export default function Cart() {
     const history = useHistory();
     const dispatch = useDispatch();
+    const userToken = useSelector((state) => state.user.response.token);
     const { cart } = useSelector((store) => store.shoppingCart);
     const categories = useSelector((store) => store.global.categories);
     let productTotal = cart
         .reduce((sum, inCart) => {
-            return inCart.checked
-                ? sum + inCart.count * inCart.product.price.toFixed(2)
+            return inCart.isChecked
+                ? sum + inCart.quantity * inCart.product.price.toFixed(2)
                 : sum;
         }, 0)
         .toFixed(2);
-
     let productCount = cart.reduce((sum, inCart) => {
-        return inCart.checked ? sum + inCart.count : sum;
+        return inCart.isChecked ? sum + inCart.quantity : sum;
     }, 0);
     const amountLimit = 10;
     const getProductURL = (productName, productId, categoryId,) => {
@@ -39,9 +45,16 @@ function Cart() {
         const productURL = `/shopping/${gender}/${category}/${productId}/${nameSlug}`
         return productURL
     }
+    useEffect(()=> {
+        const orderCart = cart.filter((item)=> item.isChecked);
+        dispatch(setCart(orderCart));
+    },[cart])
+    useEffect(()=>{
+        fetchCart(userToken, history, dispatch)
+    },[])
     return (
         <div className="border rounded">
-            <div className=" w-[80%] flex flex-col gap-4 mx-auto py-4">
+            <div className=" w-[90%] flex flex-col gap-4 mx-auto py-4">
                 <div className="px-4 flex justify-between">
                     <h2 className="text-slate-700 text-lg font-bold">{`My Cart (${productCount} Products)`}</h2>
                     <button
@@ -71,19 +84,20 @@ function Cart() {
                         <span className="font-semibold text-slate-500 text-sm">Clear Cart</span>
                     </button>
                 </div>
-                {productCount ? (
+                {cart.length >= 1 ? (
                     <div className="flex justify-between gap-4">
-                        <div className="flex flex-col gap-2 w-[65%]">
+                        <div className="flex flex-col gap-2 w-2/3">
                             {cart.map((item, index) => {
-                                const { product, count } = item;
+                                const { id, product, quantity, isChecked } = item;
                                 return (
                                     <div key={index} className="shadow-sm" >
                                         <div className="h-fit flex gap-4 justify-between items-center px-[5%] py-4 border border-solid border-slate-500 rounded-lg shadow-md">
                                             <input
                                                 name={`${product.id}`}
                                                 type="checkbox"
-                                                defaultChecked={true}
+                                                defaultChecked={isChecked}
                                                 onChange={(e) => {
+                                                    updateCartItemIsCheckedToDB(id, e.target.checked);
                                                     dispatch(setCheckStatus(product.id, e.target.checked));
                                                 }}
                                             />
@@ -98,18 +112,20 @@ function Cart() {
                                                 <div className="flex border border-solid rounded-md border-slate-400 ">
                                                     <button
                                                         className="bg-slate-200 p-2 disabled:text-neutral text-lg font-bold"
-                                                        disabled={parseInt(count) === 1}
+                                                        disabled={parseInt(quantity) === 1}
                                                         onClick={() => {
+                                                            updateCartItemQuantityToDB(id, false);
                                                             dispatch(updateCartItemQuantity(product.id, false));
                                                         }}
                                                     >
                                                         -
                                                     </button>
-                                                    <p className="p-2 text-md font-semibold">{count}</p>
+                                                    <p className="p-2 text-md font-semibold">{quantity}</p>
                                                     <button
                                                         className="bg-slate-200 p-2 disabled:text-neutral text-lg font-bold"
-                                                        disabled={parseInt(count) === amountLimit}
+                                                        disabled={parseInt(quantity) === amountLimit}
                                                         onClick={() => {
+                                                            updateCartItemQuantityToDB(id, true);
                                                             dispatch(updateCartItemQuantity(product.id, true));
                                                         }}
                                                     >
@@ -117,12 +133,13 @@ function Cart() {
                                                     </button>
                                                 </div>
                                                 <p className="text-slate-700 text-center ">
-                                                    ${(product.price * count).toFixed(2)}
+                                                    ${(product.price * quantity).toFixed(2)}
                                                 </p>
                                                 <FontAwesomeIcon
                                                     icon={faTrash}
                                                     className=" text-neutral hover:text-error cursor-pointer"
                                                     onClick={() => {
+                                                        removeCartItemFromDB(userToken, id);
                                                         dispatch(removeFromCart(product.id));
                                                     }}
                                                 />
@@ -132,7 +149,30 @@ function Cart() {
                                 );
                             })}
                         </div>
-                        <Summary/>
+                        <div className="w-1/3 flex flex-col gap-4">
+                            <button
+                                className={`${productTotal >= 1 ? "bg-[#0ea5e9] ring-1" : "bg-slate-200"}   rounded-md py-3 w-full items-center flex gap-2 justify-center font-bold text-white`}
+                                onClick={(e) => {
+                                    history.push("/order");
+                                }}
+                                disabled={productTotal >= 1 ? false : true}
+                            >
+                                <span>Create Order</span>
+                                <FontAwesomeIcon icon={faAngleRight} className="text-white" size="lg" />
+                            </button>
+                            <Summary cart={cart}/>
+                            <CouponArea/>
+                            <button
+                                className={`${productTotal >= 1 ? "bg-[#0ea5e9] ring-1" : "bg-slate-200"}    rounded-md py-3 w-full items-center flex gap-2 justify-center font-bold text-white`}
+                                onClick={(e) => {
+                                    history.push("/order");
+                                }}
+                                disabled={productTotal >= 1 ? false : true}
+                            >
+                                <span>Create Order</span>
+                                <FontAwesomeIcon icon={faAngleRight} className="text-white" size="lg" />
+                            </button>
+                        </div>
                     </div>
                 ) : (
                     <div className="px-4 text-error text-lg font-semibold">Your cart is empty.</div>
@@ -141,5 +181,3 @@ function Cart() {
         </div>
     );
 }
-
-export default Cart;

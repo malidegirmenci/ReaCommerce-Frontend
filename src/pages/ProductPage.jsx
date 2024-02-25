@@ -13,7 +13,7 @@ import { faAws, faHooli, faLyft, faPiedPiperHat, faRedditAlien, faStripe } from 
 import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import axiosInstance from '../api/axiosInstance';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart, updateCartItemQuantity } from '../store/actions/shoppingCartAction/shoppingCartAction';
+import { saveCartItemToDB, addToCart, updateCartItemQuantity } from '../store/actions/shoppingCartAction/shoppingCartAction';
 import toastMixin from '../utils/sweetAlertToastify';
 export default function ProductPage() {
     const { reviews, availability, descriptionSrc } = data.productPage;
@@ -26,7 +26,10 @@ export default function ProductPage() {
     const { cart } = useSelector((store) => store.shoppingCart);
     const [product, setProduct] = useState({ images: [] });
     const requestURL = `/products/${productId}`
+    const userToken = useSelector((state) => state.user.response.token)
     const addingToCartHandler = () => {
+        const cartItem = {productId:product.id, quantity: 1, isChecked:true}
+        saveCartItemToDB(userToken, history, cartItem)
         let isAvailable = false;
         cart.map((item) => {
             if (item.product.id == productId) isAvailable = true;
@@ -145,13 +148,13 @@ export default function ProductPage() {
                             <FontAwesomeIcon icon={faStar} className='text-yellow-300' size="lg" />
                             <img src={Images.icons.starRegular} />
                         </div>
-                        <h6 className='text-neutral-500 text-sm font-bold leading-normal tracking-tight'>{parseInt(product.sell_count / 15)} Reviews</h6>
+                        <h6 className='text-neutral-500 text-sm font-bold leading-normal tracking-tight'>{parseInt(product.sellCount / 15)} Reviews</h6>
                     </div>
                     <h5 className='text-slate-800 text-2xl font-bold leading-loose tracking-tight'>${product.price}</h5>
                     <div className='flex flex-col items-start'>
                         <h6 className='text-neutral-500 text-sm font-bold leading-normal tracking-tight'>Availability : <span className='text-sky-500 text-sm font-bold leading-normal tracking-tight'>{availability}</span></h6>
                         <p className='text-zinc-500 text-sm font-normal leading-tight tracking-tight'>{product.description}</p>
-                        <p className='text-zinc-500 text-sm font-normal leading-tight tracking-tight'>{product.sell_count} amount purchased</p>
+                        <p className='text-zinc-500 text-sm font-normal leading-tight tracking-tight'>{product.sellCount} amount purchased</p>
                     </div>
                     <div className="w-[445px] h-[0px] border border-stone-300"></div>
                     <div className='flex gap-2'>

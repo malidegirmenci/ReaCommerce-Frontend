@@ -26,7 +26,7 @@ export default function SignUp() {
                     name: data.name,
                     email: data.email,
                     password: data.password,
-                    role_id: data.role === "admin" ? 0 : 2
+                    role_id: data.role === "admin" ? 1 : 3
                 },history
             ))
         } else {
@@ -35,7 +35,7 @@ export default function SignUp() {
                     name: data.name,
                     email: data.email,
                     password: data.password,
-                    role_id: 1,
+                    role_id: 2,
                     store: {
                         name: data.storeName,
                         phone: data.storePhone,

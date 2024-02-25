@@ -1,7 +1,6 @@
 import * as types from './productActionTypes';
 import  instanceAxios  from '../../../api/axiosInstance';
 
-
 const fetchProductsRequest = () => ({
     type: types.FETCH_PRODUCTS_REQUEST
 });
@@ -35,7 +34,6 @@ const fetchProducts = (params) => {
             dispatch(fetchProductsSuccess(response.data.products,response.data.total));
         })
         .catch((error) => {
-            //console.log("Products Fetching Error:"+ error.message);
             dispatch(fetchProductsFailure(error.message));
         })
     }
@@ -49,7 +47,6 @@ const addMoreProducts = (params) => {
             dispatch(fetchMoreProducts(response.data.products,response.data.total));
         })
         .catch((error) => {
-            //console.log("Products Fetching Error:"+ error.message);
             dispatch(fetchProductsFailure(error.message));
         })
     }

@@ -63,7 +63,7 @@ export default function ProductList() {
                     category: categoryId
                 })
             );
-            setOffset(offset + 8);
+            setOffset(offset+1);
         }else{
             dispatch(
                 addMoreProducts({

@@ -1,11 +1,9 @@
 import * as types from './globalActionTypes';
 import  instanceAxios  from '../../../api/axiosInstance';
 
-
 export const updateRoles = () => {
     return (dispatch) => {
         instanceAxios.get("/roles")
-            //console.log(response)
             .then((response) => {
                 dispatch({ type: types.UPDATE_ROLES, payload: response.data });
             })
@@ -19,7 +17,6 @@ export const updateCategories = () => {
     return (dispatch) => {
         instanceAxios.get("/categories")
             .then((response) => {
-                //console.log(response)
                 dispatch({ type: types.UPDATE_CATEGORIES, payload: response.data });
             })
             .catch((error) => {

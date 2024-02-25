@@ -15,7 +15,7 @@ export default function Header() {
     const history = useHistory();
     const user = useSelector((store) => store.user.response);
     const categories = useSelector((store) => store.global.categories);
-    const { pathname, search } = useLocation();
+    const { search } = useLocation();
     const womanCategories = categories.filter((category) => category.gender === 'k');
     const manCategories = categories.filter((category) => category.gender === 'e');
     const handleLogOut = () => {
@@ -23,7 +23,7 @@ export default function Header() {
         localStorage.removeItem('Token');
     }
     const { cart } = useSelector((store) => store.shoppingCart);
-    const productURL = (productName,productId, categoryId,) => {
+    const productURL = (productName, productId, categoryId,) => {
         const catCode = categories.find(
             (c) => c.id == categoryId
         )?.code;
@@ -33,8 +33,8 @@ export default function Header() {
         const productURL = `/shopping/${gender}/${category}/${productId}/${nameSlug}`
         return productURL
     }
-    let cartProductCount = cart.reduce((sum, product) => {
-        return sum + product.count;
+    let cartProductCount = cart.reduce((sum, item) => {
+        return item.isChecked ? sum + item.quantity : sum;
     }, 0);
     return (
         <div className="">
@@ -123,12 +123,13 @@ export default function Header() {
                                     <img
                                         src={`https://www.gravatar.com/avatar/${MD5(
                                             user.email
-                                        )}?s=24`}
-                                        className="border-2 border-solid border-secondary-content rounded-[50%]"
+                                        )}?s=30`}
+                                        className="ring-1 ring-slate-200 shadow-md rounded-[50%]"
                                     />
                                     <div className="dropdown">
                                         <div tabIndex={0} role="button" className=" m-1 bg-white border-none">{user.name}</div>
                                         <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-white rounded-box w-32">
+                                            <li><div onClick={() => history.push("/myorders")}>My Orders</div></li>
                                             <li><div onClick={() => handleLogOut()}>Log out</div></li>
                                         </ul>
                                     </div>
@@ -152,53 +153,45 @@ export default function Header() {
                             </label>
                             <div
                                 tabIndex={0}
-                                className="dropdown-content min-w-[20rem] z-[30] right-[1px] menu p-4 shadow-xl bg-white rounded-box "
+                                className="dropdown-content min-w-[20rem] z-[100] right-[1px] menu p-4 shadow-xl bg-white rounded-box "
                             >
-                                <ul className="w-fit gap-1 flex flex-col py-2 ">
+                                <ul className="w-fit gap-1 flex flex-col py-1 ">
                                     <h2 className="text-slate-700 font-semibold mb-2">{`My Cart (${cartProductCount} Products)`}</h2>
                                     {cart.map((item, index) => {
-                                        const { product, count } = item;
-
+                                        const { product, quantity, isChecked } = item;
                                         return (
-                                            <li key={index} className="border rounded shadow-md " onClick={() => history.push(productURL(product.name,product.id,product.category_id))}>
-                                                <div className="flex gap-4 justify-between ">
-                                                    <div className="flex gap-4 h-fit my-1" >
+                                            isChecked &&
+                                            <li key={index} className="border rounded shadow-md" onClick={() => history.push(productURL(product.name, product.id, product.category_id))}>
+                                                <div className="flex w-full">
+                                                    <div className="w-[30%]">
                                                         <img
                                                             src={product.images[0].url}
-                                                            className="h-16 object-cover "
+                                                            className="h-full w-full object-cover"
                                                         />
-                                                        <div className="flex flex-col justify-center text-slate-700 ">
-                                                            <h3 className=" font-semibold ">{product.name}</h3>
-                                                            <p className="font-normal text-xs text-slate-500">Amount: {count}</p>
-                                                            <p className="font-semibold ">
-                                                                {`$${(product.price * count).toFixed(2)}`}
-                                                            </p>
-                                                        </div>
                                                     </div>
-                                                    <FontAwesomeIcon icon={faTrash} className=" text-neutral hover:text-error cursor-pointer"
-                                                        onClick={() => {
-                                                            dispatch(removeFromCart(product.id));
-                                                        }} />
+                                                    <div className=" w-[50%] flex flex-col justify-center text-slate-700 ">
+                                                        <h3 className=" font-semibold ">{product.name}</h3>
+                                                        <p className="font-normal text-xs text-slate-500">Amount: {quantity}</p>
+                                                        <p className="font-semibold ">
+                                                            {`$${(product.price * quantity).toFixed(2)}`}
+                                                        </p>
+                                                    </div>
+                                                    <div className="w-[%20]">
+                                                        <FontAwesomeIcon icon={faTrash} className="text-neutral hover:text-error cursor-pointer"
+                                                            onClick={() => {
+                                                                dispatch(removeFromCart(product.id));
+                                                            }} />
+                                                    </div>
                                                 </div>
                                             </li>
                                         );
                                     })}
                                     {cart.length ? (
-                                        <div className="flex gap-2 justify-between">
-                                            <Link to="/cart">
-                                                <button className="ring-1 bg-[#0ea5e9] ring-slate-100 text-white font-semibold rounded-md py-2 px-4">
-                                                    Go to Cart
-                                                </button>
-                                            </Link>
-                                            <button
-                                                className="ring-1 bg-[#0ea5e9] ring-slate-100 text-white font-semibold rounded-md py-2 px-4"
-                                                onClick={() => {
-                                                    history.push("/order");
-                                                }}
-                                            >
-                                                Confirm Order
+                                        <Link to="/cart">
+                                            <button className="ring-1 bg-[#0ea5e9] ring-slate-100 text-white font-semibold w-full rounded-md py-2 px-4">
+                                                Go to Cart
                                             </button>
-                                        </div>
+                                        </Link>
                                     ) : (
                                         <p className="pt-3 text-error font-semibold">
                                             Your cart is empty.
