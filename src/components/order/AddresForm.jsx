@@ -1,16 +1,17 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
     getCities,
     getDistrictsByCityCode,
     getNeighbourhoodsByCityCodeAndDistrict
 } from "turkey-neighbourhoods";
-import { saveAddress } from '../../store/actions/shoppingCartAction/shoppingCartAction';
-
+import { saveAddress } from '../../store/actions/userAction/userAction';
 
 export default function AddressForm(props) {
     const toggleAddresForm = props.toggleAddresForm;
+    const setToggleAdressForm = props.setToggleAdressForm;
+    const token = useSelector((state) => state.user.response.token)
     const dispatch = useDispatch();
     const {
         register,
@@ -20,12 +21,12 @@ export default function AddressForm(props) {
         defaultValues: {
             name: "",
             surname: "",
-            title: "",
+            addressTitle: "",
             phone: "",
             city: "",
             district: "",
             neighborhood: "",
-            address: "",
+            addressDetail: "",
         },
         mode: "onBlur",
     });
@@ -47,16 +48,16 @@ export default function AddressForm(props) {
     }
 
     const onSubmit = (address) => {
-        console.log("willSendAddress", address);
-        dispatch(saveAddress(address))
+        saveAddress(address, token, dispatch);
+        setToggleAdressForm(false);
     };
 
     return (
         <form className={` flex flex-col gap-2 w-4/5 mx-auto ${toggleAddresForm ? '' : 'hidden'}`} onSubmit={handleSubmit(onSubmit)}>
             <div>
-                <label htmlFor='title' className="ml-3 text-sm font-bold text-gray-700 tracking-wide">Address Title</label>
-                <input id="title" className=" bg-white w-full text-base px-4 py-2 border-b border-gray-300 focus:outline-none rounded-2xl focus:border-indigo-500" type="text" placeholder="Enter your address title" {...register("title", { required: { value: true, message: "Address title is required" }, minLength: { value: 3, message: "You must enter at least 3 characters" }, maxLength: { value: 35, message: "You can enter up to 35 characters." } })} />
-                {errors["title"] && <p role="alert" className='ml-3 text-sm font-bold text-red-600 tracking-wide'>{errors["title"]?.message}</p>}
+                <label htmlFor='addressTitle' className="ml-3 text-sm font-bold text-gray-700 tracking-wide">Address Title</label>
+                <input id="addressTitle" className=" bg-white w-full text-base px-4 py-2 border-b border-gray-300 focus:outline-none rounded-2xl focus:border-indigo-500" type="text" placeholder="Enter your address title" {...register("addressTitle", { required: { value: true, message: "Address title is required" }, minLength: { value: 3, message: "You must enter at least 3 characters" }, maxLength: { value: 35, message: "You can enter up to 35 characters." } })} />
+                {errors["addressTitle"] && <p role="alert" className='ml-3 text-sm font-bold text-red-600 tracking-wide'>{errors["addressTitle"]?.message}</p>}
             </div>
             <div className='flex items-center gap-[10%]'>
                 <div className='w-1/2'>
@@ -132,9 +133,9 @@ export default function AddressForm(props) {
                 </div>
             </div>
             <div>
-                <label htmlFor='address' className="ml-3 text-sm font-bold text-gray-700 tracking-wide">Address Detail</label>
-                <textarea id="address" className="min-h-20 bg-white w-full text-base px-4 py-2 border-b border-gray-300 focus:outline-none rounded-2xl focus:border-indigo-500" type="textarea" placeholder="Enter your address detail" {...register("address", { required: { value: true, message: "Address detail is required" }, minLength: { value: 3, message: "You must enter at least 3 characters" }, maxLength: { value: 150, message: "You can enter up to 150 characters." } })} />
-                {errors["address"] && <p role="alert" className='ml-3 text-sm font-bold text-red-600 tracking-wide'>{errors["address"]?.message}</p>}
+                <label htmlFor='addressDetail' className="ml-3 text-sm font-bold text-gray-700 tracking-wide">Address Detail</label>
+                <textarea id="addressDetail" className="min-h-20 bg-white w-full text-base px-4 py-2 border-b border-gray-300 focus:outline-none rounded-2xl focus:border-indigo-500" type="textarea" placeholder="Enter your address detail" {...register("addressDetail", { required: { value: true, message: "Address detail is required" }, minLength: { value: 3, message: "You must enter at least 3 characters" }, maxLength: { value: 150, message: "You can enter up to 150 characters." } })} />
+                {errors["addressDetail"] && <p role="alert" className='ml-3 text-sm font-bold text-red-600 tracking-wide'>{errors["addressDetail"]?.message}</p>}
             </div>
             <div>
                 <button type="submit" disabled={!isValid} className="w-full flex justify-center text-2xl bg-gradient-to-r disabled:opacity-50 from-indigo-500 to-blue-600  hover:bg-gradient-to-l hover:from-blue-500 hover:to-indigo-600 text-gray-100 p-3  rounded-full tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-500">
