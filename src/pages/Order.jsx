@@ -1,16 +1,43 @@
 import { useState } from "react";
 import Address from "../components/order/Address";
-import PaymentForm from "../components/order/PaymentForm";
 import Summary from "../components/cart/Summary";
+import Payment from "../components/order/Payment";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+
+import { useDispatch, useSelector } from "react-redux";
+import { saveOrderToDB } from "../store/actions/userAction/userAction";
+import CouponArea from "../components/cart/CouponArea";
+import { clearCart, removeFromCart } from "../store/actions/shoppingCartAction/shoppingCartAction";
 
 export default function Order() {
+    const dispatch = useDispatch();
+    const history = useHistory();
     const [tab, setTab] = useState("address");
     const [showBillAddress, setShowBillAdress] = useState(true);
+    const token = useSelector((state)=>state.user.response.token);
+    const order = useSelector((state) => state.order)
+    const orderRequest = {
+        addressId: order.address.id,
+        paymentId: order.payment.id,
+        price:parseFloat(order.price),
+        cart:order.cart
+    }
     const handleCheckboxChange = (e) => {
         setShowBillAdress(e.target.checked);
     };
+    const [isAnimate, setIsAnimate] = useState(false);
+    const handleClick = () => {
+        saveOrderToDB(token, orderRequest, dispatch);
+        if (!isAnimate) {
+            setIsAnimate(true);
+            setTimeout(() => {
+                setIsAnimate(false);
+                history.push("/checkout")
+            }, 8000);
+        }
+    };
     return (
-        <div className="flex gap-4 w-4/5 mx-auto py-6">
+        <div className="flex gap-4 w-[90%] mx-auto py-6">
             <div className="w-2/3">
                 <div className="flex text-center pb-4">
                     <input
@@ -71,11 +98,33 @@ export default function Order() {
                             </>
                         )}
                     </div>
-                ) : (<PaymentForm></PaymentForm>)
+                ) : (<Payment></Payment>)
                 }
             </div>
-            <div className="w-1/3">
-                <Summary/>
+            <div className="w-1/3 flex flex-col gap-4">
+                <button
+                    className={isAnimate ? 'order animate' : 'order'}
+                    onClick={handleClick}
+                >
+                    <span className='default'>Complete Order</span>
+                    <span className='success'>Order Placed
+                        <svg viewBox='0 0 12 10'>
+                            <polyline points='1.5 6 4.5 9 10.5 1'></polyline>
+                        </svg>
+                    </span>
+                    <div className='box'></div>
+                    <div className='truck'>
+                        <div className='back'></div>
+                        <div className='front'>
+                            <div className='window'></div>
+                        </div>
+                        <div className='light top'></div>
+                        <div className='light bottom'></div>
+                    </div>
+                    <div className='lines'></div>
+                </button>
+                <Summary cart={order.cart} />
+                <CouponArea/>
             </div>
         </div>
     )
